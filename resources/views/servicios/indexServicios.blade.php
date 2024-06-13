@@ -10,7 +10,7 @@
         <!-- Tarjeta de Maquillaje -->
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="{{ asset('images/maquillaje.jpg') }}" alt="Maquillaje">
+                <img class="card-img-top" src="{{ asset('imagenes/resizer.jpeg') }}" alt="Maquillaje">
                 <div class="card-body">
                     <h4 class="card-title">Maquillaje</h4>
                     <p class="card-text"></p>
@@ -22,7 +22,7 @@
         <!-- Tarjeta de Cabello -->
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="{{ asset('images/cabello.jpg') }}" alt="Cabello">
+                <img class="card-img-top" src="{{ asset('imagenes/cabello.jpeg') }}" alt="Cabello">
                 <div class="card-body">
                     <h4 class="card-title">Cabello</h4>
                     <p class="card-text"></p>
@@ -34,7 +34,7 @@
         <!-- Tarjeta de Pedicura -->
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="{{ asset('images/pedicura.jpg') }}" alt="Pedicura">
+                <img class="card-img-top" src="{{ asset('imagenes/pedicura.jpg') }}" alt="Pedicura">
                 <div class="card-body">
                     <h4 class="card-title">Pedicura</h4>
                     <p class="card-text"></p>
@@ -46,7 +46,7 @@
         <!-- Tarjeta de Manicura -->
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="{{ asset('images/manicura.jpg') }}" alt="Manicura">
+                <img class="card-img-top" src="{{ asset('imagenes/manicura.jpg') }}" alt="Manicura">
                 <div class="card-body">
                     <h4 class="card-title">Manicura</h4>
                     <p class="card-text"></p>
