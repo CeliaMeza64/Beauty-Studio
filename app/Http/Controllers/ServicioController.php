@@ -10,6 +10,12 @@ class ServicioController extends Controller
     public function index()
     {
         $servicios = Servicio::all();
-        return view('servicios.indexServicios')-> with('servicios', $servicios);
+        return view('plantilla.plantilla')-> with('servicios', $servicios);
+    }
+
+    public function showmaquillaje()
+    {
+      
+        return view('servicios.maquillaje');
     }
 }
