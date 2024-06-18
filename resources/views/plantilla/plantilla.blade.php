@@ -129,7 +129,7 @@
             <img class="rounded-circle" src="https://via.placeholder.com/140" alt="Generic placeholder image" width="140" height="140">
             <h2>New Heading</h2>
             <p>Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{{ route('maquillaje') }}"role="button">View details &raquo;</a></p>
           </div>
         </div>
 
