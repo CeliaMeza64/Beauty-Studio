@@ -18,4 +18,9 @@ class ServicioController extends Controller
       
         return view('servicios.maquillaje');
     }
+
+    public function showcabello()
+    {
+        return view('servicios.cabello');
+    }
 }
