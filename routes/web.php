@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/', [ServicioController::class, 'index'])->name('indexServicio');
 Route::get('/maquillaje', [ServicioController::class, 'showmaquillaje'])->name('maquillaje');
 
+Route::get('/cabello', [ServicioController::class, 'showcabello'])->name('cabello');
