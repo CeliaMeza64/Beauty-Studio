@@ -1,171 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Carousel Template for Bootstrap</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <style>
-      /* Add your custom styles here */
-      .carousel-item {
-        height: 65vh;
-        min-height: 300px;
-        background: no-repeat center center scroll;
-        background-size: cover;
-      }
-      .featurette-image {
-        width: 100%;
-        height: auto;
-      }
-      .heading-list {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: nowrap;
-      }
-      .heading-list .col-lg-4 {
-        margin-bottom: 20px;
-        flex: 1 0 21%; /* Adjust the flex basis to control the width */
-        max-width: 21%;
-      }
-      .heading-list .col-lg-4 img {
-        margin: auto;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Bootstrap CSS (Asumiendo que estás usando Bootstrap para estilos de navegación) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilo personalizado para la barra de navegación */
+    .navbar {
+      background-color: black; /* Fondo negro */
+    }
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: gold !important; /* Letras doradas */
+    }
+    .navbar-toggler-icon {
+      background-color: gold; /* Icono del toggler dorado */
+    }
+    .image-container {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      overflow: hidden; /* Evita desbordamientos */
+      height: 400px; /* Altura fija de 400 píxeles */
+    }
+    .image-container img {
+      width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+      height: 100%; /* Imagen ocupa toda la altura del contenedor */
+      object-fit: cover; /* Ajuste de la imagen para cubrir el contenedor */
+      display: block; /* Para evitar espacios adicionales */
+    }
+    .card-container {
+      font-family: Georgia, serif; /* Fuente Georgia */
+    }
+    .card {
+      background-color: black; /* Fondo negro */
+      color: gold; /* Letras doradas */
+      border: 1px solid gold; /* Borde dorado */
+      margin-bottom: 20px; /* Espacio entre tarjetas */
+    }
+    .btn-gold {
+      background-color: gold; /* Fondo del botón dorado */
+      color: black; /* Texto negro */
+      border: none; /* Sin borde */
+    }
+    .btn-gold:hover {
+      background-color: darkgoldenrod; /* Fondo del botón dorado oscuro al pasar el mouse */
+      color: white; /* Texto blanco al pasar el mouse */
+    }
+    .services-title {
+      text-align: center; /* Centrar el texto */
+      color: gold; /* Color dorado */
+      font-family: Georgia, serif; /* Fuente Georgia */
+      margin-top: 40px; /* Margen superior */
+      margin-bottom: 20px; /* Margen inferior */
+    }
+    .card img {
+      height: 200px; /* Altura fija para las imágenes en las tarjetas */
+      object-fit: cover; /* Ajuste de la imagen para cubrir el contenedor */
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Carousel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Beauty Studio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contactos</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <main role="main">
-
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="first-slide" src="https://via.placeholder.com/800x400" alt="First slide">
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h1>Example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="second-slide" src="https://via.placeholder.com/800x400" alt="Second slide">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="third-slide" src="https://via.placeholder.com/800x400" alt="Third slide">
-            <div class="container">
-              <div class="carousel-caption text-right">
-                <h1>One more for good measure.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-
-      <div class="container marketing">
-        <div class="row heading-list">
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle" src="https://via.placeholder.com/140" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle" src="https://via.placeholder.com/140" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle" src="https://via.placeholder.com/140" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="{{route('cabello')}}" role="button">View details &raquo;</a></p>
+<!-- Contenedor para la imagen -->
+<div class="image-container">
+  <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
 </div>
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle" src="https://via.placeholder.com/140" alt="Generic placeholder image" width="140" height="140">
-            <h2>New Heading</h2>
-            <p>Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper.</p>
-            <p><a class="btn btn-secondary" href="{{ route('maquillaje') }}"role="button">View details &raquo;</a></p>
-          </div>
+
+<!-- Título de servicios -->
+<h2 class="services-title">Servicios</h2>
+
+<!-- Contenedor para las tarjetas -->
+<div class="container card-container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Manicura</h5>
+          <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes nuestro equipo de expertos está altamente calificado Y utilizando técnicas innovadoras y productos de la más alta calidad para garantizarte resultados excepcionales</p>
+          <a href="#" class="btn btn-gold">Ver Detalles</a>
         </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="https://via.placeholder.com/500" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="https://via.placeholder.com/500" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
       </div>
-      <!-- /.container -->
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Pedicura</h5>
+          <p class="card-text">En nuestro salón te invitamos a sumergir a una experiencia de bienestar y cuidado integral para tus pies, nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad</p>
+          <a href="#" class="btn btn-gold">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Cabello</h5>
+          <p class="card-text">En nuestro salón tu cabello en nuestra prioridad te ofrecemos una amplia gama de servicios para que luzcas una melena radiante sana y llena de vida Nuestro equipo de estilistas profesionales altamente capacitados y apasionados por el cuidado capilar está a tu disposición para brindarte una experiencia personalizada y de la más alta calidad</p>
+          <a href="#" class="btn btn-gold">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Maquillaje</h5>
+          <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión nuestro equipo de maquilladores profesionales altamente capacitados y apasionados por el arte del maquillaje está tu disposición para brindarte una experiencia personalizada y de la más alta calidad</p>
+          <a href="#" class="btn btn-gold">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    </main>
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+<!-- Tu contenido original aquí -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
