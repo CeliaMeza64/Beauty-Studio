@@ -116,7 +116,7 @@
         <div class="card-body">
           <h5 class="card-title">Pedicura</h5>
           <p class="card-text">En nuestro salón te invitamos a sumergir a una experiencia de bienestar y cuidado integral para tus pies, nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad</p>
-          <a href="#" class="btn btn-gold">Ver Detalles</a>
+          <a href="/pedicura" class="btn btn-gold">Ver Detalles</a>
         </div>
       </div>
     </div>
@@ -136,7 +136,7 @@
         <div class="card-body">
           <h5 class="card-title">Maquillaje</h5>
           <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión nuestro equipo de maquilladores profesionales altamente capacitados y apasionados por el arte del maquillaje está tu disposición para brindarte una experiencia personalizada y de la más alta calidad</p>
-          <a href="#" class="btn btn-gold">Ver Detalles</a>
+          <a href="/maquillaje" class="btn btn-gold">Ver Detalles</a>
         </div>
       </div>
     </div>
