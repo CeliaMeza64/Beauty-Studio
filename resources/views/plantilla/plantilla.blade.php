@@ -82,7 +82,7 @@
           <a class="nav-link" href="#">Servicios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contactos</a>
+          <a class="nav-link" href="https://api.whatsapp.com/send?phone=50489373440" >Contactos</a>
         </li>
       </ul>
     </div>
@@ -126,7 +126,7 @@
         <div class="card-body">
           <h5 class="card-title">Cabello</h5>
           <p class="card-text">En nuestro salón tu cabello en nuestra prioridad te ofrecemos una amplia gama de servicios para que luzcas una melena radiante sana y llena de vida Nuestro equipo de estilistas profesionales altamente capacitados y apasionados por el cuidado capilar está a tu disposición para brindarte una experiencia personalizada y de la más alta calidad</p>
-          <a href="#" class="btn btn-gold">Ver Detalles</a>
+          <a href="{{route('cabello')}}" class="btn btn-gold">Ver Detalles</a> 
         </div>
       </div>
     </div>

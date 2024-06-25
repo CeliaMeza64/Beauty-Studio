@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Beauty Studio</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -127,167 +129,64 @@
     </div>
 </section>
 <!-- Servicios -->
-<section id="servicios" class="servicio" style="background-color: #f5f5f5; padding: 60px 0;">
-    <div class="container">
-        <h2 class="text-center mb-5" style="color: #d63384; font-size: 36px; font-weight: bold; text-transform: uppercase;">Nuestros Servicios para el Cabello</h2>
-        <div class="row">
-            <!-- Planchado -->
-            <div class="col-md-6 mb-4">
-                <div class="service-box" style="background: #ffffff; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 class="text-center" style="color: #343a40; font-size: 24px; margin-bottom: 20px;">Planchado</h3>
-                    <div id="carouselPlanchado" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado1.jpeg') }}" alt="Planchado 1" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado2.jpg') }}" alt="Planchado 2" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado3.jpg') }}" alt="Planchado 3" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado4.jpeg') }}" alt="Planchado 4" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado5.jpeg') }}" alt="Planchado 5" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/planchado6.jpeg') }}" alt="Planchado 6" style="border-radius: 8px;">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselPlanchado" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselPlanchado" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-                        <p class="mt-3 text-center" style="color: #6c757d;">Nuestros servicios de planchado para el cabello, ofrecen una solución profesional y eficaz para obtener un cabello liso, suave y brillante. Utilizamos técnicas avanzadas y productos de alta calidad para asegurar que tu cabello no solo luzca espectacular, sino que también se mantenga sano y protegido.</p>
-                </div>
-            </div>
-
-            <!-- Secado -->
-            <div class="col-md-6 mb-4">
-                <div class="service-box" style="background: #ffffff; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 class="text-center" style="color: #343a40; font-size: 24px; margin-bottom: 20px;">Secado</h3>
-                    <div id="carouselSecado" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('imagenes/secado1.jpeg') }}" alt="Secado 1" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/secado2.jpeg') }}" alt="Secado 2" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/secado3.jpeg') }}" alt="Secado 3" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/secado4.jpeg') }}" alt="Secado 3" style="border-radius: 8px;">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselSecado" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselSecado" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-                    <p class="mt-3 text-center" style="color: #000;">Nuestros servicios de secado para el cabello están diseñados para ofrecer un acabado profesional y duradero, proporcionando volumen, suavidad y un estilo impecable. Utilizamos herramientas y productos de alta calidad para asegurar que tu cabello se mantenga sano y radiante.</p>
-                    <br>
+<div id="servicios" class="container" >
+    <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 text-center">
+                <img src="imagenes/planchado2.jpg" alt="Servicio de Maquillaje de Día" class="card-img-top img-fluid rounded">
+                <div class="card-body" style="background-color: #000; color: #000; padding: 60px 0;" >
+                    <h2 class="card-title" style="color: #ffc107">PLANCHADO</h2>
+                    <p class="card-text" style="color: #f5f5f5" >Nuestros servicios de planchado para el cabello, ofrecen una solución profesional y eficaz para obtener un cabello liso, suave y brillante. Utilizamos técnicas avanzadas y productos de alta calidad para asegurar que tu cabello no solo luzca espectacular, sino que también se mantenga sano y protegido.</p>
                     <p class="mt-3 text-center" style="color: blue ;">Beneficios para el Cabello:  </p>
-                    <p style="color: #000;"> * Volumen y Movimiento: Consigue un cabello con volumen, cuerpo y movimiento natural. </p>
-                    <p style="color: #000;" > * Acabado Profesional: Logra un look pulido y de salón que dura más tiempo. </p>
-                    <p style="color: #000;" > * Protección: Utilizamos productos que protegen tu cabello del calor, manteniéndolo saludable y fuerte. </p>
+                    <p style="color: #f5f5f5"> * Deja el cabello con una textura uniforme y sedosa, lo que facilita el peinado diario.</p>
+                    <p style="color: #f5f5f5"> * Un cabello planchado correctamente puede mantener su forma durante varios días, reduciendo la necesidad de peinarlo diariamente.</p>
+                    <p style="color: #f5f5f5"> * Al alisar el cabello, se realza su brillo natural, haciendo que luzca más saludable y radiante.</p>
                 </div>
             </div>
         </div>
-            <div class="row">
-            <!-- Ondas -->
-            <div class="col-md-6 mb-4">
-                <div class="service-box" style="background: #ffffff; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 class="text-center" style="color: #343a40; font-size: 24px; margin-bottom: 20px;">Ondas</h3>
-                    <div id="carouselOndas" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas1.jpeg') }}" alt="Ondas 1" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas2.jpeg') }}" alt="Ondas 2" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas3.jpeg') }}" alt="Ondas 3" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas4.jpeg') }}" alt="Ondas 4" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas5.jpeg') }}" alt="Ondas 5" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/ondas6.jpeg') }}" alt="Ondas 6" style="border-radius: 8px;">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselOndas" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselOndas" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-                    <p class="mt-3 text-center" style="color: #6c757d;">Nuestros servicios de ondulado para el cabello ofrecen una manera elegante y versátil de transformar tu estilo, proporcionando ondas naturales, definidas o glamorosas según tus preferencias. Utilizamos técnicas y productos especializados para asegurar que tu cabello luzca radiante y saludable.</p>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 text-center">
+                <img src="imagenes/secado3.jpeg" alt="graduacion" class="card-img-top img-fluid rounded">
+                <div class="card-body"style="background-color: #000; color: #000; padding: 60px 0;"  >
+                    <h2 class="card-title" style="color: #ffc107">SECADO</h2>
+                    <p class="card-text" style="color: #f5f5f5" >Nuestros servicios de secado para el cabello están diseñados para ofrecer un acabado profesional y duradero, proporcionando volumen, suavidad y un estilo impecable. Utilizamos herramientas y productos de alta calidad para asegurar que tu cabello se mantenga sano y radiante.</p>
+                    <p class="mt-3 text-center" style="color: blue ;">Beneficios para el Cabello:  </p>
+                    <p style="color: #f5f5f5"> * Volumen y Movimiento: Consigue un cabello con volumen, cuerpo y movimiento natural. </p>
+                    <p style="color: #f5f5f5"> * Acabado Profesional: Logra un look pulido y de salón que dura más tiempo. </p>
+                    <p style="color: #f5f5f5"> * Protección: Utilizamos productos que protegen tu cabello del calor, manteniéndolo saludable y fuerte. </p>
                 </div>
             </div>
-
-            <!-- Keratinas -->
-            <div class="col-md-6 mb-4">
-                <div class="service-box" style="background: #ffffff ; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 class="text-center" style="color: #343a40; font-size: 24px; margin-bottom: 20px;">Keratinas</h3>
-                    <div id="carouselKeratinas" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset('imagenes/keratina1.jpeg') }}" alt="Keratina 1" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/keratina2.jpeg') }}" alt="Keratina 2" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/keratina3.jpeg') }}" alt="Keratina 3" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/keratina4.jpeg') }}" alt="Keratina 4" style="border-radius: 8px;">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="{{ asset('imagenes/keratina5.jpeg') }}" alt="Keratina 5" style="border-radius: 8px;">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselKeratinas" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselKeratinas" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-                    <p class="mt-3 text-center" style="color: #000;"> Nuestros servicios de tratamiento de keratina están diseñados para revitalizar y transformar tu cabello, proporcionando resultados suaves, brillantes y más manejables. La keratina es una proteína natural que fortalece el cabello y lo protege contra el daño ambiental y el calor del estilizado.</p>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 text-center">
+                <img src="imagenes/ondas8.jpeg" alt="quinceaños" class="card-img-top img-fluid rounded">
+                <div class="card-body" style="background-color: #000; color: #000; padding: 60px 0;" >
+                    <h2 class="card-title" style="color: #ffc107">ONDAS</h2>
+                    <p class="card-text"style="color: #f5f5f5"  >Nuestros servicios de ondulado para el cabello ofrecen una manera elegante y versátil de transformar tu estilo, proporcionando ondas naturales, definidas o glamorosas según tus preferencias. Utilizamos técnicas y productos especializados para asegurar que tu cabello luzca radiante y saludable.</p>
+                    <p class="mt-3 text-center" style="color: blue ;">Beneficios para el Cabello:  </p>
+                    <p style="color: #f5f5f5"> * Las ondas pueden adaptarse a diferentes estilos y ocasiones, desde un look casual y relajado hasta un peinado elegante y sofisticado para eventos especiales.</p>
+                    <p style="color: #f5f5f5"> * Se pueden personalizar para adaptarse a la longitud y textura del cabello de cada persona, ofreciendo una apariencia única y personalizada.</p>
+                    <p style="color: #f5f5f5"> * Proporcionan un movimiento natural y una apariencia más dinámica al cabello.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 text-center">
+                <img src="imagenes/keratina4.jpeg" alt="boda" class="card-img-top img-fluid rounded">
+                <div class="card-body" style="background-color: #000; color: #000; padding: 60px 0;" >
+                    <h2 class="card-title" style="color: #ffc107">KERATINA</h2>
+                    <p class="card-text" style="color: #f5f5f5" >Nuestros servicios de tratamiento de keratina están diseñados para revitalizar y transformar tu cabello, proporcionando resultados suaves, brillantes y más manejables. La keratina es una proteína natural que fortalece el cabello y lo protege contra el daño ambiental y el calor del estilizado.</p>
                     <p class="mt-3 text-center" style="color: blue;">Beneficios para el Cabello:  </p>
-                    <br>
-                    <p style="color: #000;"> * Cabello más Liso y Manejable: Reduce el frizz y facilita el peinado diario, dejando el cabello más suave y fácil de manejar.</p>
-                    <p style="color: #000;"> * Brillo Natural: Restaura el brillo y la vitalidad del cabello, mejorando su apariencia general.</p>
-                    <p style="color: #000;"> * Reparación Profunda: Ayuda a reparar el cabello dañado y debilitado, fortaleciéndolo desde la estructura interna.</p>
+                    <p style="color: #f5f5f5"> * Cabello más Liso y Manejable: Reduce el frizz y facilita el peinado diario, dejando el cabello más suave y fácil de manejar.</p>
+                    <p style="color: #f5f5f5"> * Brillo Natural: Restaura el brillo y la vitalidad del cabello, mejorando su apariencia general.</p>
+                    <p style="color: #f5f5f5"> * Reparación Profunda: Ayuda a reparar el cabello dañado y debilitado, fortaleciéndolo desde la estructura interna.</p>
+                </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
-
 <style>
     .carousel-control-prev-icon, .carousel-control-next-icon {
         background-color: rgba(0, 0, 0, 0.5);
@@ -325,9 +224,14 @@
     </div>
 </section>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
