@@ -106,7 +106,7 @@
         <div class="card-body">
           <h5 class="card-title">Manicura</h5>
           <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes nuestro equipo de expertos está altamente calificado Y utilizando técnicas innovadoras y productos de la más alta calidad para garantizarte resultados excepcionales</p>
-          <a href="#" class="btn btn-gold">Ver Detalles</a>
+          <a href="/manicura" class="btn btn-gold">Ver Detalles</a> <!-- Aquí está el enlace actualizado -->
         </div>
       </div>
     </div>
