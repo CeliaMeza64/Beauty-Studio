@@ -23,4 +23,8 @@ Route::get('/', [ServicioController::class, 'index'])->name('indexServicio');
 Route::get('/maquillaje', [ServicioController::class, 'showmaquillaje'])->name('maquillaje');
 
 Route::get('/cabello', [ServicioController::class, 'showcabello'])->name('cabello');
+
+Route::get('/manicura', [ServicioController::class, 'showmanicura'])->name('manicura');
+
 Route::get('/pedicura', [ServicioController::class, 'showpedicura'])->name('pedicura');
+

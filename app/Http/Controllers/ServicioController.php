@@ -24,8 +24,14 @@ class ServicioController extends Controller
         return view('servicios.cabello');
     }
 
+<<<<<<< HEAD
     public function showpedicura()
     {
         return view('servicios.pedicura');
+=======
+    public function showmanicura()
+    {
+        return view('servicios.manicura');
+>>>>>>> d9f69b4745f7e788c4f99bf2f8fba5f0836b3644
     }
 }
