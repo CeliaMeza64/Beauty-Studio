@@ -84,6 +84,9 @@
         <li class="nav-item">
           <a class="nav-link" href="https://api.whatsapp.com/send?phone=50489373440" >Contactos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="home">Administrador</a>
+        </li>
       </ul>
     </div>
   </div>
