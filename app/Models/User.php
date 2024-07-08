@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -42,4 +44,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
+    
+    public function adminlte_image()
+    {
+        if ($this->imagen) {
+            
+            return asset('perfil/' . $this->imagen);
+        }
+
+        return '/imagenes/usuario.jpg'; 
+    }
+
+    public function adminlte_desc()
+    {
+        return auth()->user()->username;
+    }
 }
