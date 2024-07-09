@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
     <h1>Servicios</h1>
-    <a href="{{ route('servicios.create') }}" class="btn btn-primary mb-3">Nuevo</a>
+    <a href="{{ route('servicios.create') }}" class="btn btn-primary mb-3">
+        <i class="fas fa-plus"></i> Nuevo
+    </a>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -34,13 +36,17 @@
                             No hay imagen
                         @endif
                     </td>
-                    <td>
-                        <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-warning">Editar</a>
-                        <a href="{{ route('servicios.show', $servicio->id) }}" class="btn btn-warning">Ver</a>
+                    <td class="d-flex align-items-center">
+                        <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </a>
+    
                         <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este servicio?')">Eliminar</button>
+                            <button type="submit" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este servicio?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>

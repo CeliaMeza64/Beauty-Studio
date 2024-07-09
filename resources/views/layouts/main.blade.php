@@ -47,7 +47,7 @@
       transform: scale(1.02); 
     }
     .card-text {
-      color: white; 
+      color: black; 
     }
     .services-title {
       text-align: center; 
@@ -74,6 +74,8 @@
       object-fit: cover;
     }
   </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -84,25 +86,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Servicios
-          </a>
-          <div class="dropdown-menu" aria-labelledby="servicesDropdown">
-            <a class="dropdown-item" href="/manicura">Manicura</a>
-            <a class="dropdown-item" href="/pedicura">Pedicura</a>
-            <a class="dropdown-item" href="/cabello">Cabello</a>
-            <a class="dropdown-item" href="/maquillaje">Maquillaje</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://api.whatsapp.com/send?phone=50489373440">Contactos</a>
-        </li>
-      </ul>
+    <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
+                </li>
+              
+            </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
@@ -121,5 +119,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

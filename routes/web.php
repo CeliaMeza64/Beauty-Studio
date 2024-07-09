@@ -65,6 +65,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         'show'    => 'servicios.show',
     ]);
 
+    Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
+
+
 
 
 
