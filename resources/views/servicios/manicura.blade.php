@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Georgia', serif;
+            font-family: Arial, sans-serif;
             font-size: 24px;
         }
         .jumbotron {
@@ -91,10 +91,10 @@
             color: #000;
         }
         .titulo {
-            font-family: 'Georgia', serif;
+            font-family: Arial, sans-serif;
         }
         .subtitulo {
-            font-family: 'Verdana', sans-serif;
+            font-family: Arial, sans-serif;
         }
         .card {
             background-color: #000;
@@ -119,6 +119,12 @@
         }
         .jumbotron h1, .jumbotron p {
             text-align: center;
+        }
+        .card-img-top {
+            transition: transform 0.3s ease-in-out;
+        }
+        .card-img-top:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>

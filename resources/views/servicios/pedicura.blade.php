@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Beauty Studio</title>
+    <title>Beauty Studio</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-         body {
-            font-family: 'Arial', sans-serif;
+        body {
+            font-family: Arial, sans-serif;
             font-size: 24px;
-          
         }
         .jumbotron {
             background-image: url('imagenes/portada1.jpg');
@@ -29,8 +27,6 @@
         .navbar-toggler-icon {
             background-color: #ffc107;
         }
-    
-      
         #contacto {
             background-color: #f8f9fa;
             padding: 60px 0;
@@ -55,11 +51,8 @@
             border-color: #ffca28;
             color: #000;
         }
-        .titulo {
-            font-family: 'Georgia', serif;
-        }
-        .subtitulo {
-            font-family: 'Verdana', sans-serif;
+        .titulo, .subtitulo {
+            font-family: Arial, sans-serif;
         }
         .card {
             background-color: #000;
@@ -73,21 +66,26 @@
             text-align: center;
         }
         .card-body {
-            max-width: 90%; /* Controla el ancho del contenido */
-             margin: 0 auto; /* Centrar el contenido */
+            max-width: 90%;
+            margin: 0 auto;
         }
         .card-body h2 {
             font-size: 24px;
-    
         }
         .card-body p {
             font-size: 20px;
-            line-height: 1.4; /* Espaciado entre líneas */
+            line-height: 1.4;
             text-align: left;
-           
+        }
+        .card-img-top {
+            transition: transform 0.3s ease-in-out;
+        }
+        .card-img-top:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
+<body>
 
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark">
@@ -105,8 +103,7 @@
                     <a class="nav-link" href="#contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="http://beauty-studio.test/">Página de inicio</a>
-
+                    <a class="nav-link" href="http://beauty-studio.test/">Página de inicio</a>
                 </li>
             </ul>
         </div>
@@ -116,11 +113,10 @@
 <!-- Jumbotron con imagen -->
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="display-4 titulo">Beauty Studio</h1> <br>
+        <h1 class="display-4 titulo">Beauty Studio</h1>
         <p class="lead subtitulo">¡Dale a tus pies el cuidado que merecen!</p>
-      
     </div>
-  </section>
+</section>
 
 <!-- Servicios -->
 <div id="servicios" class="container">
@@ -134,19 +130,18 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-6 col-sm-6 mb-6">
             <div class="card h-100 text-center">
                 <img src="imagenes/acripie.jpeg" alt="imagen acripie" class="card-img-top img-fluid rounded">
                 <div class="card-body">
                     <h2 class="card-title">ACRIPIE</h2>
-                    <p class="card-text"> Diseñado para ofrecerte la máxima durabilidad y un acabado impecable,
-                    el acripie es ideal para quienes buscan una solución de belleza duradera.</p>
+                    <p class="card-text">Diseñado para ofrecerte la máxima durabilidad y un acabado impecable, el acripie es ideal para quienes buscan una solución de belleza duradera.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Contacto -->
 <section id="contacto" style="background-color: #000; color: #fff; padding: 60px 0;">
     <div class="container">
@@ -172,4 +167,3 @@
 
 </body>
 </html>
-

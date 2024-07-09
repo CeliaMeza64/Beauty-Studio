@@ -14,7 +14,7 @@ class ServicioController extends Controller
     public function inicio()
     {
        
-        return view('plantilla.plantilla');
+        return view('inicio');
     }
 
     public function showmaquillaje()
