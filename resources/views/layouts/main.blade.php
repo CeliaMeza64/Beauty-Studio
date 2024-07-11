@@ -47,7 +47,7 @@
       transform: scale(1.02); 
     }
     .card-text {
-      color: black; 
+      color: white; 
     }
     .services-title {
       text-align: center; 

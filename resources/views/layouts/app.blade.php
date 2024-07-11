@@ -95,7 +95,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Beauty Studio
+                    Inicio
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -129,35 +129,7 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Beauty Studio</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="home">Administrador</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       
 
         <div class="image-container">
             <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
