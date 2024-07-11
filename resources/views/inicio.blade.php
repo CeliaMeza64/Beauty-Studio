@@ -8,7 +8,7 @@
 <div class="container card-container mt-4">
   <div class="row">
     <div class="col-md-6">
-      <a href="/manicura">
+      <a href="{{ route('servicios.showServicios', 'manicura') }}">
         <div class="card">
           <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
           <div class="card-body">
@@ -19,7 +19,7 @@
       </a>
     </div>
     <div class="col-md-6">
-      <a href="/pedicura">
+      <a href="{{ route('servicios.showServicios', 'pedicura') }}">
         <div class="card">
           <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
           <div class="card-body">
@@ -30,7 +30,7 @@
       </a>
     </div>
     <div class="col-md-6">
-      <a href="/cabello">
+      <a href="{{ route('servicios.showServicios', 'cabello') }}">
         <div class="card">
           <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
           <div class="card-body">
@@ -41,7 +41,7 @@
       </a>
     </div>
     <div class="col-md-6">
-      <a href="/maquillaje">
+      <a href="{{ route('servicios.showServicios', 'maquillaje') }}">
         <div class="card">
           <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
           <div class="card-body">
