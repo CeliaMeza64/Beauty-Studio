@@ -97,6 +97,7 @@
             <a class="dropdown-item" href="/pedicura">Pedicura</a>
             <a class="dropdown-item" href="/cabello">Cabello</a>
             <a class="dropdown-item" href="/maquillaje">Maquillaje</a>
+            <a class="dropdown-item" href="/maquillaje">Maquillaje</a>            
           </div>
         </li>
         <li class="nav-item">
@@ -107,9 +108,7 @@
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
         </li>  
-        <li class="nav-item">
-          <a class="nav-link" href="home">Agenda</a>
-        </li>   
+
       </ul>
     </div>
   </div>
