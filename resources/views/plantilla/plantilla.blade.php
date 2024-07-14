@@ -106,7 +106,10 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
-        </li>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link" href="home">Agenda</a>
+        </li>   
       </ul>
     </div>
   </div>
@@ -116,9 +119,7 @@
   <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
 </div>
 
-
 <h2 class="services-title">Servicios</h2>
-
 
 <div class="container card-container mt-4">
   <div class="row">
