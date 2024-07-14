@@ -325,7 +325,13 @@ return [
            
         ],
    
-        
+        [
+            'text' => 'Reserva',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'reservas.index',
+           
+        ],
+     
         
     ],
 

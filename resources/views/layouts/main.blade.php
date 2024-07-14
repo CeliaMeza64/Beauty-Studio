@@ -105,6 +105,11 @@
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('reservas.create') }}">Agendar</a>
+        </li>
+
+
       </ul>
     </div>
   </div>
