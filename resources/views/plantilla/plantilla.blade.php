@@ -97,6 +97,7 @@
             <a class="dropdown-item" href="/pedicura">Pedicura</a>
             <a class="dropdown-item" href="/cabello">Cabello</a>
             <a class="dropdown-item" href="/maquillaje">Maquillaje</a>
+                     
           </div>
         </li>
         <li class="nav-item">
