@@ -111,7 +111,7 @@
 </nav>
 
 <div class="image-container">
-  <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
+  <img src="{{ asset('imagenes/fondo1.png') }}" alt="Imagen horizontal" class="img-fluid">
 </div>
 
 @yield('content')

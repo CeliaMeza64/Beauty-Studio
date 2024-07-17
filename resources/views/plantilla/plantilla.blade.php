@@ -97,6 +97,7 @@
             <a class="dropdown-item" href="/pedicura">Pedicura</a>
             <a class="dropdown-item" href="/cabello">Cabello</a>
             <a class="dropdown-item" href="/maquillaje">Maquillaje</a>
+                     
           </div>
         </li>
         <li class="nav-item">
@@ -106,7 +107,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
-        </li>
+        </li>    
       </ul>
     </div>
   </div>
@@ -116,9 +117,7 @@
   <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
 </div>
 
-
 <h2 class="services-title">Servicios</h2>
-
 
 <div class="container card-container mt-4">
   <div class="row">

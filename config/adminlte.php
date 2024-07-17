@@ -325,7 +325,20 @@ return [
            
         ],
    
-        
+        [
+            'text' => 'Reserva',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'reservas.index',
+           
+        ],
+
+        [
+            'text' => 'Calendario',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'calendar.index',
+           
+        ],
+     
         
     ],
 

@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReservaController;
 //use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CalendarController;
 
 
 
@@ -44,6 +46,20 @@ Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destr
 
 Auth::routes();
 
+Route::resource('reservas', ReservaController::class);
+Route::get('reservas', [ReservaController::class, 'index'])->name('reservas.index');
+Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+Route::post('reservas', [ReservaController::class, 'store'])->name('reservas.store');
+Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
+Route::put('reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
+Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
+Route::post('reservas/{reserva}/confirm', [ReservaController::class, 'confirm'])->name('reservas.confirm');
+Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->name('reservas.cancel');
+
+
+
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -67,8 +83,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
-
-
-
-
 //Route::get('/admin', [AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
+
+
+//Rota del calendario.
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
