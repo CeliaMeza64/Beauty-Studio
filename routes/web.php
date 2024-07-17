@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReservaController;
 //use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CalendarController;
 
 
 
@@ -82,8 +83,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
-
-
-
-
 //Route::get('/admin', [AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
+
+
+//Rota del calendario.
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
