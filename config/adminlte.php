@@ -108,18 +108,7 @@ return [
     |
     */
 
-    'preloader' => [
-        'enabled' => true,
-        'mode' => 'fullscreen',
-        'img' => [
-            'path' => 'imagenes/logo.jpeg',
-            'alt' => 'AdminLTE Preloader Image',
-            'effect' => 'animation__shake',
-            'width' => 450,
-            'height' => 450,
-        ],
-    ],
-
+   
     /*
     |--------------------------------------------------------------------------
     | User Menu
