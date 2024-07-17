@@ -131,9 +131,7 @@
 
        
 
-        <div class="image-container">
-            <img src="{{ asset('imagenes/fondo.jpeg') }}" alt="Imagen horizontal" class="img-fluid">
-        </div>
+       
 
         <main class="py-4">
             @yield('content')
