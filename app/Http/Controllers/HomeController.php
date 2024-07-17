@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Servicio;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $servicios = Servicio::paginate(3);
+        return view('home' , compact('servicios'));
     }
 }
+
+ // O cualquier lógica para obtener los servicios
+
