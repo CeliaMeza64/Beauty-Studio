@@ -6,51 +6,97 @@
     <title>Calendario</title>
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
     <style>
-        .month {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            height: 100vh;
+            margin: 0;
         }
+
+        .calendar {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .month {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
         .month .prev,
         .month .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             cursor: pointer;
+            font-size: 24px;
         }
-        .month .prev {
-            left: 0;
-        }
-        .month .next {
-            right: 0;
-        }
+
         .month-title {
+            font-size: 20px;
+            font-weight: bold;
             text-align: center;
+            flex: 1;
         }
+
         .weekdays, .days {
-            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
             padding: 0;
+            margin: 20px 0 0;
         }
-        .days li {
-            display: inline-block;
+
+        .weekdays li, .days li {
             width: 14.28%;
             text-align: center;
-            cursor: pointer;
+            padding: 10px 0;
+            box-sizing: border-box;
         }
+
+        .weekdays li {
+            background-color: #ecf0f1;
+            font-weight: bold;
+        }
+
+        .days li {
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .days li:hover {
+            background-color: #bdc3c7;
+            color: #fff;
+        }
+
         .days li.selected {
-            background-color: #ADD8E6;
+            background-color: #2980b9;
+            color: white;
+            border: 1px solid #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="calendar">
         <div class="month">
-            <li class="prev" onclick="previousMonth()">&#10094;</li>
-            <div class="month-title" id="month-title">
-                <!-- Aquí se inserta dinámicamente el mes y año -->
-            </div>
-            <li class="next" onclick="nextMonth()">&#10095;</li>
+            <div class="prev" onclick="previousMonth()">&#10094;</div>
+            <div class="month-title" id="month-title"></div>
+            <div class="next" onclick="nextMonth()">&#10095;</div>
         </div>
         <ul class="weekdays">
             <li>Lunes</li>
@@ -61,9 +107,7 @@
             <li>Sábado</li>
             <li>Domingo</li>
         </ul>
-        <ul class="days" id="days">
-            <!-- Aquí se insertan dinámicamente los días del mes -->
-        </ul>
+        <ul class="days" id="days"></ul>
     </div>
     <script>
         const monthTitleEl = document.getElementById('month-title');
