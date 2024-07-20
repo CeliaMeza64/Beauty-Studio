@@ -4,26 +4,16 @@
 <div class="container">
     <h1>Crear Reserva</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('reservas.store') }}" method="POST">
+    <form id="reservaForm" method="POST" action="{{ route('reservas.store') }}" onsubmit="return confirmSubmission(event)">
         @csrf
         <div class="form-group">
             <label for="nombre_cliente">Nombre del Cliente:</label>
-            <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" value="{{ old('nombre_cliente') }}">
+            <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" value="{{ old('nombre_cliente') }}" required>
         </div>
 
         <div class="form-group">
-        <label for="servicio">Servicio:</label>
-            <select name="servicio" id="servicio" class="form-control">
+            <label for="servicio">Servicio:</label>
+            <select name="servicio" id="servicio" class="form-control" required>
                 <optgroup label="Cabello">
                     <option value="cabello_planchado" {{ old('servicio') == 'cabello_planchado' ? 'selected' : '' }}>Planchado</option>
                     <option value="cabello_ondas" {{ old('servicio') == 'cabello_ondas' ? 'selected' : '' }}>Ondas</option>
@@ -52,15 +42,29 @@
 
         <div class="form-group">
             <label for="fecha_reservacion">Fecha de Reservación:</label>
-            <input type="date" name="fecha_reservacion" id="fecha_reservacion" class="form-control" value="{{ old('fecha_reservacion') }}">
+            <input type="date" name="fecha_reservacion" id="fecha_reservacion" class="form-control" value="{{ old('fecha_reservacion') }}" required>
         </div>
 
         <div class="form-group">
             <label for="hora_reservacion">Hora de Reservación:</label>
-            <input type="text" name="hora_reservacion" id="hora_reservacion" class="form-control" placeholder=" " value="{{ old('hora_reservacion') }}">
+            <input type="time" name="hora_reservacion" id="hora_reservacion" class="form-control" value="{{ old('hora_reservacion') }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
+
+<script>
+function confirmSubmission(event) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    // Show confirmation dialog
+    if (confirm("¿Estás seguro de la reserva?")) {
+        // If confirmed, submit the form
+        document.getElementById('reservaForm').submit();
+    }
+    // If not confirmed, do nothing (the form will not be submitted)
+    return false;
+}
+</script>
 @endsection
