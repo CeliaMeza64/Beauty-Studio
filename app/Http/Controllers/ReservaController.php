@@ -85,7 +85,9 @@ class ReservaController extends Controller
         ]);
 
         Reserva::create($request->all());
-        return redirect()->route('reservas.index')->with('success', 'Reserva creada exitosamente.');
+
+        // Redirigir a la página de inicio con un mensaje de éxito
+        return redirect()->route('indexServicio')->with('success', 'Reserva creada exitosamente.');
     }
 
     public function edit(Reserva $reserva)
@@ -178,7 +180,7 @@ class ReservaController extends Controller
     public function cancel(Request $request, $id)
     {
         $reserva = Reserva::find($id);
-        $reserva->estado = 'cancelada';
+        $reserva->estado = 'editar';
         $reserva->save();
 
         return redirect()->route('reservas.index')->with('success', 'Reserva cancelada exitosamente.');
