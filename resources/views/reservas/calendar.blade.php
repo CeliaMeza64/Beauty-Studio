@@ -1,19 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario</title>
+@extends('adminlte::page')
+
+@section('content_header')
+    <div class="d-flex justify-content-between align-items-center">
+        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
+            ['url' => route('calendar.index'), 'title' => 'Calendario']
+        ]])
+    </div>
+@stop
+
+@section('content')
+    <div class="container">
+        <div class="calendar">
+            <div class="month">
+                <div class="prev" onclick="previousMonth()">&#10094;</div>
+                <div class="month-title" id="month-title"></div>
+                <div class="next" onclick="nextMonth()">&#10095;</div>
+            </div>
+            <ul class="weekdays">
+                <li>Lunes</li>
+                <li>Martes</li>
+                <li>Miércoles</li>
+                <li>Jueves</li>
+                <li>Viernes</li>
+                <li>Sábado</li>
+                <li>Domingo</li>
+            </ul>
+            <ul class="days" id="days"></ul>
+        </div>
+    </div>
+@stop
+
+@section('css')
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f7f7f7;
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
         }
 
@@ -25,6 +48,7 @@
             border-radius: 10px;
             overflow: hidden;
             padding: 20px;
+            margin: 20px auto 0; /* Moved up by 30 pixels */
         }
 
         .month {
@@ -90,25 +114,9 @@
             border: 1px solid #2980b9;
         }
     </style>
-</head>
-<body>
-    <div class="calendar">
-        <div class="month">
-            <div class="prev" onclick="previousMonth()">&#10094;</div>
-            <div class="month-title" id="month-title"></div>
-            <div class="next" onclick="nextMonth()">&#10095;</div>
-        </div>
-        <ul class="weekdays">
-            <li>Lunes</li>
-            <li>Martes</li>
-            <li>Miércoles</li>
-            <li>Jueves</li>
-            <li>Viernes</li>
-            <li>Sábado</li>
-            <li>Domingo</li>
-        </ul>
-        <ul class="days" id="days"></ul>
-    </div>
+@stop
+
+@section('js')
     <script>
         const monthTitleEl = document.getElementById('month-title');
         const daysEl = document.getElementById('days');
@@ -165,5 +173,4 @@
 
         renderCalendar(currentDate);
     </script>
-</body>
-</html>
+@stop
