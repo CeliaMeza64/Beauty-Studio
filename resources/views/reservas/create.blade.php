@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Crear Reserva</h1>
+    <h1 class="mb-4">Crear Reserva</h1>
 
     <form id="reservaForm" method="POST" action="{{ route('reservas.store') }}" onsubmit="return confirmSubmission(event)">
         @csrf
@@ -47,7 +47,21 @@
 
         <div class="form-group">
             <label for="hora_reservacion">Hora de Reservación:</label>
-            <input type="time" name="hora_reservacion" id="hora_reservacion" class="form-control" value="{{ old('hora_reservacion') }}" required>
+            <div class="d-flex justify-content-between align-items-center">
+                <select name="hora" id="hora" class="form-control mr-2" required>
+                    @for ($i = 1; $i <= 12; $i++)
+                        <option value="{{ $i }}" {{ old('hora') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                    @endfor
+                </select>
+                <span>:</span>
+                <select name="minutos" id="minutos" class="form-control mx-2" required>
+                    <option value="00" {{ old('minutos') == '00' ? 'selected' : '' }}>00</option>
+                </select>
+                <select name="ampm" id="ampm" class="form-control" required>
+                    <option value="AM" {{ old('ampm') == 'AM' ? 'selected' : '' }}>AM</option>
+                    <option value="PM" {{ old('ampm') == 'PM' ? 'selected' : '' }}>PM</option>
+                </select>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -57,6 +71,21 @@
 <script>
 function confirmSubmission(event) {
     event.preventDefault(); // Prevent the form from submitting immediately
+
+    // Get the selected time components
+    var hora = parseInt(document.getElementById('hora').value);
+    var minutos = document.getElementById('minutos').value;
+    var ampm = document.getElementById('ampm').value;
+
+    // Validate the selected time
+    if (ampm === 'AM' && (hora < 9 || (hora === 12 && minutos === '00'))) {
+        alert("La hora de reservación debe estar entre las 9:00 AM y las 8:00 PM.");
+        return false;
+    }
+    if (ampm === 'PM' && (hora > 8 || hora === 12 || (hora === 8 && minutos !== '00'))) {
+        alert("La hora de reservación debe estar entre las 9:00 AM y las 8:00 PM.");
+        return false;
+    }
 
     // Show confirmation dialog
     if (confirm("¿Estás seguro de la reserva?")) {
