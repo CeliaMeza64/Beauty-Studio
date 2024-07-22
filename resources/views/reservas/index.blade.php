@@ -1,4 +1,13 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <div class="d-flex justify-content-between align-items-center">
+        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
+            ['url' => route('reservas.index'), 'title' => 'Reservas']
+        ]])
+    </div>
+@stop
+
 
 @section('content')
     <div class="container">
