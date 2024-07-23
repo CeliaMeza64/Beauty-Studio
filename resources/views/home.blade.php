@@ -39,7 +39,7 @@
                     <tbody>
                         @foreach($servicios as $servicio)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                            <td>{{ ($servicios->currentPage() - 1) * $servicios->perPage() + $loop->iteration }}</td>
                                 <td>{{ $servicio->nombre }}</td>
                                 <td>{{ $servicio->descripcion }}</td>
                                 <td>{{ $servicio->categoria->nombre ?? 'No Asignada' }}</td>

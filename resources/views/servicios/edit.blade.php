@@ -39,7 +39,7 @@
 
                     <!-- Columna del texto -->
                     <div class="col-md-6 order-md-1">
-                        <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
+                        <form id="editForm" action="{{ route('servicios.update', $servicio->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 

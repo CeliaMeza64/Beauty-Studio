@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach($servicios as $servicio)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                            <td>{{ ($servicios->currentPage() - 1) * $servicios->perPage() + $loop->iteration }}</td>
                                 <td>{{ $servicio->nombre }}</td>
                                 <td>{{ $servicio->descripcion }}</td>
                                 <td>{{ $servicio->categoria->nombre ?? 'No Asignada' }}</td>
@@ -78,6 +78,12 @@
         .breadcrumb-item a, 
         .breadcrumb-item.active {
             font-size: 1.30em; 
+        }
+        .truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 350px; 
         }
     </style>
 @stop

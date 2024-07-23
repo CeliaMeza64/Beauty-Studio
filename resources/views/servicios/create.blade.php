@@ -20,17 +20,11 @@
                         <!-- Columna para la imagen nueva -->
                         <div class="col-md-6 order-md-2 position-relative">
                             <div class="form-group">
-                                <label for="imagen" class="font-weight-bold-custom"></label>
-                                <div class="image-placeholder" id="imagePlaceholder">
+                                <label class="font-weight-bold-custom mb-1">Subir Imagen</label>
+                                <div class="image-placeholder" id="imagePlaceholder" style="cursor: pointer;">
+                                    <p class="text-sm text-gray-400 pt-1 tracking-wider">Seleccione la imagen</p>
                                 </div>
                                 <input type="file" name="imagen" class="form-control-file d-none" id="imagenInput">
-                                <label for="imagenInput" class="btn btn-primary btn-sm mt-2">
-                                    <i class="fas fa-upload"></i> Agregar imagen
-                                </label>
-                            </div>
-
-                            <div class="mt-3">
-                                <img id="imagenPreview" src="#" alt="Vista previa de la nueva imagen" class="img-fluid d-none rounded" style="width: 250px; height: 250px; object-fit: cover;">
                             </div>
                         </div>
 
@@ -81,17 +75,22 @@
                 </form>
             </div>
 
+            <!-- Script para ver la imagen antes de CREAR UN NUEVO SERVICIO -->
             <script>
+                document.getElementById('imagePlaceholder').addEventListener('click', function() {
+                    document.getElementById('imagenInput').click();
+                });
+
                 document.getElementById('imagenInput').addEventListener('change', function(event) {
                     const file = event.target.files[0];
                     const reader = new FileReader();
                     
                     reader.onload = function(e) {
-                        const preview = document.getElementById('imagenPreview');
                         const placeholder = document.getElementById('imagePlaceholder');
-                        preview.src = e.target.result;
-                        preview.classList.remove('d-none'); // Mostrar vista previa
-                        placeholder.classList.add('d-none'); // Ocultar el texto de "Agregar una imagen"
+                        placeholder.style.backgroundImage = 'url(' + e.target.result + ')';
+                        placeholder.style.backgroundSize = 'contain';
+                        placeholder.style.backgroundPosition = 'center';
+                        placeholder.innerHTML = '';
                     };
                     
                     reader.readAsDataURL(file);
@@ -109,20 +108,32 @@
         }
 
         .image-placeholder {
-            width: 250px;
-            height: 250px;
+            width: 350px;
+            height: 350px; /* Ajusta según el tamaño del contenedor que desees */
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px dashed #ddd;
             border-radius: 5px;
+            background-color: #f8f9fa; /* Color de fondo si no hay imagen */
+            background-size: cover; /* Ajusta la imagen para que se muestre completa */
+            background-repeat: no-repeat; /* No repetir la imagen */
+            background-position: center; /* Centra la imagen en el contenedor */
             color: #aaa;
             font-size: 1.2em;
             text-align: center;
+            position: relative;
+            overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
         }
 
         .image-placeholder p {
             margin: 0;
+            position: absolute;
+        }
+
+        /* Ocultar input file por completo */
+        input[type="file"].d-none {
+            display: none !important;
         }
     </style>
 @stop
