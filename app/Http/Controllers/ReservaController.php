@@ -23,72 +23,72 @@ class ReservaController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nombre_cliente' => 'required|string|max:255',
-            'servicio' => 'required|string|max:255',
-            'fecha_reservacion' => [
-                'required',
-                'date',
-                function ($attribute, $value, $fail) {
-                    if (Carbon::parse($value)->lte(Carbon::now()->addDay())) {
-                        $fail('La fecha de reservación debe ser al menos un día después de la fecha actual.');
+{
+    $request->validate([
+        'nombre_cliente' => 'required|string|max:255',
+        'servicio' => 'required|string|max:255',
+        'fecha_reservacion' => [
+            'required',
+            'date',
+            function ($attribute, $value, $fail) {
+                if (Carbon::parse($value)->lte(Carbon::now()->addDay())) {
+                    $fail('La fecha de reservación debe ser al menos un día después de la fecha actual.');
+                }
+            }
+        ],
+        'hora_reservacion' => [
+            'required',
+            function ($attribute, $value, $fail) use ($request) {
+                try {
+                    $hora_reservacion = Carbon::createFromFormat('h:i A', $value);
+                } catch (\Exception $e) {
+                    try {
+                        $hora_reservacion = Carbon::createFromFormat('H:i', $value);
+                    } catch (\Exception $e) {
+                        $fail('La hora de reservación no tiene un formato válido.');
+                        return;
                     }
                 }
-            ],
-            'hora_reservacion' => [
-                'required',
-                function ($attribute, $value, $fail) use ($request) {
-                    try {
-                        $hora_reservacion = Carbon::createFromFormat('H:i A', $value);
-                    } catch (\Exception $e) {
-                        try {
-                            $hora_reservacion = Carbon::createFromFormat('H:i', $value);
-                        } catch (\Exception $e) {
-                            $fail('La hora de reservación no tiene un formato válido.');
-                            return;
-                        }
+
+                $request->merge([
+                    'hora_reservacion' => $hora_reservacion->format('H:i:s')
+                ]);
+
+                $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
+                                ->where('hora_reservacion', $request->hora_reservacion)
+                                ->exists();
+
+                if ($exists) {
+                    $fail('Ya existe una reserva para esa fecha y hora.');
+                }
+
+                $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
+                                      ->orderBy('hora_reservacion', 'desc')
+                                      ->first();
+
+                if ($lastReserva) {
+                    $lastHora = Carbon::createFromFormat('H:i:s', $lastReserva->hora_reservacion);
+                    $currentHora = $hora_reservacion;
+
+                    if ($lastHora->diffInHours($currentHora) < 2) {
+                        $fail('Debe haber al menos dos horas entre cada reserva.');
                     }
+                }
+            },
+        ],
+    ], [
+        'nombre_cliente.required' => 'El nombre del cliente es obligatorio.',
+        'servicio.required' => 'El servicio es obligatorio.',
+        'fecha_reservacion.required' => 'La fecha de reservación es obligatoria.',
+        'fecha_reservacion.date' => 'La fecha de reservación no tiene un formato válido.',
+        'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
+    ]);
 
-                    $request->merge([
-                        'hora_reservacion' => $hora_reservacion->format('H:i:s')
-                    ]);
+    Reserva::create($request->all());
 
-                    $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                                     ->where('hora_reservacion', $request->hora_reservacion)
-                                     ->exists();
+    return redirect('/')->with('success', 'Reserva creada exitosamente.'); // Redirige a la página principal
+}
 
-                    if ($exists) {
-                        $fail('Ya existe una reserva para esa fecha y hora.');
-                    }
-
-                    $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                                          ->orderBy('hora_reservacion', 'desc')
-                                          ->first();
-
-                    if ($lastReserva) {
-                        $lastHora = Carbon::createFromFormat('H:i:s', $lastReserva->hora_reservacion);
-                        $currentHora = $hora_reservacion;
-
-                        if ($lastHora->diffInHours($currentHora) < 2) {
-                            $fail('Debe haber al menos dos horas entre cada reserva.');
-                        }
-                    }
-                },
-            ],
-        ], [
-            'nombre_cliente.required' => 'El nombre del cliente es obligatorio.',
-            'servicio.required' => 'El servicio es obligatorio.',
-            'fecha_reservacion.required' => 'La fecha de reservación es obligatoria.',
-            'fecha_reservacion.date' => 'La fecha de reservación no tiene un formato válido.',
-            'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
-        ]);
-
-        Reserva::create($request->all());
-
-        // Redirigir a la página de inicio con un mensaje de éxito
-        return redirect()->route('indexServicio')->with('success', 'Reserva creada exitosamente.');
-    }
 
     public function edit(Reserva $reserva)
     {
@@ -113,7 +113,7 @@ class ReservaController extends Controller
                 'required',
                 function ($attribute, $value, $fail) use ($request, $reserva) {
                     try {
-                        $hora_reservacion = Carbon::createFromFormat('H:i A', $value);
+                        $hora_reservacion = Carbon::createFromFormat('h:i A', $value);
                     } catch (\Exception $e) {
                         try {
                             $hora_reservacion = Carbon::createFromFormat('H:i', $value);
@@ -159,6 +159,7 @@ class ReservaController extends Controller
         ]);
 
         $reserva->update($request->all());
+
         return redirect()->route('reservas.index')->with('success', 'Reserva actualizada exitosamente.');
     }
 
@@ -170,7 +171,7 @@ class ReservaController extends Controller
 
     public function confirm(Request $request, $id)
     {
-        $reserva = Reserva::find($id);
+        $reserva = Reserva::findOrFail($id);
         $reserva->estado = 'confirmada';
         $reserva->save();
 
@@ -179,7 +180,7 @@ class ReservaController extends Controller
 
     public function cancel(Request $request, $id)
     {
-        $reserva = Reserva::find($id);
+        $reserva = Reserva::findOrFail($id);
         $reserva->estado = 'cancelada';
         $reserva->save();
 

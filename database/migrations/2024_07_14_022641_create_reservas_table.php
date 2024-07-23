@@ -14,7 +14,7 @@ class CreateReservasTable extends Migration
             $table->string('servicio');
             $table->date('fecha_reservacion');
             $table->time('hora_reservacion');
-            $table->enum('estado', ['pendiente', 'confirmada', 'cancelada'])->default('pendiente');
+            $table->string('estado')->default('pendiente');
             $table->timestamps();
         });
     }
