@@ -40,7 +40,7 @@ class ReservaController extends Controller
                 'required',
                 function ($attribute, $value, $fail) use ($request) {
                     try {
-                        $hora_reservacion = Carbon::createFromFormat('h:i A', $value);
+                        $hora_reservacion = Carbon::createFromFormat('H:i A', $value);
                     } catch (\Exception $e) {
                         try {
                             $hora_reservacion = Carbon::createFromFormat('H:i', $value);
@@ -113,7 +113,7 @@ class ReservaController extends Controller
                 'required',
                 function ($attribute, $value, $fail) use ($request, $reserva) {
                     try {
-                        $hora_reservacion = Carbon::createFromFormat('h:i A', $value);
+                        $hora_reservacion = Carbon::createFromFormat('H:i A', $value);
                     } catch (\Exception $e) {
                         try {
                             $hora_reservacion = Carbon::createFromFormat('H:i', $value);
@@ -180,7 +180,7 @@ class ReservaController extends Controller
     public function cancel(Request $request, $id)
     {
         $reserva = Reserva::find($id);
-        $reserva->estado = 'editar';
+        $reserva->estado = 'cancelada';
         $reserva->save();
 
         return redirect()->route('reservas.index')->with('success', 'Reserva cancelada exitosamente.');

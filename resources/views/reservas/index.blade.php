@@ -3,12 +3,11 @@
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
         @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('reservas.index'), 'title' => 'Reservas']
+            ['url' => route('reservas.index'), 'title' => 'Reservas'],
+            ['url' => route('reservas.create'), 'title' => 'Crear']
         ]])
     </div>
 @stop
-
-
 @section('content')
     <div class="container">
         @if (session('success'))
@@ -71,5 +70,3 @@
         }
     </script>
 @endsection
-
-
