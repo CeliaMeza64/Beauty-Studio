@@ -55,9 +55,6 @@ Route::put('reservas/{reserva}', [ReservaController::class, 'update'])->name('re
 Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 Route::post('reservas/{reserva}/confirm', [ReservaController::class, 'confirm'])->name('reservas.confirm');
 Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->name('reservas.cancel');
-Route::get('reservas', [ReservaController::class, 'index'])->name('reservas.index');
-
-
 
 
 
