@@ -1,66 +1,61 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <div class="d-flex justify-content-between align-items-center">
+        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
+            ['url' => route('reservas.index'), 'title' => 'Reservas']
+        ]])
+    </div>
+@stop
 
 @section('content')
     <div class="container">
-        @if (session('success'))
-            <div id="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeSuccessMessage()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
+        <h1 class="mb-4 text-center text-white">Lista de Reservas</h1>
 
-        <h1>Lista de Reservas</h1>
-        <a href="{{ route('reservas.create') }}" class="btn btn-primary mb-2">Crear Reserva</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre del Cliente</th>
-                    <th>Servicio</th>
-                    <th>Fecha de Reserva</th>
-                    <th>Hora de Reserva</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($reservas as $reserva)
+        @if ($reservas->isEmpty())
+            <p class="text-white">No hay reservas.</p>
+        @else
+            <table class="table table-striped table-dark">
+                <thead>
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $reserva->nombre_cliente }}</td>
-                        <td>{{ $reserva->servicio }}</td>
-                        <td>{{ $reserva->fecha_reservacion }}</td>
-                        <td>{{ $reserva->hora_reservacion }}</td>
-                        <td>{{ $reserva->estado }}</td>
-                        <td>
-                            <a href="{{ route('reservas.edit', $reserva->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                            <form action="{{ route('reservas.confirm', $reserva->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-primary">Confirmar</button>
-                            </form>
-                            <form action="{{ route('reservas.cancel', $reserva->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-danger">Cancelar</button>
-                            </form>
-                            <form action="{{ route('reservas.destroy', $reserva->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-secondary">Eliminar</button>
-                            </form>
-                        </td>
+                        <th>Nombre del Cliente</th>
+                        <th>Servicio</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($reservas as $reserva)
+                        <tr>
+                            <td>{{ $reserva->nombre_cliente }}</td>
+                            <td>{{ $reserva->servicio }}</td>
+                            <td>{{ \Carbon\Carbon::parse($reserva->fecha_reservacion)->format('d/m/Y') }}</td>
+                            <td>{{ $reserva->hora_reservacion }}</td>
+                            <td>{{ ucfirst($reserva->estado) }}</td>
+                            <td>
+                                @if ($reserva->estado == 'pendiente')
+                                    <form action="{{ route('reservas.confirm', $reserva) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm">Confirmar</button>
+                                    </form>
+                                    <form action="{{ route('reservas.cancel', $reserva) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
+                                    </form>
+                                @endif
+                                <a href="{{ route('reservas.edit', $reserva) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <form action="{{ route('reservas.destroy', $reserva) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
-
-    <script>
-        function closeSuccessMessage() {
-            document.getElementById('successMessage').style.display = 'none';
-        }
-    </script>
 @endsection
-
-

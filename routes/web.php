@@ -58,8 +58,6 @@ Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->
 
 
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

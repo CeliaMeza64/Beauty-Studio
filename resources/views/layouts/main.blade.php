@@ -101,6 +101,11 @@
                 </li>
               
             </ul>
+            <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
+        </li>
+
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
@@ -111,7 +116,7 @@
 </nav>
 
 <div class="image-container">
-  <img src="{{ asset('imagenes/fondo1.png') }}" alt="Imagen horizontal" class="img-fluid">
+  <img src="{{ asset('imagenes/fondo4.jpg') }}" alt="Imagen horizontal" class="img-fluid">
 </div>
 
 @yield('content')
