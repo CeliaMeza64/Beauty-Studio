@@ -10,7 +10,12 @@ class Reserva extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre_cliente', 'servicio', 'fecha_reservacion', 'hora_reservacion', 'estado'
+        'nombre_cliente', 
+        'servicio', 
+        'fecha_reservacion', 
+        'hora_reservacion', 
+        'estado', 
+        'telefono_cliente'
     ];
 }
 
