@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4 text-center text-white">Lista de Reservas</h1>
+        <h1 class="mb-4 text-center text-black">Lista de Reservas</h1> <!-- Cambiado text-white a text-black -->
 
         @if ($reservas->isEmpty())
             <p class="text-white">No hay reservas.</p>
@@ -19,6 +19,7 @@
                 <thead>
                     <tr>
                         <th>Nombre del Cliente</th>
+                        <th>Teléfono del Cliente</th>
                         <th>Servicio</th>
                         <th>Fecha</th>
                         <th>Hora</th>
@@ -30,6 +31,7 @@
                     @foreach ($reservas as $reserva)
                         <tr>
                             <td>{{ $reserva->nombre_cliente }}</td>
+                            <td>{{ $reserva->telefono_cliente }}</td>
                             <td>{{ $reserva->servicio }}</td>
                             <td>{{ \Carbon\Carbon::parse($reserva->fecha_reservacion)->format('d/m/Y') }}</td>
                             <td>{{ $reserva->hora_reservacion }}</td>

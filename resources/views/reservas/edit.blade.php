@@ -21,22 +21,39 @@
                 <label for="nombre_cliente">Nombre del Cliente:</label>
                 <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" value="{{ old('nombre_cliente', $reserva->nombre_cliente) }}" required>
             </div>
+            
+            <div class="form-group">
+                <label for="telefono_cliente">Teléfono del Cliente:</label>
+                <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" value="{{ old('telefono_cliente', $reserva->telefono_cliente) }}">
+            </div>
 
             <div class="form-group">
                 <label for="servicio">Servicio:</label>
                 <select name="servicio" id="servicio" class="form-control">
                     <optgroup label="Cabello">
-                        <option value="cabello_planchado" {{ old('servicio', $reserva->servicio) == 'cabello_planchado' ? 'selected' : '' }}>Planchado</option>
-                        <option value="cabello_ondas" {{ old('servicio', $reserva->servicio) == 'cabello_ondas' ? 'selected' : '' }}>Ondas</option>
-                        <option value="cabello_peinados" {{ old('servicio', $reserva->servicio) == 'cabello_peinados' ? 'selected' : '' }}>Peinados</option>
+                        <option value="cabello_planchado" {{ old('servicio') == 'cabello_planchado' ? 'selected' : '' }}>Planchado</option>
+                        <option value="cabello_secado" {{ old('servicio') == 'cabello_secado' ? 'selected' : '' }}>Secado</option>
+                        <option value="cabello_planchadoysecado" {{ old('servicio') == 'cabello_planchadoysecado' ? 'selected' : '' }}>Planchado y secado</option>
+                        <option value="cabello_ondas" {{ old('servicio') == 'cabello_ondas' ? 'selected' : '' }}>Ondas</option>
+                        <option value="cabello_keratina" {{ old('servicio') == 'cabello_peinados' ? 'selected' : '' }}>Keratina</option>
                     </optgroup>
                     <optgroup label="Maquillaje">
-                        <option value="maquillaje_natural" {{ old('servicio', $reserva->servicio) == 'maquillaje_natural' ? 'selected' : '' }}>Natural</option>
-                        <option value="maquillaje_festivo" {{ old('servicio', $reserva->servicio) == 'maquillaje_festivo' ? 'selected' : '' }}>Festivo</option>
+                        <option value="maquillaje_diario" {{ old('servicio') == 'maquillaje_diario' ? 'selected' : '' }}>Diario</option>
+                        <option value="maquillaje_graduacion" {{ old('servicio') == 'maquillaje_graduacion' ? 'selected' : '' }}>Graduacion</option>
+                        <option value="maquillaje_quinceaños" {{ old('servicio') == 'maquillaje_quinceaños' ? 'selected' : '' }}>Quinceaños</option>
+                        <option value="maquillaje_boda" {{ old('servicio') == 'maquillaje_boda' ? 'selected' : '' }}>Boda</option>
                     </optgroup>
                     <optgroup label="Manicure">
-                        <option value="manicure_basico" {{ old('servicio', $reserva->servicio) == 'manicure_basico' ? 'selected' : '' }}>Básico</option>
-                        <option value="manicure_especial" {{ old('servicio', $reserva->servicio) == 'manicure_especial' ? 'selected' : '' }}>Especial</option>
+                        <option value="manicure_clasica" {{ old('servicio') == 'manicure_clasica' ? 'selected' : '' }}>clásica</option>
+                        <option value="manicure_bañodeacrilico" {{ old('servicio') == 'manicure_bañodeacrilico' ? 'selected' : '' }}>Baño de acrilico</option>
+                        <option value="manicure_semipermanente" {{ old('servicio') == 'manicure_semipermanente' ? 'selected' : '' }}>Semipermanente</option>
+                        <option value="manicure_uñasacrilicas" {{ old('servicio') == 'manicure_uñasacrilicas' ? 'selected' : '' }}>Uñas acrilicas</option>
+                    </optgroup>
+                    <optgroup label="Pedicure">
+                        <option value="pedicure_clasica" {{ old('servicio') == 'pedicure_clasica' ? 'selected' : '' }}>Pedicure</option>
+                        <option value="pedicure_bañodeacrilico" {{ old('servicio') == 'pedicure_bañodeacrilico' ? 'selected' : '' }}>Baño de acrilico</option>
+                        <option value="pedicure_semipermanente" {{ old('servicio') == 'pedicure_semipermanente' ? 'selected' : '' }}>Semipermanente</option>
+                        <option value="pedicure_acripie" {{ old('servicio') == 'pedicure_acripie' ? 'selected' : '' }}>Acripie</option>
                     </optgroup>
                 </select>
             </div>
