@@ -86,26 +86,25 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
-                </li>
-              
-            </ul>
-            <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Servicios
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
+            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
+            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
+            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tendencias</a>
+        </li>
+      </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="home">Administrador</a>
