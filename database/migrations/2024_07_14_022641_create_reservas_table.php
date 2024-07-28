@@ -15,6 +15,7 @@ class CreateReservasTable extends Migration
             $table->date('fecha_reservacion');
             $table->time('hora_reservacion');
             $table->string('estado')->default('pendiente');
+            $table->string('telefono_cliente')->nullable(); 
             $table->timestamps();
         });
     }
