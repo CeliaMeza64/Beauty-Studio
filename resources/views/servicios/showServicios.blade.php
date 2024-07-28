@@ -19,7 +19,7 @@
                     @endif
                     <div class="card-body">
                         <h2 class="card-title">{{ $servicio->nombre }}</h2>
-                        <p class="card-text">{{ $servicio->descripcion }}</p>
+                        <p class="card-text" title="{{ $servicio->descripcion }}">   {{ $servicio->descripcion }}</p>
                     </div>
                 </div>
             </div>

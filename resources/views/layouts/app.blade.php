@@ -63,6 +63,11 @@
         }
         .card-text {
             color: white; 
+            overflow: hidden; 
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:10;
+            -webkit-box-orient:vertical;
         }
         .services-title {
             text-align: center; 
