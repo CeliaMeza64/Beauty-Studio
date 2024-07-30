@@ -10,26 +10,26 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4 text-center text-black">Lista de Reservas</h1> <!-- Cambiado text-white a text-black -->
+        <h1 class="mb-4 text-center text-black">Lista de Reservas</h1> 
 
         @if ($reservas->isEmpty())
             <p class="text-white">No hay reservas.</p>
         @else
-            <table class="table table-striped table-dark">
+            <table class="table table-striped" style="background-color: #ffe0e6;">
                 <thead>
                     <tr>
-                        <th>Nombre del Cliente</th>
-                        <th>Teléfono del Cliente</th>
-                        <th>Servicio</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
+                        <th style="background-color: #ffccdd;">Nombre del Cliente</th>
+                        <th style="background-color: #ffccdd;">Teléfono del Cliente</th>
+                        <th style="background-color: #ffccdd;">Servicio</th>
+                        <th style="background-color: #ffccdd;">Fecha</th>
+                        <th style="background-color: #ffccdd;">Hora</th>
+                        <th style="background-color: #ffccdd;">Estado</th>
+                        <th style="background-color: #ffccdd;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($reservas as $reserva)
-                        <tr>
+                        <tr style="background-color: #ffe6eb;">
                             <td>{{ $reserva->nombre_cliente }}</td>
                             <td>{{ $reserva->telefono_cliente }}</td>
                             <td>{{ $reserva->servicio }}</td>
