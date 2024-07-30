@@ -11,6 +11,7 @@
     <div class="row">
         @forelse($servicios as $servicio)
             <div class="col-md-3 col-sm-6 mb-4">
+            <a href="{{ route('servicios.imagenes', $servicio->id) }}" class="text-decoration-none">
                 <div class="card h-100 text-center">
                     @if ($servicio->imagen)
                         <img src="{{ asset('storage/' . $servicio->imagen) }}" alt="Imagen del servicio" class="card-img-top img-fluid rounded">
@@ -22,7 +23,8 @@
                         <p class="card-text" title="{{ $servicio->descripcion }}">   {{ $servicio->descripcion }}</p>
                     </div>
                 </div>
-            </div>
+            </a>
+        </div>
         @empty
             <p>Lo sentimos no hay servicios disponibles en esta categoría.</p>
         @endforelse
