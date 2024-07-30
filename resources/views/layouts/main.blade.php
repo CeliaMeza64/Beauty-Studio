@@ -12,11 +12,11 @@
     }
 
     .navbar {
-      background-color: black; 
+      background-color: #FFC4DF; 
     }
     .navbar-brand,
     .navbar-nav .nav-link {
-      color: gold !important; 
+      color: white !important; 
     }
     .navbar-toggler-icon {
       background-color: gold; 
@@ -37,7 +37,7 @@
     }
     .card {
       background-color: black; 
-      color: gold; 
+      color: #FF6EA2; 
       border: 1px solid gold; 
       margin-bottom: 20px; 
       overflow: hidden; 
@@ -51,10 +51,11 @@
     }
     .services-title {
       text-align: center; 
-      color: gold; 
+      color: black; 
       font-family: Arial, sans-serif;
       margin-top: 40px;
-      margin-bottom: 20px; 
+      margin-bottom: 20px;
+      font-weight: bold ; 
     }
     .card img {
       height: 200px; 
