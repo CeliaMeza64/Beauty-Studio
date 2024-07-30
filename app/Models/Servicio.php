@@ -18,4 +18,9 @@ class Servicio extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(ServicioImage::class);
+    }
 }
