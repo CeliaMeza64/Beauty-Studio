@@ -7,6 +7,7 @@ use App\Http\Controllers\ReservaController;
 //use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\TrendController;
 
 
 
@@ -26,18 +27,7 @@ use App\Http\Controllers\CalendarController;
 });*/
 
 Route::get('/', [ServicioController::class, 'inicio'])->name('indexServicio');
-Route::get('/maquillaje', [ServicioController::class, 'showmaquillaje'])->name('maquillaje');
 
-Route::get('/cabello', [ServicioController::class, 'showcabello'])->name('cabello');
-
-Route::get('/manicura', [ServicioController::class, 'showmanicura'])->name('manicura');
-
-Route::get('/pedicura', [ServicioController::class, 'showpedicura'])->name('pedicura');
-
-
-//Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
-
-//Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
@@ -73,7 +63,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
        
     });
 
-    // Rutas accesibles para todos los usuarios autenticados
+    // Rutas accesibles para todos los usuarios 
     Route::resource('servicios', ServicioController::class)->only(['index', 'show'])->names([
         'index'   => 'servicios.index',
         'show'    => 'servicios.show',
@@ -87,3 +77,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Rota del calendario.
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+
+// ruta tendencias.
+
+Route::resource('trends', TrendController::class);
+
+/*Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('trends/create', [TrendController::class, 'create'])->name('trends.create');
+    Route::post('trends', [TrendController::class, 'store'])->name('trends.store');
+    Route::get('trends/{trend}/edit', [TrendController::class, 'edit'])->name('trends.edit');
+    Route::put('trends/{trend}', [TrendController::class, 'update'])->name('trends.update');
+    Route::delete('trends/{trend}', [TrendController::class, 'destroy'])->name('trends.destroy');
+});*/
+
+Route::resource('trends', TrendController::class)->only(['index', 'show']);
