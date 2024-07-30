@@ -11,7 +11,7 @@
       <a href="{{ route('servicios.showServicios', 'manicura') }}">
         <div class="card">
           <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
-          <div class="card-body">
+          <div class="card-body" style="background-color: #f5e3c3;"> <!-- Fondo beige suave macarrón -->
             <h5 class="card-title">Manicura</h5>
             <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes. Nuestro equipo de expertos está altamente calificado, utilizando técnicas innovadoras y productos de la más alta calidad para garantizarte resultados excepcionales.</p>
           </div>
@@ -22,7 +22,7 @@
       <a href="{{ route('servicios.showServicios', 'pedicura') }}">
         <div class="card">
           <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
-          <div class="card-body">
+          <div class="card-body" style="background-color: #f5e3c3;"> <!-- Fondo beige suave macarrón -->
             <h5 class="card-title">Pedicura</h5>
             <p class="card-text">En nuestro salón te invitamos a sumergirte en una experiencia de bienestar y cuidado integral para tus pies. Nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad.</p>
           </div>
@@ -33,7 +33,7 @@
       <a href="{{ route('servicios.showServicios', 'cabello') }}">
         <div class="card">
           <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
-          <div class="card-body">
+          <div class="card-body" style="background-color: #f5e3c3;"> <!-- Fondo beige suave macarrón -->
             <h5 class="card-title">Cabello</h5>
             <p class="card-text">En nuestro salón, tu cabello es nuestra prioridad. Te ofrecemos una amplia gama de servicios para que luzcas una melena radiante, sana y llena de vida. Nuestro equipo de estilistas profesionales, altamente capacitados y apasionados por el cuidado capilar, está a tu disposición para brindarte una experiencia personalizada y de la más alta calidad.</p>
           </div>
@@ -44,7 +44,7 @@
       <a href="{{ route('servicios.showServicios', 'maquillaje') }}">
         <div class="card">
           <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
-          <div class="card-body">
+          <div class="card-body" style="background-color: #f5e3c3;"> <!-- Fondo beige suave macarrón -->
             <h5 class="card-title">Maquillaje</h5>
             <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión. Nuestro equipo de maquilladores profesionales, altamente capacitados y apasionados por el arte del maquillaje, está a tu disposición para brindarte una experiencia personalizada y de la más alta calidad.</p>
           </div>
