@@ -102,7 +102,7 @@
           <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tendencias</a>
+          <a class="nav-link" href="{{ route('trends.index') }}">Tendencias</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
