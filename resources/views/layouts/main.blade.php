@@ -12,7 +12,7 @@
     }
 
     .navbar {
-      background-color: #FFC4DF; 
+      background-color: #FF6EA2; 
     }
     .navbar-brand,
     .navbar-nav .nav-link {

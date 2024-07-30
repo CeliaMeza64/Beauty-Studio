@@ -27,7 +27,7 @@
             font-family: Arial, sans-serif;
         }
         .navbar {
-            background-color: black; 
+            background-color: #FF6EA2; 
         }
         .navbar-brand,
         .navbar-nav .nav-link {
@@ -51,8 +51,8 @@
             font-family: Arial, sans-serif; 
         }
         .card {
-            background-color: black; 
-            color: gold; 
+            background-color: #f5e3c3; 
+            color: black; 
             border: 1px solid gold; 
             margin-bottom: 20px; 
             overflow: hidden; 
