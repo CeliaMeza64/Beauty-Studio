@@ -31,7 +31,7 @@
         }
         .navbar-brand,
         .navbar-nav .nav-link {
-            color: gold !important; 
+            color: white !important; 
         }
         .navbar-toggler-icon {
             background-color: gold; 
@@ -52,7 +52,7 @@
         }
         .card {
             background-color: #f5e3c3; 
-            color: black; 
+            color:  #FF6EA2; 
             border: 1px solid gold; 
             margin-bottom: 20px; 
             overflow: hidden; 
@@ -62,7 +62,7 @@
             transform: scale(1.02); 
         }
         .card-text {
-            color: white; 
+            color: black; 
             overflow: hidden; 
             text-overflow:ellipsis;
             display:-webkit-box;
@@ -97,7 +97,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md  shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Inicio
