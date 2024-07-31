@@ -38,15 +38,22 @@ Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destr
 
 Auth::routes();
 
-Route::resource('reservas', ReservaController::class);
-Route::get('reservas', [ReservaController::class, 'index'])->name('reservas.index');
-Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+
+// Ruta para crear una reserva accesible sin autenticación
 Route::post('reservas', [ReservaController::class, 'store'])->name('reservas.store');
-Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
-Route::put('reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
-Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
-Route::post('reservas/{reserva}/confirm', [ReservaController::class, 'confirm'])->name('reservas.confirm');
-Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->name('reservas.cancel');
+
+// Rutas que requieren autenticación
+Route::middleware('auth')->group(function () {
+    Route::get('reservas', [ReservaController::class, 'index'])->name('reservas.index');
+    Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
+    Route::put('reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
+    Route::delete('reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
+    Route::post('reservas/{reserva}/confirm', [ReservaController::class, 'confirm'])->name('reservas.confirm');
+    Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->name('reservas.cancel');
+});
+
+// Ruta para visualizar el formulario de creación de reservas sin autenticación
+Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
 
 
 
@@ -64,11 +71,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
             'index'   => 'servicios.index',
             'show'    => 'servicios.show',
         ]);
-       
+    
     });
 
     // Rutas accesibles para todos los usuarios 
-  
+
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
