@@ -21,6 +21,6 @@ class AdminAuth
             }
           
         }
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 }
