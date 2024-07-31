@@ -52,14 +52,15 @@
         }
         .card {
             background-color: #f5e3c3; 
-            color:  #FF6EA2; 
+            color: #FF6EA2; 
             border: 1px solid gold; 
             margin-bottom: 20px; 
             overflow: hidden; 
-            transition: transform 0.5s ease; 
+            transition: transform 0.5s ease;
         }
         .card:hover {
             transform: scale(1.02); 
+            text-decoration: none; 
         }
         .card-text {
             color: black; 
@@ -68,6 +69,7 @@
             display:-webkit-box;
             -webkit-line-clamp:10;
             -webkit-box-orient:vertical;
+            text-decoration: none; 
         }
         .services-title {
             text-align: center; 
@@ -88,6 +90,7 @@
             color: inherit; 
             text-decoration: none; 
         }
+        
         img {
             width: 100%;
             height: auto;
@@ -97,49 +100,47 @@
 </head>
 <body>
     <div id="app">
-    <nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Beauty Studio</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Servicios
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
-            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
-            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
-            <a class="dropdown-item" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('trends.index') }}">Tendencias</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="home">Administrador</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Beauty Studio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trends.index') }}">Tendencias</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home">Administrador</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-@section('background_image')
-<div class="image-container">
-  <img src="{{ asset('imagenes/fondo3.png') }}" alt="Imagen horizontal" class="img-fluid">
-</div>
-@show
-       
-
-       
+        @section('background_image')
+        <div class="image-container">
+            <img src="{{ asset('imagenes/fondo3.png') }}" alt="Imagen horizontal" class="img-fluid">
+        </div>
+        @show
 
         <main class="py-4">
             @yield('content')
