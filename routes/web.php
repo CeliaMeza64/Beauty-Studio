@@ -8,6 +8,8 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TrendController;
+use App\Http\Controllers\ServicioImageController;
+use App\Http\Controllers\HomeController;
 
 
 
@@ -48,26 +50,25 @@ Route::post('reservas/{reserva}/cancel', [ReservaController::class, 'cancel'])->
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
     // Rutas de CRUD completas para admin
     Route::middleware(['auth.admin'])->group(function () {
-        Route::resource('servicios', ServicioController::class)->except(['index', 'show'])->names([
+        Route::resource('admin', ServicioController::class)->names([
             'create'  => 'servicios.create',
             'store'   => 'servicios.store',
             'edit'    => 'servicios.edit',
             'update'  => 'servicios.update',
-            'destroy' => 'servicios.destroy'
+            'destroy' => 'servicios.destroy',
+            'index'   => 'servicios.index',
+            'show'    => 'servicios.show',
         ]);
        
     });
 
     // Rutas accesibles para todos los usuarios 
-    Route::resource('servicios', ServicioController::class)->only(['index', 'show'])->names([
-        'index'   => 'servicios.index',
-        'show'    => 'servicios.show',
-    ]);
+  
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
@@ -91,3 +92,5 @@ Route::resource('trends', TrendController::class);
 });*/
 
 Route::resource('trends', TrendController::class)->only(['index', 'show']);
+
+
