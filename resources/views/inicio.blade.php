@@ -8,46 +8,46 @@
 <div class="card-container">
   <div class="card">
     <a href="{{ route('servicios.showServicios', 'manicura') }}">
-    <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">Manicura</h5>
-      <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes.
-      Nuestro equipo de expertos está altamente calificado, utilizando técnicas innovadoras y productos 
-      de la más alta calidad para garantizarte resultados excepcionales</p>
-    </div>
+      <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Manicura</h5>
+        <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes.
+        Nuestro equipo de expertos está altamente calificado, utilizando técnicas innovadoras y productos 
+        de la más alta calidad para garantizarte resultados excepcionales</p>
+      </div>
     </a>
   </div>
   <div class="card">
-  <a href="{{ route('servicios.showServicios', 'pedicura') }}">
-    <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">Pedicura</h5>
-      <p class="card-text">En nuestro salón te invitamos a sumergirte en una experiencia de bienestar y cuidado integral para tus pies.
-      Nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad.</p>
-    </div>
-    <a/>
+    <a href="{{ route('servicios.showServicios', 'pedicura') }}">
+      <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Pedicura</h5>
+        <p class="card-text">En nuestro salón te invitamos a sumergirte en una experiencia de bienestar y cuidado integral para tus pies.
+        Nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad.</p>
+      </div>
+    </a>
   </div>
   <div class="card">
-  <a href="{{ route('servicios.showServicios', 'cabello') }}">
-    <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">Cabello</h5>
-      <p class="card-text">En nuestro salón, tu cabello es nuestra prioridad. Te ofrecemos una amplia gama de servicios para que luzcas una melena radiante, sana y llena de vida. 
-      Nuestro equipo de estilistas profesionales, altamente capacitados y apasionados por el cuidado capilar, está a tu disposición para brindarte una 
-      experiencia personalizada y de la más alta calidad</p>
-    </div>
-</a>
+    <a href="{{ route('servicios.showServicios', 'cabello') }}">
+      <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Cabello</h5>
+        <p class="card-text">En nuestro salón, tu cabello es nuestra prioridad. Te ofrecemos una amplia gama de servicios para que luzcas una melena radiante, sana y llena de vida. 
+        Nuestro equipo de estilistas profesionales, altamente capacitados y apasionados por el cuidado capilar, está a tu disposición para brindarte una 
+        experiencia personalizada y de la más alta calidad</p>
+      </div>
+    </a>
   </div>
   <div class="card">
-  <a href="{{ route('servicios.showServicios', 'maquillaje') }}">
-    <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">Maquillaje</h5>
-      <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión. Nuestro equipo de maquilladores 
-      profesionales, altamente capacitados y apasionados por el arte del maquillaje, está a tu disposición para brindarte una experiencia personalizada 
-      y de la más alta calidad</p>
-    </div>
-</a>
+    <a href="{{ route('servicios.showServicios', 'maquillaje') }}">
+      <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Maquillaje</h5>
+        <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión. Nuestro equipo de maquilladores 
+        profesionales, altamente capacitados y apasionados por el arte del maquillaje, está a tu disposición para brindarte una experiencia personalizada 
+        y de la más alta calidad</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -91,20 +91,21 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem; /* Aumenta el espacio entre las tarjetas */
-    justify-content: center;
-    margin: 0 auto; /* Centra el contenedor de las tarjetas */
-    max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
-    padding: 0 1rem; /* Espaciado interior para evitar bordes pegados */
+    gap: 2rem; /* Espacio entre las tarjetas */
+    justify-content: center; /* Centra el contenido del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+    max-width: 1000px; /* Ancho máximo del contenedor */
+    padding: 0 1rem; /* Espacio interior para evitar que se pegue a los bordes */
   }
 
   .card {
-    flex: 0 0 calc(50% - 2rem);
-    max-width: calc(50% - 2rem); /* Asegura que las tarjetas no excedan el ancho disponible */
+    flex: 1 1 calc(50% - 2rem); /* Dos tarjetas por fila */
+    max-width: calc(50% - 2rem); /* Ancho máximo de cada tarjeta */
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
   .card:hover {
@@ -112,11 +113,11 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
-  .card-img-top {
+  .card img {
     border-radius: 10px 10px 0 0;
     object-fit: cover;
     width: 100%;
-    height: 200px; /* Ajusta la altura según necesites */
+    height: 200px;
   }
 
   .card-title {
