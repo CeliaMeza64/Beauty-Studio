@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Beauty Studio</title>
+    <link rel="icon" href="{{ asset('imagenes/logo.jpeg') }}" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -15,9 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.dataTables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/select.dataTables.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @yield('css')
@@ -162,10 +163,9 @@
     <script src="{{ asset('JS/dataTables.keyTable.min.js') }}"></script>
     <script src="{{ asset('JS/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('JS/dataTables.scroller.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/js/ion.rangeSlider.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
     @stack('js')
 </body>
