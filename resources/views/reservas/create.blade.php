@@ -99,6 +99,15 @@
         document.getElementById('confirmButton').addEventListener('click', function () {
             document.getElementById('reservaForm').submit();
         });
+
+        document.getElementById('fecha_reservacion').addEventListener('change', function () {
+            var selectedDate = new Date(this.value);
+            var day = selectedDate.getUTCDay();
+            if (day === 0) { // 0 means Sunday
+                alert('No se permiten reservaciones los domingos. Por favor, seleccione otra fecha.');
+                this.value = '';
+            }
+        });
     </script>
 
     <!-- Bootstrap JavaScript -->
