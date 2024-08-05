@@ -21,7 +21,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="background-color: #f8bbd0; color: white;">+504</span>
                     </div>
-                    <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" value="{{ old('telefono_cliente') }}" required style="border: 1px solid #f8bbd0;">
+                    <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" value="{{ old('telefono_cliente') }}" required style="border: 1px solid #f8bbd0;" maxlength="9">
                 </div>
             </div>
 
@@ -107,6 +107,14 @@
                 alert('No se permiten reservaciones los domingos. Por favor, seleccione otra fecha.');
                 this.value = '';
             }
+        });
+
+        document.getElementById('telefono_cliente').addEventListener('input', function (e) {
+            var value = e.target.value.replace(/-/g, ''); // Remove existing hyphens
+            if (value.length > 4) {
+                value = value.slice(0, 4) + '-' + value.slice(4); // Add hyphen after 4th digit
+            }
+            e.target.value = value;
         });
     </script>
 
