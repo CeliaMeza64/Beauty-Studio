@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 
 class SessionsController extends Controller
 {
     //
     public function create()
     {
-       
+        Log::info('Accediendo a la vista de login');
         return view('aut.login');
     }
 
