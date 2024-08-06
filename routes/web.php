@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReservaController;
-//use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TrendController;
@@ -24,20 +23,12 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome Telma');
-});*/
-
 Route::get('/', [ServicioController::class, 'inicio'])->name('indexServicio');
-
-
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
-
 Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destroy');
 
 Auth::routes();
-
 
 // Ruta para crear una reserva accesible sin autenticación
 Route::post('reservas', [ReservaController::class, 'store'])->name('reservas.store');
@@ -55,10 +46,7 @@ Route::middleware('auth')->group(function () {
 // Ruta para visualizar el formulario de creación de reservas sin autenticación
 Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
 
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
     // Rutas de CRUD completas para admin
     Route::middleware(['auth.admin'])->group(function () {
@@ -70,17 +58,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
             'destroy' => 'servicios.destroy',
             'index'   => 'servicios.index',
             'show'    => 'servicios.show',
+            
         ]);
     
     });
 
-    // Rutas accesibles para todos los usuarios 
-
-
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
 //Route::get('/admin', [AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
-
 
 //Rota del calendario.
 
@@ -88,16 +73,12 @@ Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.in
 
 // ruta tendencias.
 
-Route::resource('trends', TrendController::class);
-
-/*Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('trends', TrendController::class);
     Route::get('trends/create', [TrendController::class, 'create'])->name('trends.create');
     Route::post('trends', [TrendController::class, 'store'])->name('trends.store');
     Route::get('trends/{trend}/edit', [TrendController::class, 'edit'])->name('trends.edit');
     Route::put('trends/{trend}', [TrendController::class, 'update'])->name('trends.update');
     Route::delete('trends/{trend}', [TrendController::class, 'destroy'])->name('trends.destroy');
-});*/
-
-Route::resource('trends', TrendController::class)->only(['index', 'show']);
+    Route::get('/trends/show', [TrendController::class, 'show'])->name('trends.show');
 
 
