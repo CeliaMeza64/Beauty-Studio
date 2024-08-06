@@ -130,7 +130,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Administrador</a>
+                            <a class="nav-link" href="{{ route('home') }}">Login</a>
                         </li>
                     </ul>
                 </div>
