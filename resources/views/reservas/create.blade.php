@@ -85,10 +85,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Está seguro de que desea crear esta reserva?
+                    <p><strong>Nombre del Cliente:</strong> <span id="confirmNombre"></span></p>
+                    <p><strong>Teléfono del Cliente:</strong> <span id="confirmTelefono"></span></p>
+                    <p><strong>Servicio:</strong> <span id="confirmServicio"></span></p>
+                    <p><strong>Fecha de Reservación:</strong> <span id="confirmFecha"></span></p>
+                    <p><strong>Hora de Reservación:</strong> <span id="confirmHora"></span></p>
+                    <p>¿Está seguro de que desea crear esta reserva?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Editar</button>
                     <button type="button" class="btn" style="background-color: #f8bbd0; color: white;" id="confirmButton">Confirmar</button>
                 </div>
             </div>
@@ -96,7 +101,16 @@
     </div>
 
     <script>
+        document.querySelector('[data-target="#confirmModal"]').addEventListener('click', function () {
+            document.getElementById('confirmNombre').textContent = document.getElementById('nombre_cliente').value;
+            document.getElementById('confirmTelefono').textContent = document.getElementById('telefono_cliente').value;
+            document.getElementById('confirmServicio').textContent = document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text;
+            document.getElementById('confirmFecha').textContent = document.getElementById('fecha_reservacion').value;
+            document.getElementById('confirmHora').textContent = document.getElementById('hora_reservacion').options[document.getElementById('hora_reservacion').selectedIndex].text;
+        });
+
         document.getElementById('confirmButton').addEventListener('click', function () {
+            alert('En breve se le confirmará su reserva.');
             document.getElementById('reservaForm').submit();
         });
 
