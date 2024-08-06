@@ -304,9 +304,6 @@ return [
             'can' => 'manage-blog',
         ],
       
-  
-      
-        
         [
             'text' => 'Servicio',
             'icon'    => 'fa fa-id-card', 
@@ -320,6 +317,13 @@ return [
             'route'=>'reservas.index',
            
         ],
+        
+        [
+            'text' => 'Tendencias',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'trends.index',
+           
+        ],
 
         [
             'text' => 'Calendario',
@@ -327,6 +331,8 @@ return [
             'route'=>'calendar.index',
            
         ],
+
+        
      
         
     ],
