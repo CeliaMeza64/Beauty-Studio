@@ -1,7 +1,12 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Crear Tendencia</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
+            ['url' => route('trends.index'), 'title' => 'Tendencias'],
+            ['url' => route('trends.create'), 'title' => 'Crear']
+        ]])
+    </div>
 @stop
 
 @section('content')
