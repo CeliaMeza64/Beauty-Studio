@@ -73,12 +73,15 @@ Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.in
 
 // ruta tendencias.
 
+Route::middleware(['auth.admin'])->group(function () {
     Route::resource('trends', TrendController::class);
     Route::get('trends/create', [TrendController::class, 'create'])->name('trends.create');
     Route::post('trends', [TrendController::class, 'store'])->name('trends.store');
     Route::get('trends/{trend}/edit', [TrendController::class, 'edit'])->name('trends.edit');
     Route::put('trends/{trend}', [TrendController::class, 'update'])->name('trends.update');
     Route::delete('trends/{trend}', [TrendController::class, 'destroy'])->name('trends.destroy');
-    Route::get('/trends/show', [TrendController::class, 'show'])->name('trends.show');
+    
+});
 
+Route::get('/showTendencias', [TrendController::class, 'show'])->name('trends.show');
 

@@ -126,10 +126,10 @@ class TrendController extends Controller
         return redirect('/trends')->with('success', 'Trend Removed');
     }*/
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
         $this->middleware('auth.admin')->only(['create', 'edit', 'update', 'destroy']);
-    }
+    }*/
 
 }
