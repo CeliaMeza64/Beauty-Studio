@@ -10,10 +10,12 @@
 
         <form id="reservaForm" method="POST" action="{{ route('reservas.store') }}" class="bg-white p-4 rounded shadow-sm mx-auto" style="max-width: 600px; border: 1px solid #f8bbd0;">
             @csrf
+
             <div class="form-group">
                 <label for="nombre_cliente">Nombre del Cliente:</label>
                 <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" value="{{ old('nombre_cliente') }}" required style="border: 1px solid #f8bbd0;">
-            </div>
+                <small id="nombreError" class="form-text text-danger" style="display: none;">El nombre solo puede contener letras.</small>
+            </div> <br>
 
             <div class="form-group">
                 <label for="telefono_cliente">Teléfono del Cliente:</label>
@@ -23,7 +25,8 @@
                     </div>
                     <input type="text" name="telefono_cliente" id="telefono_cliente" class="form-control" value="{{ old('telefono_cliente') }}" required style="border: 1px solid #f8bbd0;" maxlength="9">
                 </div>
-            </div>
+                <small id="telefonoError" class="form-text text-danger" style="display: none;">El teléfono solo puede contener números.</small>
+            </div> <br>
 
             <div class="form-group">
                 <label for="servicio">Servicio:</label>
@@ -55,12 +58,12 @@
                     </optgroup>
                 </select>
             </div>
-
+<br>
             <div class="form-group">
                 <label for="fecha_reservacion">Fecha de Reservación:</label>
                 <input type="date" name="fecha_reservacion" id="fecha_reservacion" class="form-control" min="{{ \Carbon\Carbon::tomorrow()->toDateString() }}" value="{{ old('fecha_reservacion') }}" required style="border: 1px solid #f8bbd0;">
             </div>
-
+<br>
             <div class="form-group">
                 <label for="hora_reservacion">Hora de Reservación:</label>
                 <select name="hora_reservacion" id="hora_reservacion" class="form-control" style="border: 1px solid #f8bbd0;">
@@ -69,70 +72,43 @@
                     @endforeach
                 </select>
             </div>
-
-            <button type="button" class="btn" style="background-color: #f8bbd0; color: white;" data-toggle="modal" data-target="#confirmModal">Crear Reserva</button>
+<br>
+            <button type="submit" class="btn btn-primary">Crear Reserva</button>
         </form>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background-color: #f5e3c3;"> <!-- Fondo beige suave macarrón -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirmación de Reserva</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Nombre del Cliente:</strong> <span id="confirmNombre"></span></p>
-                    <p><strong>Teléfono del Cliente:</strong> <span id="confirmTelefono"></span></p>
-                    <p><strong>Servicio:</strong> <span id="confirmServicio"></span></p>
-                    <p><strong>Fecha de Reservación:</strong> <span id="confirmFecha"></span></p>
-                    <p><strong>Hora de Reservación:</strong> <span id="confirmHora"></span></p>
-                    <p>¿Está seguro de que desea crear esta reserva?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Editar</button>
-                    <button type="button" class="btn" style="background-color: #f8bbd0; color: white;" id="confirmButton">Confirmar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        document.querySelector('[data-target="#confirmModal"]').addEventListener('click', function () {
-            document.getElementById('confirmNombre').textContent = document.getElementById('nombre_cliente').value;
-            document.getElementById('confirmTelefono').textContent = document.getElementById('telefono_cliente').value;
-            document.getElementById('confirmServicio').textContent = document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text;
-            document.getElementById('confirmFecha').textContent = document.getElementById('fecha_reservacion').value;
-            document.getElementById('confirmHora').textContent = document.getElementById('hora_reservacion').options[document.getElementById('hora_reservacion').selectedIndex].text;
-        });
+        document.getElementById('nombre_cliente').addEventListener('input', function (e) {
+            var value = e.target.value;
+            var lettersOnly = /^[A-Za-z\s]*$/;
+            var errorElement = document.getElementById('nombreError');
 
-        document.getElementById('confirmButton').addEventListener('click', function () {
-            alert('En breve se le confirmará su reserva.');
-            document.getElementById('reservaForm').submit();
-        });
-
-        document.getElementById('fecha_reservacion').addEventListener('change', function () {
-            var selectedDate = new Date(this.value);
-            var day = selectedDate.getUTCDay();
-            if (day === 0) { // 0 means Sunday
-                alert('No se permiten reservaciones los domingos. Por favor, seleccione otra fecha.');
-                this.value = '';
+            if (!lettersOnly.test(value)) {
+                errorElement.style.display = 'block';
+                e.target.value = value.replace(/[^A-Za-z\s]/g, ''); 
+            } else {
+                errorElement.style.display = 'none';
             }
         });
 
         document.getElementById('telefono_cliente').addEventListener('input', function (e) {
-            var value = e.target.value.replace(/-/g, ''); // Remove existing hyphens
-            if (value.length > 4) {
-                value = value.slice(0, 4) + '-' + value.slice(4); // Add hyphen after 4th digit
+            var value = e.target.value;
+            var formattedValue = value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
+
+            // Formatear como xxxx-xxxx
+            if (formattedValue.length > 4) {
+                formattedValue = formattedValue.slice(0, 4) + '-' + formattedValue.slice(4);
             }
-            e.target.value = value;
+            
+            // Limitar a 8 dígitos
+            if (formattedValue.length > 9) {
+                formattedValue = formattedValue.slice(0, 9);
+            }
+
+            e.target.value = formattedValue; // Aplicar formato al campo
         });
     </script>
 
-    <!-- Bootstrap JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
