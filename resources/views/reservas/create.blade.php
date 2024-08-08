@@ -62,6 +62,7 @@
             <div class="form-group">
                 <label for="fecha_reservacion">Fecha de Reservación:</label>
                 <input type="date" name="fecha_reservacion" id="fecha_reservacion" class="form-control" min="{{ \Carbon\Carbon::tomorrow()->toDateString() }}" value="{{ old('fecha_reservacion') }}" required style="border: 1px solid #f8bbd0;">
+                <small id="domingoError" class="form-text text-danger" style="display: none;">Domingos cerrado.</small>
             </div>
 <br>
             <div class="form-group">
@@ -93,19 +94,37 @@
 
         document.getElementById('telefono_cliente').addEventListener('input', function (e) {
             var value = e.target.value;
-            var formattedValue = value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
+            var formattedValue = value.replace(/[^0-9]/g, ''); 
+            var errorElement = document.getElementById('telefonoError');
 
-            // Formatear como xxxx-xxxx
             if (formattedValue.length > 4) {
                 formattedValue = formattedValue.slice(0, 4) + '-' + formattedValue.slice(4);
             }
             
-            // Limitar a 8 dígitos
             if (formattedValue.length > 9) {
                 formattedValue = formattedValue.slice(0, 9);
             }
 
-            e.target.value = formattedValue; // Aplicar formato al campo
+            e.target.value = formattedValue;
+
+            if (/[^0-9-]/.test(value)) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        });
+
+        document.getElementById('fecha_reservacion').addEventListener('input', function (e) {
+            var value = new Date(e.target.value);
+            var day = value.getUTCDay(); 
+            var errorElement = document.getElementById('domingoError');
+
+            if (day === 0) { 
+                errorElement.style.display = 'block';
+                e.target.value = '';
+            } else {
+                errorElement.style.display = 'none';
+            }
         });
     </script>
 
