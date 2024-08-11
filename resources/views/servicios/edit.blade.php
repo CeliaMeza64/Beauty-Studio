@@ -59,18 +59,20 @@
                             </div>
                             <br>
 
-                            <div class="row justify-content-center">
-                                <div class="col-md-6 text-center">
-                                    <div style="align-items: center; justify-content: center; display: flex;">
-                                        <button type="submit" class="btn btn-outline-success btn-block" tabindex="4" style="margin-right: 10px; flex: 1;">
+                            <div class="row justify-content-start">
+                                <div class="col-md-6">
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;" tabindex="4">
                                             <span class="fas fa-user-plus"></span> Actualizar
                                         </button>
-                                        <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger btn-block" tabindex="5" style="flex: 1;">
+                                        <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger" style="flex: 1;" tabindex="4">
                                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar
                                         </a>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </form>
