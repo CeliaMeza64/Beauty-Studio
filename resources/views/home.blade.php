@@ -46,11 +46,12 @@
                                 <td>{{ $servicio->disponibilidad ? 'Disponible' : 'No Disponible' }}</td>
                                 <td>
                                     @if ($servicio->imagen)
-                                        <img src="{{ asset('storage/' . $servicio->imagen) }}" alt="Imagen" style="width: 50px;">
+                                        <img src="{{ asset('storage/' . $servicio->imagen) }}" alt="Imagen" style="width: 50px; height: auto; max-height: 50px; object-fit: cover;">
                                     @else
                                         No hay imagen
                                     @endif
                                 </td>
+
                                 <td class="d-flex align-items-center">
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
                                         <i class="fas fa-edit"></i>
@@ -81,5 +82,32 @@
         .breadcrumb-item.active {
             font-size: 1.30em; 
         }
+        .truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 350px; 
+        }
+        .table {
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .table tbody tr:last-child {
+            border-bottom: 1px solid #ddd; 
+        }
+        .d-flex.align-items-center {
+            justify-content: center;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+      
+
+      
+
+       
     </style>
 @stop
