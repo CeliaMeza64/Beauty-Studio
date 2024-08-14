@@ -43,17 +43,13 @@
                             </div>
                             <br>
 
-                            <div class="row justify-content-center">
-                                <div class="col-md-6 text-center">
-                                    <div style="align-items: center; justify-content: center; display: flex;">
-                                        <button type="submit" class="btn btn-outline-success btn-block" tabindex="4" style="margin-right: 10px; flex: 1;">
-                                            <span class="fas fa-save"></span> Actualizar
-                                        </button>
-                                        <a href="{{ route('trends.index') }}" class="btn btn-outline-danger btn-block" tabindex="5" style="flex: 1;">
-                                            <i class="fa fa-times" aria-hidden="true"></i> Cancelar
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="d-flex justify-content-start mt-4">
+                                <button type="submit" class="btn btn-outline-success" tabindex="4" style="margin-right: 10px;">
+                                    <span class="fas fa-save"></span> Actualizar
+                                </button>
+                                <a href="{{ route('trends.index') }}" class="btn btn-outline-danger" tabindex="5">
+                                    <i class="fa fa-times" aria-hidden="true"></i> Cancelar
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -117,6 +113,17 @@
 
         input[type="file"].d-none {
             display: none;
+        }
+
+        /* Asegura que los botones estén en la misma línea horizontal y en la parte inferior izquierda */
+        .d-flex {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .btn {
+            margin-right: 10px;
         }
     </style>
 @stop
