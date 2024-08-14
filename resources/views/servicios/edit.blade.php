@@ -1,13 +1,14 @@
 @extends('adminlte::page')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('servicios.index'), 'title' => 'Servicios'],
-            ['url' => route('servicios.edit', $servicio->id), 'title' => 'Editar']
-        ]])
-    </div>
-@stop
+@section('breadcrumbs')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('servicios.index') }}">Servicios</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Editando el servicio de: {{ $servicio->nombre }}</li>
+           
+        </ol>
+    </nav>
+@endsection
 
 @section('content')
     <div class="card">
@@ -104,10 +105,7 @@
 
 @section('css')
     <style>
-        .breadcrumb-item a, 
-        .breadcrumb-item.active {
-            font-size: 1.30em; 
-        }
+      
 
         .image-placeholder {
             width: 350px;
@@ -136,5 +134,6 @@
         input[type="file"].d-none {
             display: none;
         }
+      
     </style>
 @stop

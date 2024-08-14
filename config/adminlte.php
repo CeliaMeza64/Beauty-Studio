@@ -30,8 +30,10 @@ return [
     |
     */
 
-    'use_ico_only' => true,
-    'use_full_favicon' => false,
+   'use_ico_only' => true,
+   'use_full_favicon' => true,
+
+  
 
     /*
     |--------------------------------------------------------------------------
@@ -294,10 +296,7 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+      
         [
             'text' => 'blog',
             'url' => 'admin/blog',
@@ -332,7 +331,11 @@ return [
            
         ],
 
-        
+      
+
+       
+
+      
      
         
     ],
