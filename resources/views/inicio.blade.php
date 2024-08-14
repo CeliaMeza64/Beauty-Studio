@@ -95,16 +95,16 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem; /* Espacio entre las tarjetas */
-    justify-content: center; /* Centra el contenido del contenedor */
-    margin: 0 auto; /* Centra el contenedor */
-    max-width: 1000px; /* Ancho máximo del contenedor */
-    padding: 0 1rem; /* Espacio interior para evitar que se pegue a los bordes */
+    gap: 2rem; /
+    justify-content: center; 
+    margin: 0 auto; 
+    max-width: 1000px; 
+    padding: 0 1rem; 
   }
 
   .card {
-    flex: 1 1 calc(50% - 2rem); /* Dos tarjetas por fila */
-    max-width: calc(50% - 2rem); /* Ancho máximo de cada tarjeta */
+    flex: 1 1 calc(50% - 2rem); 
+    max-width: calc(50% - 2rem);
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
