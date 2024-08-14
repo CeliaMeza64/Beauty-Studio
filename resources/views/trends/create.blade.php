@@ -27,29 +27,27 @@
                     </div>
 
                     <!-- Columna del texto -->
-                    <div class="col-md-6 order-md-1">
-                        <div class="form-group">
-                            <label for="title" class="font-weight-bold-custom">Título</label>
-                            <input type="text" name="title" placeholder="Título de la tendencia" class="form-control" required>
-                        </div>
-                        <br>
+                    <div class="col-md-6 order-md-1 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="form-group">
+                                <label for="title" class="font-weight-bold-custom">Título</label>
+                                <input type="text" name="title" placeholder="Título de la tendencia" class="form-control" required>
+                            </div>
+                            <br>
 
-                        <div class="form-group">
-                            <label for="description" class="font-weight-bold-custom">Descripción</label>
-                            <textarea name="description" placeholder="Añada los detalles sobre la tendencia" class="form-control" rows="3" required></textarea>
+                            <div class="form-group">
+                                <label for="description" class="font-weight-bold-custom">Descripción</label>
+                                <textarea name="description" placeholder="Añada los detalles sobre la tendencia" class="form-control" rows="3" required></textarea>
+                            </div>
                         </div>
-                        <br>
-
-                        <div class="row justify-content-center">
-                            <div class="col-md-6 text-center">
-                                <div style="align-items: center; justify-content: center; display: flex;">
-                                    <button type="submit" class="btn btn-outline-success btn-block" tabindex="4" style="margin-right: 10px; flex: 1;">
-                                        <span class="fas fa-save"></span> Guardar
-                                    </button>
-                                    <a href="{{ route('trends.index') }}" class="btn btn-outline-danger btn-block" tabindex="5" style="flex: 1;">
-                                        <i class="fa fa-times" aria-hidden="true"></i> Cancelar
-                                    </a>
-                                </div>
+                        <div class="row justify-content-start mt-4">
+                            <div class="col-md-6 d-flex">
+                                <button type="submit" class="btn btn-outline-success mr-2 flex-fill" tabindex="4">
+                                    <span class="fas fa-save"></span> Guardar
+                                </button>
+                                <a href="{{ route('trends.index') }}" class="btn btn-outline-danger flex-fill" tabindex="5">
+                                    <i class="fa fa-times" aria-hidden="true"></i> Cancelar
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -114,6 +112,13 @@
 
         input[type="file"].d-none {
             display: none !important;
+        }
+
+        /* Asegurar que los botones estén alineados al fondo a la izquierda */
+        .d-flex.justify-content-start.mt-4 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
     </style>
 @stop
