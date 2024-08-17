@@ -24,12 +24,9 @@ class ReservaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nombre_cliente' => 'required|string|max:255',
-            'telefono_cliente' => [
-                'required',
-                'regex:/^\d{4}-\d{4}$/'
-            ],
+            'telefono_cliente' => 'required|string|max:9|regex:/^\d{4}-\d{4}$/',
             'servicio' => 'required|string|max:255',
             'fecha_reservacion' => [
                 'required',
@@ -59,16 +56,16 @@ class ReservaController extends Controller
                     ]);
 
                     $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                                ->where('hora_reservacion', $request->hora_reservacion)
-                                ->exists();
+                        ->where('hora_reservacion', $request->hora_reservacion)
+                        ->exists();
 
                     if ($exists) {
                         $fail('Ya existe una reserva para esa fecha y hora.');
                     }
 
                     $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                                      ->orderBy('hora_reservacion', 'desc')
-                                      ->first();
+                        ->orderBy('hora_reservacion', 'desc')
+                        ->first();
 
                     if ($lastReserva) {
                         $lastHora = Carbon::createFromFormat('H:i:s', $lastReserva->hora_reservacion);
@@ -90,9 +87,32 @@ class ReservaController extends Controller
             'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
         ]);
 
-        Reserva::create($request->all());
+        // Crear la nueva reserva
+        $reserva = new Reserva();
+        $reserva->nombre_cliente = $validated['nombre_cliente'];
+        $reserva->telefono_cliente = $validated['telefono_cliente'];
+        $reserva->servicio = $request->input('servicio');
+        $reserva->fecha_reservacion = $validated['fecha_reservacion'];
+        $reserva->hora_reservacion = $validated['hora_reservacion'];
+        $reserva->save();
 
-        return redirect('/')->with('success', 'Reserva creada exitosamente.');
+        // Redirigir al índice de reservas con un mensaje de éxito
+        return redirect('/')->with('success', 'Reserva creada con éxito.');
+    }
+
+    public function storeNew(Request $request)
+    {
+        $validated = $request->validate([
+            'nombre_cliente' => 'required|string|max:255',
+            'telefono_cliente' => 'required|string|max:9|regex:/^\d{4}-\d{4}$/',
+            'fecha_reservacion' => 'required|date|after:tomorrow',
+            'hora_reservacion' => 'required|in:09:00,11:00,13:00,15:00,18:00,20:00',
+        ]);
+
+        // Crear la reserva
+        $reserva = Reserva::create($validated);
+
+        return response()->json(['success' => true]);
     }
 
     public function edit(Reserva $reserva)
@@ -123,9 +143,9 @@ class ReservaController extends Controller
 
         // Validar la existencia de otra reserva en el mismo horario
         $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                         ->where('hora_reservacion', $request->hora_reservacion)
-                         ->where('id', '!=', $reserva->id)
-                         ->exists();
+            ->where('hora_reservacion', $request->hora_reservacion)
+            ->where('id', '!=', $reserva->id)
+            ->exists();
 
         if ($exists) {
             return redirect()->back()->withErrors(['hora_reservacion' => 'Ya existe una reserva para esa fecha y hora.'])->withInput();
@@ -133,8 +153,8 @@ class ReservaController extends Controller
 
         // Validar la diferencia de horas entre reservas
         $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
-                              ->orderBy('hora_reservacion', 'desc')
-                              ->first();
+            ->orderBy('hora_reservacion', 'desc')
+            ->first();
 
         if ($lastReserva) {
             $lastHora = Carbon::createFromFormat('H:i:s', $lastReserva->hora_reservacion);
@@ -162,7 +182,38 @@ class ReservaController extends Controller
         $reserva->estado = 'confirmada';
         $reserva->save();
 
-        return redirect()->route('reservas.index')->with('success', 'Reserva confirmada exitosamente.');
+        // Generar el contenido para impresión
+        $nombre = $reserva->nombre_cliente;
+        $telefono = $reserva->telefono_cliente;
+        $fecha = $reserva->fecha_reservacion;
+        $hora = $reserva->hora_reservacion;
+
+        $printContent = "
+            <html>
+            <head><title>Imprimir Reserva</title></head>
+            <body>
+                <h1>Reserva Confirmada</h1>
+                <ul>
+                    <li><strong>Nombre:</strong> $nombre</li>
+                    <li><strong>Teléfono:</strong> $telefono</li>
+                    <li><strong>Fecha:</strong> $fecha</li>
+                    <li><strong>Hora:</strong> $hora</li>
+                </ul>
+            </body>
+            </html>
+        ";
+
+        $printWindow = "<script>
+            var printContent = `$printContent`;
+            var printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        </script>";
+
+
+        return redirect()->route('reservas.index')->with('success', 'Reserva confirmada exitosamente.')->with('printWindow', $printWindow);
     }
 
     public function cancel(Request $request, $id)
