@@ -5,6 +5,10 @@
 @section('content')
 <h2 class="services-title">Servicios</h2>
 
+@if(Auth::check() && Auth::user()->role == 'admin')
+    <a href="{{ route('paginaInicio.index') }}" class="btn btn-primary mb-3 volver-lista-btn">Volver a la lista</a>
+@endif
+
 <div class="card-container">
     @foreach($paginaInicio as $pagina)
         @if(is_object($pagina) && isset($pagina->titulo))
@@ -187,5 +191,8 @@
     opacity: 1;
 }
 
+.volver-lista-btn {
+    margin-left: 100px;
+}
 </style>
 @endsection
