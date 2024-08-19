@@ -62,7 +62,7 @@
                                 <div class="col-md-6">
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;" tabindex="4">
-                                            <span class="fas fa-user-plus"></span> Actualizar
+                                            <span class="fas fa-user-plus"></span> Guardar
                                         </button>
                                         <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger" style="flex: 1;" tabindex="4">
                                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar
