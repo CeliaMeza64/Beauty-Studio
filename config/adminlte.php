@@ -302,18 +302,18 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
-
-        [
-            'text' => 'Página de inicio',
-            'icon'    => 'fa fa-id-card', 
-            'route'=>'paginaInicio.index',
-           
-        ],
       
         [
             'text' => 'Servicio',
             'icon'    => 'fa fa-id-card', 
             'route'=>'servicios.index',
+           
+        ],
+
+        [
+            'text' => 'Página de inicio',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'paginaInicio.index',
            
         ],
    
