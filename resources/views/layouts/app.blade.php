@@ -207,7 +207,6 @@
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
@@ -217,13 +216,6 @@
     <script src="{{ asset('assets/js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.keyTable.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.responsive.min.js') }}"></script>
-
-
-    <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
-  
-    
  
   
  
