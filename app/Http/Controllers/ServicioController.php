@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ServicioController extends Controller
 {
-    public function inicio()
-    {
-       
-        return view('inicio');
-    }
+    
 
     public function showmaquillaje()
     {
