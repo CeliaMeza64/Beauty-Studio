@@ -12,12 +12,17 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/select.dataTables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link href="{{ asset('assets/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select.dataTables.min.css') }}">
+   
+   
+
+    <!-- Styles -->
+ 
+ 
+
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -97,6 +102,55 @@
             height: auto;
             object-fit: cover;
         }
+
+        .truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 460px; 
+    }
+
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .table tbody tr:last-child {
+        border-bottom: 1px solid #ddd; 
+    }
+
+    .d-flex.align-items-center {
+        justify-content: center;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .breadcrumb {
+        padding: 0.2rem;
+        margin: 0;
+        border: none;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .breadcrumb-item {
+        margin-right: 0.5rem;
+    }
+
+    .breadcrumb-item a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.25rem; 
+    }
+
+    .breadcrumb-item.active {
+        color: #6c757d;
+    }
+
     </style>
 </head>
 <body>
@@ -149,23 +203,31 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('JS/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('JS/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('JS/jszip.min.js') }}"></script>
-    <script src="{{ asset('JS/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('JS/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('JS/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('JS/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('JS/dataTables.scroller.min.js') }}"></script>
-    <script src="{{ asset('assets/js/ion.rangeSlider.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.scroller.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.responsive.min.js') }}"></script>
+
+
+    <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
+  
+    
+ 
+  
+ 
+
 
     @stack('js')
 </body>

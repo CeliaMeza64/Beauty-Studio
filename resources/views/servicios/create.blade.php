@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('servicios.index'), 'title' => 'Servicios'],
-            ['url' => route('servicios.create'), 'title' => 'Crear']
-        ]])
-    </div>
-@stop
-
+@section('breadcrumbs')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('servicios.index') }}">Servicios</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Crear un servicio</li>
+           
+        </ol>
+    </nav>
+@endsection
 @section('content')
     <div class="card">
         <div class="card-body">
