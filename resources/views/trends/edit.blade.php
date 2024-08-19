@@ -1,13 +1,14 @@
 @extends('adminlte::page')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('trends.index'), 'title' => 'Tendencias'],
-            ['url' => route('trends.edit', $trend->id), 'title' => 'Editar']
-        ]])
-    </div>
-@stop
+@section('breadcrumbs')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('trends.index') }}">Tendencias</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Editando el tendencia de: {{ $trend->title }}</li>
+           
+        </ol>
+    </nav>
+@endsection
 
 @section('content')
     <div class="card">

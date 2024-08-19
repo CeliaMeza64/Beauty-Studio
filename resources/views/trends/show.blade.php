@@ -8,10 +8,6 @@
 <div class="container">
     <h1>Tendencias</h1>
 
-    @if(Auth::check() && Auth::user()->role == 'admin')
-        <a href="{{ route('trends.index') }}" class="btn btn-primary mb-3">Volver a la lista</a>
-    @endif
-
     <div class="row">
         @forelse($trends as $trend)
             <div class="col-md-3 col-sm-6 mb-4">

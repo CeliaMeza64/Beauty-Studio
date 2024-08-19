@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('home'), 'title' => 'Tendencias']
-        ]])
-    </div>
-@stop
+@section('breadcrumbs')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Tendencias</li> 
+        </ol>
+    </nav>
+@endsection
 
 @section('content')
     <div class="card">
@@ -46,20 +46,37 @@
                                     @endif
                                 </td>
                                 <td class="d-flex align-items-center">
-                                    
-                                        <a href="{{ route('trends.edit', $trend->id) }}" class="btn btn-success mr-2" title="Editar">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                    <a href="{{ route('trends.edit', $trend->id) }}" class="btn btn-success mr-2" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
 
-                                        <!-- Formulario de eliminación -->
-                                        <form action="{{ route('trends.destroy', $trend->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar esta tendencia?')">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                   
+                                    <!-- Botón para abrir el modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $trend->id }}">
+                                        Eliminar
+                                    </button>
+
+                                    <!-- Modal para confirmar la eliminación -->
+                                    <div class="modal fade" id="eliminarModal_{{ $trend->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $trend->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $trend->id }}">Confirmar eliminación</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>¿Realmente quieres eliminar la tendencia {{ $trend->title }}?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <form action="{{ route('trends.destroy', $trend->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </td>
                             </tr>
                         @endforeach
