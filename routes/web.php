@@ -24,34 +24,17 @@ use App\Http\Controllers\PaginaInicioController;
 |
 */
 
-/*Route::middleware(['auth.admin'])->group(function () {
-    // Resource routes for PaginaInicio with some custom routes
-    Route::resource('paginaInicio', PaginaInicioController::class)->except(['show']);
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('/paginaInicio', [PaginaInicioController::class, 'index'])->name('paginaInicio.index');
+    Route::get('/paginaInicio/create', [PaginaInicioController::class, 'create'])->name('paginaInicio.create');
+    Route::post('/paginaInicio', [PaginaInicioController::class, 'store'])->name('paginaInicio.store');
+    Route::get('/paginaInicio/{paginaInicio}/edit', [PaginaInicioController::class, 'edit'])->name('paginaInicio.edit');
+    Route::put('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'update'])->name('paginaInicio.update');
+    Route::delete('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'destroy'])->name('paginaInicio.destroy');
+});
 
-    // Custom routes for create, store, edit, update, and destroy
-    Route::get('paginaInicio/create', [PaginaInicioController::class, 'create'])->name('paginaInicio.create');
-    Route::post('paginaInicio', [PaginaInicioController::class, 'store'])->name('paginaInicio.store');
-    Route::get('paginaInicio/{paginaInicio}/edit', [PaginaInicioController::class, 'edit'])->name('paginaInicio.edit');
-    Route::put('paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'update'])->name('paginaInicio.update');
-    Route::delete('paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'destroy'])->name('paginaInicio.destroy');
-});*/
-
-// Public route to show a specific PaginaInicio
-//Route::get('/', [PaginaInicioController::class, 'show'])->name('paginaInicio.show');
-
-//Route::resource('/', PaginaInicioController::class);
-
-
-Route::get('/paginaInicio', [PaginaInicioController::class, 'index'])->name('paginaInicio.index');
-Route::get('/paginaInicio/create', [PaginaInicioController::class, 'create'])->name('paginaInicio.create');
-Route::post('/paginaInicio', [PaginaInicioController::class, 'store'])->name('paginaInicio.store');
 Route::get('/', [PaginaInicioController::class, 'show'])->name('paginaInicio.show');
-Route::get('/paginaInicio/{paginaInicio}/edit', [PaginaInicioController::class, 'edit'])->name('paginaInicio.edit');
-Route::put('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'update'])->name('paginaInicio.update');
-Route::delete('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'destroy'])->name('paginaInicio.destroy');
 
-/*Route::get('/', [PaginaInicioController::class, 'show'])->name('paginaInicio.show');*/
-//Route::get('/', [PaginaInicioController::class, 'show'])->name('indexPaginaInicio');
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destroy');
@@ -92,8 +75,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
     });
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
-
-//Route::get('/admin', [AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
 
 //Rota del calendario.
 
