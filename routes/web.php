@@ -100,6 +100,4 @@ Route::get('galeria', [ImageController::class, 'index'])->name('galeria.index');
 Route::get('galeria/create', [ImageController::class, 'create'])->name('galeria.create');
 Route::post('galeria', [ImageController::class, 'store'])->name('galeria.store');
 Route::get('galeria/show', [ImageController::class, 'show'])->name('galeria.show');
-Route::get('galeria/{image}/edit', [ImageController::class, 'edit'])->name('galeria.edit');
-Route::put('galeria/{image}', [ImageController::class, 'update'])->name('galeria.update');
 Route::delete('galeria/{image}', [ImageController::class, 'destroy'])->name('galeria.destroy');

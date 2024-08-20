@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <h1>Galería de Imágenes</h1>
+    <h1>Galería </h1>
     @if(Auth::check() && Auth::user()->role == 'admin')
         <a href="{{ route('galeria.index') }}" class="btn btn-primary mb-3">Volver a la galeria</a>
     @endif

@@ -28,45 +28,46 @@
 
                 <div class="row mt-4">
                     @forelse ($images as $image)
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card">
                                 <img src="{{ asset('storage/' . $image->imagen) }}" class="card-img-top" alt="Imagen de galería" style="height: 200px; object-fit: cover;">
-                                <div class="card-body text-center">
-                                    <div class="d-flex justify-star">
-                                
-                                        <a href="{{ route('galeria.show', $image->id) }}" class="btn btn-info mr-4">Ver Detalle</a>
+                                <div class="card-body">
+                                    <!-- Contenedor para los botones alineados a la izquierda -->
+                                    <div class="d-flex">
+                                        <a href="{{ route('galeria.show', $image->id) }}" class="btn btn-info mr-2">Ver Detalle</a>
 
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $image->id }}">
                                              Eliminar
                                         </button>
-
-                                    <!-- Modal para confirmar la eliminación -->
-                                    <div class="modal fade" id="eliminarModal_{{ $image->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $image->id }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $image->id }}">Eliminar Imagen</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>¿Realmente quieres eliminar esta imagen?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('galeria.destroy', $image->id) }}" method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <!-- Fin del modal -->
                                 </div>
                             </div>
+
+                            <!-- Modal para confirmar la eliminación -->
+                            <div class="modal fade" id="eliminarModal_{{ $image->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $image->id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="eliminarModalLabel_{{ $image->id }}">Eliminar Imagen</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>¿Realmente quieres eliminar esta imagen?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <form action="{{ route('galeria.destroy', $image->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin del modal -->
                         </div>
                     @empty
                         <div class="col-12">

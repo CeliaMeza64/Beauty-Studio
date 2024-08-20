@@ -40,32 +40,6 @@ class ImageController extends Controller
         return view('galeria.show', compact('images'));
     }
 
-    public function edit($id)
-    {
-        $image = Image::findOrFail($id);
-        return view('galeria.edit', compact('image'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $image = Image::findOrFail($id);
-
-        $request->validate([
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        if ($request->hasFile('imagen')) {
-            if ($image->imagen) {
-                Storage::delete('public/' . $image->imagen);
-            }
-            $path = $request->file('imagen')->store('galeria', 'public');
-            $image->imagen = $path;
-        }
-
-        $image->save();
-
-        return redirect()->route('galeria.index')->with('success', 'Imagen actualizada con éxito.');
-    }
 
     public function destroy($id)
     {
