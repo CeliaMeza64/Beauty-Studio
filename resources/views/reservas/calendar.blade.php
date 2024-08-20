@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        @include('plantilla.breadcrumbs', ['breadcrumbs' => [
-            ['url' => route('calendar.index'), 'title' => 'Calendario']
-        ]])
-    </div>
-@stop
+@section('breadcrumbs')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Calendario</li>
+        </ol>
+    </nav>
+@endsection
 
 @section('content')
     <div class="container">
