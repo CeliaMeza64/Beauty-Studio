@@ -16,7 +16,6 @@
             <form method="POST" action="{{ route('trends.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <!-- Columna para la imagen nueva -->
                     <div class="col-md-6 order-md-2 position-relative">
                         <div class="form-group">
                             <label class="font-weight-bold-custom mb-1">Subir Imagen</label>
@@ -26,8 +25,6 @@
                             <input type="file" name="image" class="form-control-file d-none" id="imagenInput">
                         </div>
                     </div>
-
-                    <!-- Columna del texto -->
                     <div class="col-md-6 order-md-1 d-flex flex-column justify-content-between">
                         <div>
                             <div class="form-group">
@@ -57,7 +54,6 @@
         </div>
     </div>
 
-    <!-- Script para ver la imagen antes de CREAR UNA NUEVA TENDENCIA -->
     <script>
         document.getElementById('imagePlaceholder').addEventListener('click', function() {
             document.getElementById('imagenInput').click();
@@ -115,7 +111,6 @@
             display: none !important;
         }
 
-        /* Asegurar que los botones estén alineados al fondo a la izquierda */
         .d-flex.justify-content-start.mt-4 {
             position: absolute;
             bottom: 0;

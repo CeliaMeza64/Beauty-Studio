@@ -100,53 +100,89 @@
         }
 
         .truncate {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 460px; 
-    }
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 460px; 
+        }
 
-    .table {
-        border-collapse: collapse;
-    }
+        .table {
+            border-collapse: collapse;
+        }
 
-    .table th, .table td {
-        padding: 8px;
-        border: 1px solid #ddd;
-    }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
 
-    .table tbody tr:last-child {
-        border-bottom: 1px solid #ddd; 
-    }
+        .table tbody tr:last-child {
+            border-bottom: 1px solid #ddd; 
+        }
 
-    .d-flex.align-items-center {
-        justify-content: center;
-        margin-bottom: 0;
-        border-bottom: none;
-    }
+        .d-flex.align-items-center {
+            justify-content: center;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
 
-    .breadcrumb {
-        padding: 0.2rem;
-        margin: 0;
-        border: none;
-        background-color: transparent;
-        border-radius: 0;
-    }
+        .breadcrumb {
+            padding: 0.2rem;
+            margin: 0;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+        }
 
-    .breadcrumb-item {
-        margin-right: 0.5rem;
-    }
+        .breadcrumb-item {
+            margin-right: 0.5rem;
+        }
 
-    .breadcrumb-item a {
-        color: #007bff;
-        text-decoration: none;
-        font-size: 1.25rem; 
-    }
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.25rem; 
+        }
 
-    .breadcrumb-item.active {
-        color: #6c757d;
-    }
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
 
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px; /* Distancia desde el fondo */
+            right: 20px; /* Distancia desde la derecha */
+            background-color: #25D366; /* Color de fondo del botón */
+            border-radius: 50%; /* Hacer el botón redondo */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+            z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+            width: 50px; /* Tamaño del botón */
+            height: 50px; /* Tamaño del botón */
+            display: flex; /* Centrar el contenido dentro del botón */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-icon {
+            width: 30px; /* Tamaño del ícono de WhatsApp */
+            height: 30px; /* Tamaño del ícono de WhatsApp */
+        }
+
+        .tooltip-text {
+            display: none;
+        }
+
+        .whatsapp-float:hover .tooltip-text {
+            display: block;
+            position: absolute;
+            bottom: 100%;
+            right: 50%;
+            transform: translateX(50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -196,38 +232,40 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 
-    <footer class="footer mt-5 py-5" style="background: linear-gradient(135deg, #f9e3e3, #fce4ec); color: #333;">
-  <div class="container text-center">
-    <div class="row mb-4">
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Dirección</h5>
-        <p style="font-size: 1.1rem;">El Paraiso, El Paraiso Residencial Los Olivos 2 cuadra</p>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Horario</h5>
-        <p style="font-size: 1.1rem;">Lunes a Viernes: 9:00 AM - 8:00 PM</p>
-        <p style="font-size: 1.1rem;">Sábados: 9:00 AM - 3:00 PM</p>
-        <p style="font-size: 1.1rem;">Domingos: Cerrado</p>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Contacto</h5>
-        <p style="font-size: 1.1rem;">Tel: +504 8937-3440</p>
-        <p style="font-size: 1.1rem;">Email: info@beautystudio.com</p>
-      </div>
+        @unless(View::hasSection('hide-footer'))
+            <footer class="footer mt-5 py-5" style="background: linear-gradient(135deg, #f9e3e3, #fce4ec); color: #333;">
+                <div class="container text-center">
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Dirección</h5>
+                            <p style="font-size: 1.1rem;">El Paraiso, El Paraiso Residencial Los Olivos 2 cuadra</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Horario</h5>
+                            <p style="font-size: 1.1rem;">Lunes a Viernes: 9:00 AM - 8:00 PM</p>
+                            <p style="font-size: 1.1rem;">Sábados: 9:00 AM - 3:00 PM</p>
+                            <p style="font-size: 1.1rem;">Domingos: Cerrado</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Contacto</h5>
+                            <p style="font-size: 1.1rem;">Tel: +504 8937-3440</p>
+                            <p style="font-size: 1.1rem;">Email: info@beautystudio.com</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <p class="mb-0" style="font-size: 0.9rem; color: #555;">© 2024 Beauty Studio. </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <a href="https://wa.me/50489373440" class="whatsapp-float" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                <span class="tooltip-text">Escribenos</span>
+            </a>
+        @endunless
     </div>
-    <div class="row mt-3">
-      <div class="col-12">
-        <p class="mb-0" style="font-size: 0.9rem; color: #555;">© 2024 Beauty Studio. </p>
-      </div>
-    </div>
-  </div>
-</footer>
-<a href="https://wa.me/50489373440" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-    <span class="tooltip-text">Escribenos</span>
-</a>
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
@@ -239,11 +277,6 @@
     <script src="{{ asset('assets/js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.keyTable.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.responsive.min.js') }}"></script>
- 
-  
- 
-
-
     @stack('js')
 </body>
 </html>

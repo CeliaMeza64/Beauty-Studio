@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Tendencias</li> 
+            <li class="breadcrumb-item active" aria-current="page">Tendencias</li> 
         </ol>
     </nav>
 @endsection
@@ -51,24 +51,26 @@
                                     </a>
 
                                     <!-- Botón para abrir el modal -->
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $trend->id }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $trend->id }}">
                                         Eliminar
                                     </button>
 
                                     <!-- Modal para confirmar la eliminación -->
-                                    <div class="modal fade" id="eliminarModal_{{ $trend->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $trend->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="eliminarModal_{{ $trend->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $trend->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $trend->id }}">Confirmar eliminación</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $trend->id }}">Eliminar tendencia</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>¿Realmente quieres eliminar la tendencia {{ $trend->title }}?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('trends.destroy', $trend->id) }}" method="POST">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <form action="{{ route('trends.destroy', $trend->id) }}" method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Eliminar</button>
