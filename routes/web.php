@@ -95,9 +95,12 @@ Route::middleware(['auth.admin'])->group(function () {
 
 Route::get('/showTendencias', [TrendController::class, 'show'])->name('trends.show');
 
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('galeria', [ImageController::class, 'index'])->name('galeria.index');
+    Route::get('galeria/create', [ImageController::class, 'create'])->name('galeria.create');
+    Route::post('galeria', [ImageController::class, 'store'])->name('galeria.store');
+    Route::delete('galeria/{image}', [ImageController::class, 'destroy'])->name('galeria.destroy');
+});
 
-Route::get('galeria', [ImageController::class, 'index'])->name('galeria.index');
-Route::get('galeria/create', [ImageController::class, 'create'])->name('galeria.create');
-Route::post('galeria', [ImageController::class, 'store'])->name('galeria.store');
-Route::get('galeria/show', [ImageController::class, 'show'])->name('galeria.show');
-Route::delete('galeria/{image}', [ImageController::class, 'destroy'])->name('galeria.destroy');
+Route::get('imagenes/show', [ImageController::class, 'show'])->name('galeria.show');
+
