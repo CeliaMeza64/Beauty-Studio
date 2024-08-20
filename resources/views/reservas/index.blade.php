@@ -50,11 +50,32 @@
                                             </form>
                                         @endif
                                         <a href="{{ route('reservas.edit', $reserva) }}" class="btn btn-warning btn-sm mr-2">Editar</a>
-                                        <form action="{{ route('reservas.destroy', $reserva) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta reserva?')">Eliminar</button>
-                                        </form>
+                                        <!-- Botón para abrir el modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $reserva->id }}">
+                                            Eliminar
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="eliminarModal_{{ $reserva->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $reserva->id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="eliminarModalLabel_{{ $reserva->id }}">Eliminar reserva</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>¿Realmente quieres eliminar la reserva de {{ $reserva->nombre_cliente }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <form action="{{ route('reservas.destroy', $reserva) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,3 +100,6 @@
         }
     </style>
 @stop
+
+@section('js')
+   @stop
