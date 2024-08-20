@@ -12,12 +12,13 @@
         @csrf
         <div class="form-group">
             <label for="nombre_cliente">Nombre del Cliente</label>
-            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" required>
-            <span id="nombreError" style="color:red; display:none;">El nombre solo debe contener letras.</span>
+            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" maxlength="40" required>
+            <span id="nombreError" style="color:red; display:none;">completa este campo, formato en letras</span>
             @error('nombre_cliente')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
         </div>
+
         <br>
         <div class="form-group">
             <label for="telefono_cliente">Teléfono del Cliente</label>
@@ -28,14 +29,16 @@
             @enderror
         </div>
         <br>
+        
         <div class="form-group">
             <label for="fecha_reservacion">Fecha de la Reserva</label>
-            <input type="date" class="form-control" id="fecha_reservacion" name="fecha_reservacion" value="{{ old('fecha_reservacion') }}" required>
+            <input type="date" class="form-control" id="fecha_reservacion" name="fecha_reservacion" value="{{ old('fecha_reservacion') }}" required min="{{ date('Y-m-d') }}">
             <span id="fechaError" style="color:red; display:none;">Por favor, selecciona una fecha válida.</span>
             @error('fecha_reservacion')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
         </div>
+
         <br>
         <div class="form-group">
             <label for="hora_reservacion">Hora de la Reserva</label>
@@ -78,12 +81,6 @@
 
     <br>
     <br>
-    <div class="social-media">
-        <h2>Síguenos en Redes Sociales</h2>
-        <a href="https://facebook.com/tuestudio" target="_blank">Facebook</a>
-        <a href="https://instagram.com/tuestudio" target="_blank">Instagram</a>
-        <a href="https://twitter.com/tuestudio" target="_blank">Twitter</a>
-    </div>
     
     @section('styles')
     <style>
@@ -129,25 +126,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" id="confirmButton">Confirmar Reserva</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Confirmación de Impresión -->
-    <div class="modal fade" id="printConfirmModal" tabindex="-1" aria-labelledby="printConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="printConfirmModalLabel">Imprimir Reserva</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>La reserva ha sido realizada con éxito. ¿Desea imprimir los detalles de la reserva?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="printButton">Imprimir</button>
                 </div>
             </div>
         </div>
@@ -227,67 +205,36 @@
             });
 
             document.getElementById('fecha_reservacion').addEventListener('input', hideErrorMessages);
-
             document.getElementById('hora_reservacion').addEventListener('input', hideErrorMessages);
 
             document.getElementById('guardarReservaButton').addEventListener('click', function (e) {
-                if (validateForm()) {
-                    e.preventDefault(); 
+                e.preventDefault();
 
-                    document.getElementById('reservationDetails').innerHTML = `
-                        <li><strong>Nombre:</strong> ${document.getElementById('nombre_cliente').value.trim()}</li>
-                        <li><strong>Teléfono:</strong> ${document.getElementById('telefono_cliente').value.trim()}</li>
-                        <li><strong>Fecha:</strong> ${document.getElementById('fecha_reservacion').value}</li>
-                        <li><strong>Hora:</strong> ${document.getElementById('hora_reservacion').value}</li>
-                    `;
+                if (validateForm()) {
+                    var nombre = document.getElementById('nombre_cliente').value.trim();
+                    var telefono = document.getElementById('telefono_cliente').value.trim();
+                    var fecha = document.getElementById('fecha_reservacion').value;
+                    var hora = document.getElementById('hora_reservacion').value;
+
+                    document.getElementById('reservationDetails').innerHTML =
+                        '<li><strong>Nombre:</strong> ' + nombre + '</li>' +
+                        '<li><strong>Teléfono:</strong> ' + telefono + '</li>' +
+                        '<li><strong>Fecha:</strong> ' + fecha + '</li>' +
+                        '<li><strong>Hora:</strong> ' + hora + '</li>';
 
                     var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
                         keyboard: false
                     });
+
                     confirmModal.show();
+
+                    document.getElementById('confirmButton').addEventListener('click', function () {
+                        document.getElementById('reservaForm').submit();
+                    });
                 }
-            });
-
-            document.getElementById('confirmButton').addEventListener('click', function () {
-                var nombre = document.getElementById('nombre_cliente').value.trim();
-                var telefono = document.getElementById('telefono_cliente').value.trim();
-                var fecha = document.getElementById('fecha_reservacion').value;
-                var hora = document.getElementById('hora_reservacion').value;
-
-                var printContent = `
-                    <html>
-                    <head><title>Imprimir Reserva</title></head>
-                    <body>
-                        <h1>Reserva Confirmada</h1>
-                        <ul>
-                            <li><strong>Nombre:</strong> ${nombre}</li>
-                            <li><strong>Teléfono:</strong> ${telefono}</li>
-                            <li><strong>Fecha:</strong> ${fecha}</li>
-                            <li><strong>Hora:</strong> ${hora}</li>
-                        </ul>
-                    </body>
-                    </html>
-                `;
-
-                // Cerrar el modal de confirmación
-                var confirmModal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
-                confirmModal.hide();
-
-                // Mostrar el modal de reserva realizada
-                var successModal = new bootstrap.Modal(document.getElementById('printConfirmModal'), {
-                    keyboard: false
-                });
-                successModal.show();
-
-                document.getElementById('printButton').addEventListener('click', function () {
-                    var printWindow = window.open('', '', 'height=600,width=800');
-                    printWindow.document.write(printContent);
-                    printWindow.document.close();
-                    printWindow.focus();
-                    printWindow.print();
-                });
             });
         });
     </script>
+
 </div>
 @endsection
