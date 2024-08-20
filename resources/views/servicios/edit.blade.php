@@ -5,7 +5,6 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('servicios.index') }}">Servicios</a></li>
             <li aria-current="page" class="breadcrumb-item active">Editando el servicio de: {{ $servicio->nombre }}</li>
-           
         </ol>
     </nav>
 @endsection
@@ -14,7 +13,7 @@
     <div class="card">
         <div class="card-body">
             <div class="container">
-                <form action="{{ route('servicios.update', $servicio->id) }}" method="POST" enctype="multipart/form-data">
+                <form id="servicioForm" action="{{ route('servicios.update', $servicio->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -28,6 +27,7 @@
                                     @endif
                                 </div>
                                 <input type="file" name="imagen" class="form-control-file d-none" id="imagenInput">
+                                <div class="invalid-feedback">Por favor, suba una imagen válida.</div>
                             </div>
                         </div>
 
@@ -35,12 +35,14 @@
                             <div class="form-group">
                                 <label for="nombre" class="font-weight-bold-custom">Nombre</label>
                                 <input type="text" name="nombre" value="{{ $servicio->nombre }}" placeholder="Nombre del servicio" class="form-control" required>
+                                <div class="invalid-feedback">Por favor, ingrese el nombre del servicio.</div>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold-custom">Descripción</label>
-                                <textarea name="descripcion" placeholder="Añada los detalles sobre el servicio" class="form-control" rows="3">{{ $servicio->descripcion }}</textarea>
+                                <textarea name="descripcion" placeholder="Añada los detalles sobre el servicio" class="form-control" rows="3" required>{{ $servicio->descripcion }}</textarea>
+                                <div class="invalid-feedback">Por favor, ingrese la descripción.</div>
                             </div>
                             <br>
 
@@ -51,6 +53,7 @@
                                         <option value="{{ $categoria->id }}" {{ $categoria->id == $servicio->categoria_id ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">Por favor, seleccione una categoría.</div>
                             </div>
                             <br>
 
@@ -63,17 +66,15 @@
                             <div class="row justify-content-start">
                                 <div class="col-md-6">
                                     <div class="d-flex">
-                                        <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;" tabindex="4">
+                                        <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;">
                                             <span class="fas fa-user-plus"></span> Actualizar
                                         </button>
-                                        <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger" style="flex: 1;" tabindex="4">
+                                        <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger" style="flex: 1;">
                                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar
                                         </a>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </form>
@@ -98,6 +99,25 @@
                     
                     reader.readAsDataURL(file);
                 });
+
+                document.getElementById('servicioForm').addEventListener('submit', function(event) {
+                    let isValid = true;
+                    const requiredFields = document.querySelectorAll('#servicioForm [required]');
+                    
+                    requiredFields.forEach(function(field) {
+                        if (!field.value.trim()) {
+                            field.classList.add('is-invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    });
+
+                    if (!isValid) {
+                        event.preventDefault();
+                        alert('Por favor, complete todos los campos obligatorios.');
+                    }
+                });
             </script>
         </div>
     </div>
@@ -105,9 +125,7 @@
 
 @section('css')
     <style>
-      
-
-        .image-placeholder {
+    .image-placeholder {
             width: 350px;
             height: 350px;
             display: flex;
@@ -134,6 +152,18 @@
         input[type="file"].d-none {
             display: none;
         }
-      
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: #dc3545;
+        }
+
+        .is-invalid ~ .invalid-feedback {
+            display: block;
+        }
     </style>
 @stop

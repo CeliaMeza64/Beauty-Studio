@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
 @section('title', 'Panel de Administración')
+
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Servicios</li> 
+            <li class="breadcrumb-item active" aria-current="page">Servicios</li> 
         </ol>
     </nav>
 @endsection
-
 
 @section('content')
     <div class="card">
@@ -56,23 +56,25 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                  
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $servicio->id }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}">
                                         Eliminar
                                     </button>
 
-                                    <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Eliminar servicio</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $servicio->id }}">Eliminar servicio</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>¿Realmente quieres eliminar el servicio {{ $servicio->nombre }}?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                 
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                     <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
@@ -90,6 +92,6 @@
             </div>
         </div>
     </div>
-    {{$servicios->links()}}
-@stop
+    {{ $servicios->links() }}
+@endsection
 

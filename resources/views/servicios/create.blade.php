@@ -5,15 +5,15 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('servicios.index') }}">Servicios</a></li>
             <li aria-current="page" class="breadcrumb-item active">Crear un servicio</li>
-           
         </ol>
     </nav>
 @endsection
+
 @section('content')
     <div class="card">
         <div class="card-body">
             <div class="container">
-                <form action="{{ route('servicios.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="servicioForm" action="{{ route('servicios.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -24,7 +24,8 @@
                                 <div class="image-placeholder" id="imagePlaceholder" style="cursor: pointer;">
                                     <p class="text-sm text-gray-400 pt-1 tracking-wider">Seleccione la imagen</p>
                                 </div>
-                                <input type="file" name="imagen" class="form-control-file d-none" id="imagenInput">
+                                <input type="file" name="imagen" class="form-control-file visually-hidden" id="imagenInput" required>
+                                <div class="invalid-feedback">Por favor, suba una imagen.</div>
                             </div>
                         </div>
 
@@ -32,23 +33,27 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="nombre" class="font-weight-bold-custom">Nombre</label>
-                                <input type="text" name="nombre" placeholder="Nombre del servicio" class="form-control" required>
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre del servicio" class="form-control" required>
+                                <div class="invalid-feedback">Por favor, ingrese el nombre del servicio.</div>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold-custom">Descripción</label>
-                                <textarea name="descripcion" placeholder="Añada los detalles sobre el servicio" class="form-control" rows="3"></textarea>
+                                <textarea name="descripcion" id="descripcion" placeholder="Añada los detalles sobre el servicio" class="form-control" rows="3" required></textarea>
+                                <div class="invalid-feedback">Por favor, ingrese la descripción.</div>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="categoria_id" class="font-weight-bold-custom">Categoría</label>
-                                <select name="categoria_id" class="form-control" required>
+                                <select name="categoria_id" id="categoria_id" class="form-control" required>
+                                    <option value="">Seleccione una categoría</option>
                                     @foreach($categorias as $categoria)
                                         <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">Por favor, seleccione una categoría.</div>
                             </div>
                             <br>
 
@@ -75,7 +80,6 @@
                 </form>
             </div>
 
-            <!-- Script para ver la imagen antes de CREAR UN NUEVO SERVICIO -->
             <script>
                 document.getElementById('imagePlaceholder').addEventListener('click', function() {
                     document.getElementById('imagenInput').click();
@@ -95,6 +99,26 @@
                     
                     reader.readAsDataURL(file);
                 });
+
+               
+                document.getElementById('servicioForm').addEventListener('submit', function(event) {
+                    let isValid = true;
+                    const requiredFields = document.querySelectorAll('#servicioForm [required]');
+                    
+                    requiredFields.forEach(function(field) {
+                        if (!field.value.trim()) {
+                            field.classList.add('is-invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        event.preventDefault(); 
+                        alert('Por favor, complete todos los campos obligatorios.');
+                    }
+                });
             </script>
         </div>
     </div>
@@ -109,21 +133,21 @@
 
         .image-placeholder {
             width: 350px;
-            height: 350px; /* Ajusta según el tamaño del contenedor que desees */
+            height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px dashed #ddd;
             border-radius: 5px;
-            background-color: #f8f9fa; /* Color de fondo si no hay imagen */
-            background-size: cover; /* Ajusta la imagen para que se muestre completa */
-            background-repeat: no-repeat; /* No repetir la imagen */
-            background-position: center; /* Centra la imagen en el contenedor */
+            background-color: #f8f9fa;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             color: #aaa;
             font-size: 1.2em;
             text-align: center;
             position: relative;
-            overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+            overflow: hidden;
         }
 
         .image-placeholder p {
@@ -131,9 +155,24 @@
             position: absolute;
         }
 
-        /* Ocultar input file por completo */
-        input[type="file"].d-none {
-            display: none !important;
+        input[type="file"].visually-hidden {
+            visibility: hidden;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: #dc3545;
+        }
+
+        .is-invalid ~ .invalid-feedback {
+            display: block;
         }
     </style>
 @stop

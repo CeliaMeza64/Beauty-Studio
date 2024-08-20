@@ -53,25 +53,25 @@
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <!-- Botón para abrir el modal -->
+                                 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $servicio->id }}">
                                         Eliminar
                                     </button>
-
-                                    <!-- Modal para confirmar la eliminación -->
-                                    <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $servicio->id }}">Confirmar eliminación</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $servicio->id }}">Eliminar servicio</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>¿Realmente quieres eliminar el servicio {{ $servicio->nombre }}?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -79,7 +79,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>   
                                 </td>
                             </tr>
                         @endforeach
