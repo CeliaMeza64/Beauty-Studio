@@ -331,6 +331,13 @@ return [
            
         ],
 
+        [
+            'text' => 'Galeria',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'galeria.index',
+           
+        ],
+
         
 
        
