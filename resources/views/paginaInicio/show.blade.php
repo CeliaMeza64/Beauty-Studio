@@ -1,54 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Servicios')
+@section('title', 'Página de Inicio')
 
 @section('content')
 <h2 class="services-title">Servicios</h2>
 
+@if(Auth::check() && Auth::user()->role == 'admin')
+    <a href="{{ route('paginaInicio.index') }}" class="btn btn-primary mb-3 volver-lista-btn">Volver a la lista</a>
+@endif
+
 <div class="card-container">
-  <div class="card">
-    <a href="{{ route('servicios.showServicios', 'manicura') }}">
-      <img src="{{ asset('imagenes/manicura.jpg') }}" alt="Servicio 1" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Manicura</h5>
-        <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios para que tus manos luzcan radiantes.
-        Nuestro equipo de expertos está altamente calificado, utilizando técnicas innovadoras y productos 
-        de la más alta calidad para garantizarte resultados excepcionales</p>
-      </div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="{{ route('servicios.showServicios', 'pedicura') }}">
-      <img src="{{ asset('imagenes/pedicura.jpg') }}" alt="Servicio 2" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Pedicura</h5>
-        <p class="card-text">En nuestro salón te invitamos a sumergirte en una experiencia de bienestar y cuidado integral para tus pies.
-        Nuestro equipo de pedicuristas profesionales está a tu disposición para brindarte un servicio personalizado y de la más alta calidad.</p>
-      </div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="{{ route('servicios.showServicios', 'cabello') }}">
-      <img src="{{ asset('imagenes/cabello.jpg') }}" alt="Servicio 3" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Cabello</h5>
-        <p class="card-text">En nuestro salón, tu cabello es nuestra prioridad. Te ofrecemos una amplia gama de servicios para que luzcas una melena radiante, sana y llena de vida. 
-        Nuestro equipo de estilistas profesionales, altamente capacitados y apasionados por el cuidado capilar, está a tu disposición para brindarte una 
-        experiencia personalizada y de la más alta calidad</p>
-      </div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="{{ route('servicios.showServicios', 'maquillaje') }}">
-      <img src="{{ asset('imagenes/maquillajeInicio.jpeg') }}" alt="Servicio 4" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Maquillaje</h5>
-        <p class="card-text">En nuestro salón te ofrecemos una amplia gama de servicios de maquillaje para que luzcas radiante en cualquier ocasión. Nuestro equipo de maquilladores 
-        profesionales, altamente capacitados y apasionados por el arte del maquillaje, está a tu disposición para brindarte una experiencia personalizada 
-        y de la más alta calidad</p>
-      </div>
-    </a>
-  </div>
+    @foreach($paginaInicio as $pagina)
+        @if(is_object($pagina) && isset($pagina->titulo))
+        <div class="card">
+            @if (!empty($pagina->imagen))
+                <img src="{{ asset('storage/' . $pagina->imagen) }}" alt="{{ $pagina->titulo }}" class="card-img-top">
+            @else
+                <img src="ruta/a/imagen/placeholder.jpg" alt="Imagen no disponible" class="card-img-top">
+            @endif
+            <div class="card-body">
+                <h5 class="card-title">{{ $pagina->titulo }}</h5>
+                <p class="card-text">{{ $pagina->descripcion }}</p>
+            </div>
+        </div>
+        @else
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Información no disponible</h5>
+                <p class="card-text">Los detalles de esta entrada no están disponibles.</p>
+            </div>
+        </div>
+        @endif
+    @endforeach
 </div>
 
 <footer class="footer mt-5 py-5" style="background: linear-gradient(135deg, #f9e3e3, #fce4ec); color: #333;">
@@ -95,15 +78,15 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem; /
-    justify-content: center; 
-    margin: 0 auto; 
-    max-width: 1000px; 
-    padding: 0 1rem; 
+    gap: 2rem;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 1rem;
   }
 
   .card {
-    flex: 1 1 calc(50% - 2rem); 
+    flex: 1 1 calc(50% - 2rem);
     max-width: calc(50% - 2rem);
     border: none;
     border-radius: 10px;
@@ -208,6 +191,8 @@
     opacity: 1;
 }
 
-
+.volver-lista-btn {
+    margin-left: 100px;
+}
 </style>
 @endsection

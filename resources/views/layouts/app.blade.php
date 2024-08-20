@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Beauty Studio</title>
-    <link rel="icon" href="{{ asset('imagenes/logo.jpeg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('imagenes/log.png') }}" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,14 +16,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/buttons.dataTables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select.dataTables.min.css') }}">
-   
-   
-
-    <!-- Styles -->
- 
- 
-
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+
+    <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @yield('css')
@@ -203,27 +199,15 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.scroller.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.keyTable.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.responsive.min.js') }}"></script>
-
-
-    <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
-  
-    
  
   
  

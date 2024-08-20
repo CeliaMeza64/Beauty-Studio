@@ -65,7 +65,7 @@ return [
     |
     */
     'logo' => '<b>Beauty</b>Studio',
-    'logo_img' => 'imagenes/logo.jpeg',
+    'logo_img' => 'imagenes/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -307,6 +307,13 @@ return [
             'text' => 'Servicio',
             'icon'    => 'fa fa-id-card', 
             'route'=>'servicios.index',
+           
+        ],
+
+        [
+            'text' => 'Página de inicio',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'paginaInicio.index',
            
         ],
    

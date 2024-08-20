@@ -3,8 +3,8 @@
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('servicios.index') }}">Servicios</a></li>
-            <li aria-current="page" class="breadcrumb-item active">Crear un servicio</li>
+            <li class="breadcrumb-item"><a href="{{ route('paginaInicio.index') }}">Página de inicio</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Agregar un servicio a la Página de inicio</li>
         </ol>
     </nav>
 @endsection
@@ -13,7 +13,7 @@
     <div class="card">
         <div class="card-body">
             <div class="container">
-                <form id="servicioForm" action="{{ route('servicios.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('paginaInicio.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -24,42 +24,21 @@
                                 <div class="image-placeholder" id="imagePlaceholder" style="cursor: pointer;">
                                     <p class="text-sm text-gray-400 pt-1 tracking-wider">Seleccione la imagen</p>
                                 </div>
-                                <input type="file" name="imagen" class="form-control-file visually-hidden" id="imagenInput" required>
-                                <div class="invalid-feedback">Por favor, suba una imagen.</div>
+                                <input type="file" name="imagen" class="form-control-file d-none" id="imagenInput">
                             </div>
                         </div>
 
                         <!-- Columna del texto -->
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
-                                <label for="nombre" class="font-weight-bold-custom">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre del servicio" class="form-control" required>
-                                <div class="invalid-feedback">Por favor, ingrese el nombre del servicio.</div>
+                                <label for="titulo" class="font-weight-bold-custom">Título</label>
+                                <input type="text" name="titulo" placeholder="Título de la Página" class="form-control" required>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold-custom">Descripción</label>
-                                <textarea name="descripcion" id="descripcion" placeholder="Añada los detalles sobre el servicio" class="form-control" rows="3" required></textarea>
-                                <div class="invalid-feedback">Por favor, ingrese la descripción.</div>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="categoria_id" class="font-weight-bold-custom">Categoría</label>
-                                <select name="categoria_id" id="categoria_id" class="form-control" required>
-                                    <option value="">Seleccione una categoría</option>
-                                    @foreach($categorias as $categoria)
-                                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback">Por favor, seleccione una categoría.</div>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="disponibilidad" class="font-weight-bold-custom">Disponibilidad</label>
-                                <input type="checkbox" name="disponibilidad" checked>
+                                <textarea name="descripcion" placeholder="Añada los detalles de la Página" class="form-control" rows="3" required></textarea>
                             </div>
                             <br>
 
@@ -67,9 +46,9 @@
                                 <div class="col-md-6">
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;" tabindex="4">
-                                            <span class="fas fa-user-plus"></span> Guardar
+                                            <span class="fas fa-user-plus"></span> Crear
                                         </button>
-                                        <a href="{{ route('servicios.index') }}" class="btn btn-outline-danger" style="flex: 1;" tabindex="4">
+                                        <a href="{{ route('paginaInicio.index') }}" class="btn btn-outline-danger" style="flex: 1;" tabindex="4">
                                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar
                                         </a>
                                     </div>
@@ -80,6 +59,7 @@
                 </form>
             </div>
 
+            <!-- Script para ver la imagen antes de CREAR UNA NUEVA PÁGINA -->
             <script>
                 document.getElementById('imagePlaceholder').addEventListener('click', function() {
                     document.getElementById('imagenInput').click();
@@ -98,26 +78,6 @@
                     };
                     
                     reader.readAsDataURL(file);
-                });
-
-               
-                document.getElementById('servicioForm').addEventListener('submit', function(event) {
-                    let isValid = true;
-                    const requiredFields = document.querySelectorAll('#servicioForm [required]');
-                    
-                    requiredFields.forEach(function(field) {
-                        if (!field.value.trim()) {
-                            field.classList.add('is-invalid');
-                            isValid = false;
-                        } else {
-                            field.classList.remove('is-invalid');
-                        }
-                    });
-                    
-                    if (!isValid) {
-                        event.preventDefault(); 
-                        alert('Por favor, complete todos los campos obligatorios.');
-                    }
                 });
             </script>
         </div>
@@ -155,24 +115,8 @@
             position: absolute;
         }
 
-        input[type="file"].visually-hidden {
-            visibility: hidden;
-            position: absolute;
-            width: 0;
-            height: 0;
-        }
-
-        .is-invalid {
-            border-color: #dc3545;
-        }
-
-        .invalid-feedback {
-            display: none;
-            color: #dc3545;
-        }
-
-        .is-invalid ~ .invalid-feedback {
-            display: block;
+        input[type="file"].d-none {
+            display: none !important;
         }
     </style>
 @stop

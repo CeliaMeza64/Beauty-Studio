@@ -9,6 +9,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TrendController;
 use App\Http\Controllers\ServicioImageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaginaInicioController;
 
 
 
@@ -23,7 +24,17 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [ServicioController::class, 'inicio'])->name('indexServicio');
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('/paginaInicio', [PaginaInicioController::class, 'index'])->name('paginaInicio.index');
+    Route::get('/paginaInicio/create', [PaginaInicioController::class, 'create'])->name('paginaInicio.create');
+    Route::post('/paginaInicio', [PaginaInicioController::class, 'store'])->name('paginaInicio.store');
+    Route::get('/paginaInicio/{paginaInicio}/edit', [PaginaInicioController::class, 'edit'])->name('paginaInicio.edit');
+    Route::put('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'update'])->name('paginaInicio.update');
+    Route::delete('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'destroy'])->name('paginaInicio.destroy');
+});
+
+Route::get('/', [PaginaInicioController::class, 'show'])->name('paginaInicio.show');
+
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 Route::get('/logout', [SessionsController::class, 'destroy'])->name('login.destroy');
@@ -65,13 +76,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
-//Route::get('/admin', [AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
-
 //Rota del calendario.
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 
-// ruta tendencias.
+// Ruta tendencias.
 
 Route::middleware(['auth.admin'])->group(function () {
     Route::resource('trends', TrendController::class);
