@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Galería de Imágenes')
+@section('background_image')
+{{''}}
+@endsection
 
 @section('content')
     <h1>Galería de Imágenes</h1>
