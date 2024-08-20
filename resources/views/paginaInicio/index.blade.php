@@ -50,23 +50,25 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <!-- Botón para abrir el modal -->
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $paginaInicio->id }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $paginaInicio->id }}">
                                         Eliminar
                                     </button>
 
                                     <!-- Modal para confirmar la eliminación -->
-                                    <div class="modal fade" id="eliminarModal_{{ $paginaInicio->id }}" tabindex="-1" aria-labelledby="eliminarModalLabel_{{ $paginaInicio->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="eliminarModal_{{ $paginaInicio->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $paginaInicio->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $paginaInicio->id }}">Confirmar eliminación</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="eliminarModalLabel_{{ $paginaInicio->id }}">Eliminar tendencia</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>¿Realmente quieres eliminar la página de inicio {{ $paginaInicio->titulo }}?</p>
+                                                    <p>¿Realmente quieres eliminar la tendencia {{ $paginaInicio->title }}?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                     <form action="{{ route('paginaInicio.destroy', $paginaInicio->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
