@@ -1,11 +1,9 @@
-
 @extends('adminlte::page')
-
 
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Reservas</li> 
+            <li class="breadcrumb-item active" aria-current="page">Reservas</li> 
         </ol>
     </nav>
 @endsection
@@ -62,7 +60,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{$reservas->links()}}
+                    {{ $reservas->links() }}
                 @endif
             </div>
         </div>
