@@ -6,32 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Servicio;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Storage;
-
-
-
 class ServicioController extends Controller
 {
-    
-
-    public function showmaquillaje()
-    {
-      
-        return view('servicios.maquillaje');
-    }
-
-    public function showcabello()
-    {
-        return view('servicios.cabello');
-    }
-
-    public function showpedicura()
-    {
-        return view('servicios.pedicura'); 
-    }
-    public function showmanicura()
-    {
-        return view('servicios.manicura');
-    }
 
     public function index()
     {

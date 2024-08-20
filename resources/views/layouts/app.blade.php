@@ -213,6 +213,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('trends.show') }}">Tendencias</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('galeria.show') }}">Galeria</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
