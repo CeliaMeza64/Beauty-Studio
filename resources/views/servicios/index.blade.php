@@ -54,7 +54,7 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                  
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $servicio->id }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}">
                                         Eliminar
                                     </button>
                                     <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">

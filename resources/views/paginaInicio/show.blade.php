@@ -34,37 +34,6 @@
     @endforeach
 </div>
 
-<footer class="footer mt-5 py-5" style="background: linear-gradient(135deg, #f9e3e3, #fce4ec); color: #333;">
-  <div class="container text-center">
-    <div class="row mb-4">
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Dirección</h5>
-        <p style="font-size: 1.1rem;">El Paraiso, El Paraiso Residencial Los Olivos 2 cuadra</p>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Horario</h5>
-        <p style="font-size: 1.1rem;">Lunes a Viernes: 9:00 AM - 8:00 PM</p>
-        <p style="font-size: 1.1rem;">Sábados: 9:00 AM - 3:00 PM</p>
-        <p style="font-size: 1.1rem;">Domingos: Cerrado</p>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Contacto</h5>
-        <p style="font-size: 1.1rem;">Tel: +504 8937-3440</p>
-        <p style="font-size: 1.1rem;">Email: info@beautystudio.com</p>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-12">
-        <p class="mb-0" style="font-size: 0.9rem; color: #555;">© 2024 Beauty Studio. </p>
-      </div>
-    </div>
-  </div>
-</footer>
-<a href="https://wa.me/50489373440" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-    <span class="tooltip-text">Escribenos</span>
-</a>
-
 <style>
   .services-title {
     font-size: 2.5rem;
