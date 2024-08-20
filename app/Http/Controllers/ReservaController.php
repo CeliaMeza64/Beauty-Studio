@@ -50,27 +50,27 @@ class ReservaController extends Controller
                             return;
                         }
                     }
-    
+
                     $request->merge([
                         'hora_reservacion' => $hora_reservacion->format('H:i:s')
                     ]);
-    
+
                     $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
                         ->where('hora_reservacion', $request->hora_reservacion)
                         ->exists();
-    
+
                     if ($exists) {
                         $fail('Ya existe una reserva para esa fecha y hora.');
                     }
-    
+
                     $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
                         ->orderBy('hora_reservacion', 'desc')
                         ->first();
-    
+
                     if ($lastReserva) {
                         $lastHora = Carbon::createFromFormat('H:i:s', $lastReserva->hora_reservacion);
                         $currentHora = $hora_reservacion;
-    
+
                         if ($lastHora->diffInHours($currentHora) < 2) {
                             $fail('Debe haber al menos dos horas entre cada reserva.');
                         }
@@ -86,7 +86,7 @@ class ReservaController extends Controller
             'fecha_reservacion.date' => 'La fecha de reservación no tiene un formato válido.',
             'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
         ]);
-    
+
         // Crear la nueva reserva
         $reserva = new Reserva();
         $reserva->nombre_cliente = $validated['nombre_cliente'];
@@ -95,11 +95,10 @@ class ReservaController extends Controller
         $reserva->fecha_reservacion = $validated['fecha_reservacion'];
         $reserva->hora_reservacion = $validated['hora_reservacion'];
         $reserva->save();
-    
+
         // Redirigir al índice de reservas con un mensaje de éxito
         return redirect('/')->with('status', 'En breve se le confirmará su reserva.');
     }
-    
 
     public function storeNew(Request $request)
     {
@@ -205,14 +204,13 @@ class ReservaController extends Controller
         ";
 
         $printWindow = "<script>
-            var printContent = `$printContent`;
+            var printContent = $printContent;
             var printWindow = window.open('', '', 'height=600,width=800');
             printWindow.document.write(printContent);
             printWindow.document.close();
             printWindow.focus();
             printWindow.print();
         </script>";
-
 
         return redirect()->route('reservas.index')->with('success', 'Reserva confirmada exitosamente.')->with('printWindow', $printWindow);
     }
