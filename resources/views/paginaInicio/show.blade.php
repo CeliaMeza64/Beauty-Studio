@@ -12,7 +12,7 @@
 <div class="card-container">
     @foreach($paginaInicio as $pagina)
         @if(is_object($pagina) && isset($pagina->titulo))
-        <div class="card">
+        <div class="card" data-bs-toggle="modal" data-bs-target="#modal-{{ $pagina->id }}">
             @if (!empty($pagina->imagen))
                 <img src="{{ asset('storage/' . $pagina->imagen) }}" alt="{{ $pagina->titulo }}" class="card-img-top">
             @else
@@ -20,7 +20,26 @@
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $pagina->titulo }}</h5>
-                <p class="card-text">{{ $pagina->descripcion }}</p>
+                <p class="card-text">{{ Str::limit($pagina->descripcion, 100) }}</p>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="modal-{{ $pagina->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $pagina->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel{{ $pagina->id }}">{{ $pagina->titulo }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if (!empty($pagina->imagen))
+                            <img src="{{ asset('storage/' . $pagina->imagen) }}" alt="{{ $pagina->titulo }}" class="img-fluid mb-3">
+                        @else
+                            <img src="ruta/a/imagen/placeholder.jpg" alt="Imagen no disponible" class="img-fluid mb-3">
+                        @endif
+                        <p>{{ $pagina->descripcion }}</p>
+                    </div>
+                </div>
             </div>
         </div>
         @else
@@ -62,6 +81,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .card:hover {
@@ -84,7 +104,14 @@
 
   .card-text {
     font-size: 1rem;
+    text-align: justify;
     color: #333;
+  }
+
+  .modal-body img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
   }
 
   footer.footer {
