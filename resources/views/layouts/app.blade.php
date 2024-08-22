@@ -150,22 +150,22 @@
 
         .whatsapp-float {
             position: fixed;
-            bottom: 20px; /* Distancia desde el fondo */
-            right: 20px; /* Distancia desde la derecha */
-            background-color: #25D366; /* Color de fondo del botón */
-            border-radius: 50%; /* Hacer el botón redondo */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
-            z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
-            width: 50px; /* Tamaño del botón */
-            height: 50px; /* Tamaño del botón */
-            display: flex; /* Centrar el contenido dentro del botón */
+            bottom: 20px; 
+            right: 20px; 
+            background-color: #25D366; 
+            border-radius: 50%; 
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000; 
+            width: 50px; 
+            height: 50px; 
+            display: flex; 
             align-items: center;
             justify-content: center;
         }
 
         .whatsapp-icon {
-            width: 30px; /* Tamaño del ícono de WhatsApp */
-            height: 30px; /* Tamaño del ícono de WhatsApp */
+            width: 30px; 
+            height: 30px; 
         }
 
         .tooltip-text {
@@ -222,7 +222,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             @if(Auth::check())
-                                <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ Auth::user()->name }}</a>
                             @else
                                 <a class="nav-link" href="{{ route('home') }}">Login</a>
                             @endif
