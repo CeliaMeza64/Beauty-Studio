@@ -12,7 +12,7 @@
         @csrf
         <div class="form-group">
             <label for="nombre_cliente">Nombre del Cliente</label>
-            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" maxlength="40" required>
+            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" maxlength="25" required>
             <span id="nombreError" style="color:red; display:none;">completa este campo, formato en letras</span>
             @error('nombre_cliente')
                 <span style="color:red;">{{ $message }}</span>
@@ -59,12 +59,13 @@
         </div>
         <br>
         <div class="form-group">
-            <label for="fecha_reservacion">Fecha de la Reserva</label>
-            <input type="date" class="form-control" id="fecha_reservacion" name="fecha_reservacion" value="{{ old('fecha_reservacion') }}" required min="{{ date('Y-m-d') }}">
+        <label for="fecha_reservacion">Fecha de la Reserva</label>
+            <input type="date" class="form-control" id="fecha_reservacion" name="fecha_reservacion" value="{{ old('fecha_reservacion') }}" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
             <span id="fechaError" style="color:red; display:none;">Por favor, selecciona una fecha válida.</span>
             @error('fecha_reservacion')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
+
         </div>
 
         <br>
@@ -171,7 +172,7 @@
                     <p>¿Desea continuar?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">editar</button>
                     <button type="button" class="btn btn-primary" id="confirmButton">Confirmar</button>
                 </div>
             </div>
@@ -284,6 +285,7 @@
                     setTimeout(function() {
                         document.getElementById('reservaForm').submit();
                     }, 6000000); // Mostrar mensaje de confirmación
+                    window.print();
                 });
             }
         });
