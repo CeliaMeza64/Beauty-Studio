@@ -70,8 +70,7 @@
             overflow: hidden; 
             text-overflow:ellipsis;
             display:-webkit-box;
-            -webkit-line-clamp:10;
-            -webkit-box-orient:vertical;
+             -webkit-box-orient:vertical;
             text-decoration: none; 
         }
         .services-title {
@@ -101,7 +100,9 @@
         }
 
         .truncate {
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 460px; 
