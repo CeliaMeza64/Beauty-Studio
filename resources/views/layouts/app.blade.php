@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -215,12 +216,16 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('galeria.show') }}">Galería</a>
-                        </li>
-                        
+                        </li>    
                     </ul>
-                    <ul class="navbar-nav ml-auto">
+
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Login</a>
+                            @if(Auth::check())
+                                <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                            @else
+                                <a class="nav-link" href="{{ route('home') }}">Login</a>
+                            @endif
                         </li>
                     </ul>
                 </div>
