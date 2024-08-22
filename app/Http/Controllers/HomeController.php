@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         Log::info('Accediendo a la vista de home');
-        $servicios = Servicio::paginate(3);
+        $servicios = Servicio::paginate(6);
         return view('home' , compact('servicios'));
     }
 }

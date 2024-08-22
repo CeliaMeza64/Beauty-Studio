@@ -11,7 +11,7 @@ class ServicioController extends Controller
 
     public function index()
     {
-        $servicios = Servicio::paginate(3);
+        $servicios = Servicio::paginate(6);
         return view('servicios.index')->with('servicios',$servicios);
     }
 
@@ -28,6 +28,7 @@ class ServicioController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
             'categoria_id' => 'required|exists:categorias,id',
+            'disponibilidad' => 'required|boolean',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     
         ]);
@@ -39,6 +40,7 @@ class ServicioController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'categoria_id' => $request->categoria_id,
+            'disponibilidad' => $request->disponibilidad,
             'imagen' => $path,
          
         ]);
@@ -55,7 +57,9 @@ class ServicioController extends Controller
     public function showServicios($categoriaN){
         $categoria = Categoria::where('nombre',$categoriaN)->first();
         if($categoria){
-            $servicios = Servicio::where('categoria_id',$categoria->id)->orderBy('nombre')->get();
+            $servicios = Servicio::where('categoria_id',$categoria->id)
+            ->where('disponibilidad', true)
+            ->orderBy('nombre')->get();
 
         }else{
             $servicios = collect();
@@ -78,6 +82,7 @@ class ServicioController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
             'categoria_id' => 'required|exists:categorias,id',
+            'disponibilidad' => 'required|boolean',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
      
         ]);
@@ -85,6 +90,7 @@ class ServicioController extends Controller
         $servicio->nombre = $request->nombre;
         $servicio->descripcion = $request->descripcion;
         $servicio->categoria_id = $request->categoria_id;
+        $servicio->disponibilidad = $request->disponibilidad;
 
         if ($request->hasFile('imagen')) {
             if ($servicio->imagen) {

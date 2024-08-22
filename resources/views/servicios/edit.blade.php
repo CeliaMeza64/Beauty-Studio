@@ -59,7 +59,8 @@
 
                             <div class="form-group">
                                 <label for="disponibilidad" class="font-weight-bold-custom">Disponibilidad</label>
-                                <input type="checkbox" name="disponibilidad" {{ $servicio->disponibilidad ? 'checked' : '' }}>
+                                <input type="hidden" name="disponibilidad" value="0">
+                                <input type="checkbox" name="disponibilidad" value="1" {{ $servicio->disponibilidad ? 'checked' : '' }}>
                             </div>
                             <br>
 

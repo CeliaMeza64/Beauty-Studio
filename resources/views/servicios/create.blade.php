@@ -17,7 +17,7 @@
                     @csrf
 
                     <div class="row">
-                        <!-- Columna para la imagen nueva -->
+                      
                         <div class="col-md-6 order-md-2 position-relative">
                             <div class="form-group">
                                 <label class="font-weight-bold-custom mb-1">Subir Imagen</label>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <!-- Columna del texto -->
+                    
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="nombre" class="font-weight-bold-custom">Nombre</label>
@@ -59,7 +59,8 @@
 
                             <div class="form-group">
                                 <label for="disponibilidad" class="font-weight-bold-custom">Disponibilidad</label>
-                                <input type="checkbox" name="disponibilidad" checked>
+                                <input type="hidden" name="disponibilidad" value="0">
+                                <input type="checkbox" name="disponibilidad" value="1" checked>
                             </div>
                             <br>
 
