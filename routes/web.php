@@ -11,6 +11,8 @@ use App\Http\Controllers\ServicioImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaginaInicioController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CategoriaController;
+
 
 
 
@@ -70,7 +72,16 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
             'destroy' => 'servicios.destroy',
             'index'   => 'servicios.index',
         ]);
-    
+        Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+
+        Route::get('categorias/create', [CategoriaController::class, 'create'])->name('categorias.create');
+        Route::post('categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+        Route::get('categorias/{categoria}', [CategoriaController::class, 'show'])->name('categorias.show');
+        Route::get('categorias/{categoria}/edit', [CategoriaController::class, 'edit'])->name('categorias.edit');
+        Route::put('categorias/{categoria}', [CategoriaController::class, 'update'])->name('categorias.update');
+        Route::delete('categorias/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
+       
+        
     });
     Route::get('servicios/{id}', [ServicioController::class, 'show'])->name('servicios.show');
     Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
@@ -101,4 +112,8 @@ Route::middleware(['auth.admin'])->group(function () {
 });
 
 Route::get('imagenes/show', [ImageController::class, 'show'])->name('galeria.show');
+
+
+
+
 

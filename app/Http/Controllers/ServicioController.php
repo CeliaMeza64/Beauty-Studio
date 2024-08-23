@@ -17,7 +17,7 @@ class ServicioController extends Controller
 
     public function create()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('estado', true)->get();
         return view('servicios.create')->with('categorias',$categorias);
     }
 
