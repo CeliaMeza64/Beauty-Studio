@@ -24,12 +24,16 @@
                     <div class="card-body">
                         <h2 class="card-title">{{ $trend->title }}</h2>
                         <div class="description">
-                            <p class="card-text">{{ Str::limit($trend->description, 100) }}</p>
+                            <p class="card-text">{!! nl2br(e(Str::limit($trend->description, 100))) !!}</p>
+                        </div>
+                        <div class="text-muted mt-2">
+                            <small>Creado el: {{ \Carbon\Carbon::parse($trend->created_at)->locale('es')->translatedFormat('l, d \d\e F \d\e Y \a \l\a\s H:i') }}</small>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Modal -->
             <div class="modal fade" id="trendModal-{{ $trend->id }}" tabindex="-1" aria-labelledby="trendModalLabel{{ $trend->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -43,7 +47,10 @@
                             @else
                                 <img src="ruta/a/imagen/placeholder.jpg" alt="Imagen no disponible" class="img-fluid mb-3">
                             @endif
-                            <p>{{ $trend->description }}</p>
+                            <p>{!! nl2br(e($trend->description)) !!}</p>
+                            <div class="text-muted mt-2">
+                                <small>Creado el: {{ \Carbon\Carbon::parse($trend->created_at)->locale('es')->translatedFormat('l, d \d\e F \d\e Y \a \l\a\s H:i') }}</small>
+                            </div>
                         </div>
                     </div>
                 </div>
