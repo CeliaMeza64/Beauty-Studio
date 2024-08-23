@@ -25,11 +25,14 @@ class ServicioController extends Controller
     {
         $request->validate([
     
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
             'categoria_id' => 'required|exists:categorias,id',
             'disponibilidad' => 'required|boolean',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre no puede tener más de 50 caracteres.',
     
         ]);
 
@@ -79,7 +82,7 @@ class ServicioController extends Controller
         $servicio = Servicio::findOrFail($id);
 
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string',
             'categoria_id' => 'required|exists:categorias,id',
             'disponibilidad' => 'required|boolean',

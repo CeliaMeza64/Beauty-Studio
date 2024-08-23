@@ -13,11 +13,21 @@
     <div class="card">
         <div class="card-body">
             <div class="container">
+                <!-- Mostrar errores de validación -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form id="servicioForm" action="{{ route('servicios.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
-                      
                         <div class="col-md-6 order-md-2 position-relative">
                             <div class="form-group">
                                 <label class="font-weight-bold-custom mb-1">Subir Imagen</label>
@@ -29,7 +39,6 @@
                             </div>
                         </div>
 
-                    
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="nombre" class="font-weight-bold-custom">Nombre</label>
@@ -101,7 +110,6 @@
                     reader.readAsDataURL(file);
                 });
 
-               
                 document.getElementById('servicioForm').addEventListener('submit', function(event) {
                     let isValid = true;
                     const requiredFields = document.querySelectorAll('#servicioForm [required]');

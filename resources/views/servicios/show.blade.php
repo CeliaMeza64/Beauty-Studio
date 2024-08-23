@@ -22,7 +22,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{ $servicio->nombre }}</h5>
-                    <p class="card-text">{{ $servicio->descripcion }}</p>
+                    <p class="card-text">{!! nl2br(e($servicio->descripcion)) !!}</p>
                     <p class="card-text"><strong>Categoría:</strong> {{ $servicio->categoria->nombre }}</p>
                 </div>
             </div>
