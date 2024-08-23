@@ -17,15 +17,15 @@ class TrendController extends Controller
     {
         return view('trends.create');
     }
+
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:100',
             'description' => 'required',
             'image' => 'image|nullable|max:1999'
         ]);
 
-        
         if ($request->hasFile('image')) {
             $filenameWithExt = $request->file('image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -60,7 +60,7 @@ class TrendController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:100', 
             'description' => 'required',
             'image' => 'image|nullable|max:1999'
         ]);
@@ -83,14 +83,13 @@ class TrendController extends Controller
         return redirect('/trends')->with('success', 'Trend Updated');
     }
 
-     public function destroy(string $id)
-     {
-         $trend = Trend::find($id);
-         if ($trend) {
-             $trend->delete();
-             return redirect('/trends')->with('success', 'Tendencia Removida');
-         }
-         return redirect('/trends')->with('error', 'Tendencia no encontrada');
-     }
-
+    public function destroy(string $id)
+    {
+        $trend = Trend::find($id);
+        if ($trend) {
+            $trend->delete();
+            return redirect('/trends')->with('success', 'Tendencia Removida');
+        }
+        return redirect('/trends')->with('error', 'Tendencia no encontrada');
+    }
 }

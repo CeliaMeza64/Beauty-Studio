@@ -37,7 +37,7 @@
             color: white !important; 
         }
         .navbar-toggler-icon {
-            background-color: gold; 
+            background-color: #FF6EA2; 
         }
         .image-container {
             width: 100%; 
@@ -69,6 +69,7 @@
             color: black; 
             overflow: hidden; 
             text-overflow:ellipsis;
+            text-align: justify;
             display:-webkit-box;
              -webkit-box-orient:vertical;
             text-decoration: none; 
@@ -105,6 +106,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-align: justify;
             max-width: 460px; 
         }
 
@@ -189,10 +191,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Beauty Studio</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">

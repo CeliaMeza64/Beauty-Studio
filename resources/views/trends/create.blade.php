@@ -5,7 +5,6 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('trends.index') }}">Tendencias</a></li>
             <li aria-current="page" class="breadcrumb-item active">Crear una Tendencia</li>
-           
         </ol>
     </nav>
 @endsection
@@ -29,7 +28,7 @@
                         <div>
                             <div class="form-group">
                                 <label for="title" class="font-weight-bold-custom">Título</label>
-                                <input type="text" name="title" placeholder="Título de la tendencia" class="form-control" required>
+                                <input type="text" name="title" id="title" placeholder="Título de la tendencia" class="form-control" required maxlength="100">
                             </div>
                             <br>
 
@@ -116,5 +115,5 @@
             bottom: 0;
             left: 0;
         }
-    </style>
+    </style>
 @stop

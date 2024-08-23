@@ -21,7 +21,7 @@ class PaginaInicioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'titulo' => 'required|string|max:255',
+            'titulo' => 'required|string|max:25',
             'descripcion' => 'required|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -50,7 +50,7 @@ class PaginaInicioController extends Controller
     public function update(Request $request, PaginaInicio $paginaInicio)
     {
         $request->validate([
-            'titulo' => 'required|string|max:255',
+            'titulo' => 'required|string|max:25',
             'descripcion' => 'required|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

@@ -33,13 +33,13 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="titulo" class="font-weight-bold-custom">Título</label>
-                                <input type="text" name="titulo" value="{{ $paginaInicio->titulo }}" placeholder="Título de la página de inicio" class="form-control" required>
+                                <input type="text" name="titulo" id="titulo" value="{{ $paginaInicio->titulo }}" placeholder="Título de la página de inicio" class="form-control" required maxlength="25">
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold-custom">Descripción</label>
-                                <textarea name="descripcion" placeholder="Añada la descripción" class="form-control" rows="3">{{ $paginaInicio->descripcion }}</textarea>
+                                <textarea name="descripcion" id="descripcion" placeholder="Añada la descripción" class="form-control" rows="3">{{ $paginaInicio->descripcion }}</textarea>
                             </div>
                             <br>
 

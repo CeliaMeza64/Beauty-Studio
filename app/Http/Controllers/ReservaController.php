@@ -28,7 +28,7 @@ class ReservaController extends Controller
         'nombre_cliente' => 'required|string|max:25',
         'telefono_cliente' => 'required|string|max:9|regex:/^\d{4}-\d{4}$/',
         'servicio' => 'required|string|max:25',
-        'fecha_reservacion' => 'required|date', // Elimina la validación personalizada
+        'fecha_reservacion' => 'required|date',
         'hora_reservacion' => [
             'required',
             function ($attribute, $value, $fail) use ($request) {
@@ -79,7 +79,7 @@ class ReservaController extends Controller
         'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
     ]);
 
-    // Crear la nueva reserva
+    
     $reserva = new Reserva();
     $reserva->nombre_cliente = $validated['nombre_cliente'];
     $reserva->telefono_cliente = $validated['telefono_cliente'];
@@ -88,7 +88,7 @@ class ReservaController extends Controller
     $reserva->hora_reservacion = $validated['hora_reservacion'];
     $reserva->save();
 
-    // Redirigir al índice de reservas con un mensaje de éxito
+    
     return redirect('/')->with('status', 'En breve se le confirmará su reserva.');
 }
 
@@ -102,7 +102,7 @@ class ReservaController extends Controller
             'hora_reservacion' => 'required|in:09:00,11:00,13:00,15:00,18:00,20:00',
         ]);
 
-        // Crear la reserva
+      
         $reserva = Reserva::create($validated);
 
         return response()->json(['success' => true]);
@@ -134,7 +134,7 @@ class ReservaController extends Controller
             'hora_reservacion.required' => 'La hora de reservación es obligatoria.',
         ]);
 
-        // Validar la existencia de otra reserva en el mismo horario
+        
         $exists = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
             ->where('hora_reservacion', $request->hora_reservacion)
             ->where('id', '!=', $reserva->id)
@@ -144,7 +144,7 @@ class ReservaController extends Controller
             return redirect()->back()->withErrors(['hora_reservacion' => 'Ya existe una reserva para esa fecha y hora.'])->withInput();
         }
 
-        // Validar la diferencia de horas entre reservas
+        
         $lastReserva = Reserva::where('fecha_reservacion', $request->fecha_reservacion)
             ->orderBy('hora_reservacion', 'desc')
             ->first();

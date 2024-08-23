@@ -32,7 +32,7 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="titulo" class="font-weight-bold-custom">Título</label>
-                                <input type="text" name="titulo" placeholder="Título de la Página" class="form-control" required>
+                                <input type="text" name="titulo" id="titulo" placeholder="Título de la Página" class="form-control" required maxlength="25">
                             </div>
                             <br>
 

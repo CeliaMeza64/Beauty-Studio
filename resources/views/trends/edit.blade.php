@@ -5,7 +5,6 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('trends.index') }}">Tendencias</a></li>
             <li aria-current="page" class="breadcrumb-item active">Editando el tendencia de: {{ $trend->title }}</li>
-           
         </ol>
     </nav>
 @endsection
@@ -34,7 +33,7 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="title" class="font-weight-bold-custom">Título</label>
-                                <input type="text" name="title" value="{{ $trend->title }}" placeholder="Título de la tendencia" class="form-control" required>
+                                <input type="text" name="title" id="title" value="{{ $trend->title }}" placeholder="Título de la tendencia" class="form-control" required maxlength="100">
                             </div>
                             <br>
 
@@ -116,7 +115,6 @@
             display: none;
         }
 
-        /* Asegura que los botones estén en la misma línea horizontal y en la parte inferior izquierda */
         .d-flex {
             display: flex;
             align-items: center;
@@ -126,5 +124,5 @@
         .btn {
             margin-right: 10px;
         }
-    </style>
+    </style>
 @stop
