@@ -255,9 +255,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Horario</h5>
-                            <p style="font-size: 1.1rem;">Lunes a Viernes: 9:00 AM - 8:00 PM</p>
-                            <p style="font-size: 1.1rem;">Sábados: 9:00 AM - 3:00 PM</p>
-                            <p style="font-size: 1.1rem;">Domingos: Cerrado</p>
+                            <p style="font-size: 1.1rem;">Lunes a Domingo: 9:00 AM - 8:00 PM</p>
                         </div>
                         <div class="col-md-4 mb-3">
                             <h5 class="text-uppercase mb-3" style="color: #FF6EA2;">Contacto</h5>
