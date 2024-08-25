@@ -84,7 +84,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
         
     });
     Route::get('servicios/{id}', [ServicioController::class, 'show'])->name('servicios.show');
-    Route::get('/servicios/categoria/{categoraN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
+    Route::get('/servicios/categoria/{categoriaN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 
 //Rota del calendario.
 

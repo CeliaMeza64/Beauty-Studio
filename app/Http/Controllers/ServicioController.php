@@ -54,7 +54,8 @@ class ServicioController extends Controller
     public function show($id)
     {
         $servicio = Servicio::findOrFail($id);
-        return view('servicios.show', compact('servicio'));
+        $categoriaN = $servicio->categoria->nombre;
+        return view('servicios.show', compact('servicio','categoriaN'));
     }
     
     public function showServicios($categoriaN){
