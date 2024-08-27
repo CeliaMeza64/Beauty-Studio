@@ -21,10 +21,13 @@
                         <div class="col-md-6 order-md-2 position-relative">
                             <div class="form-group">
                                 <label class="font-weight-bold-custom mb-1">Subir Imagen</label>
-                                <div class="image-placeholder" id="imagePlaceholder" style="cursor: pointer;">
+                                <div class="image-placeholder @error('imagen') is-invalid @enderror" id="imagePlaceholder" style="cursor: pointer;">
                                     <p class="text-sm text-gray-400 pt-1 tracking-wider">Seleccione la imagen</p>
                                 </div>
                                 <input type="file" name="imagen" class="form-control-file d-none" id="imagenInput">
+                                @error('imagen')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -32,13 +35,19 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="titulo" class="font-weight-bold-custom">Título</label>
-                                <input type="text" name="titulo" id="titulo" placeholder="Título de la Página" class="form-control" required maxlength="25">
+                                <input type="text" name="titulo" id="titulo" placeholder="Título de la Página" class="form-control @error('titulo') is-invalid @enderror" value="{{ old('titulo') }}" required maxlength="25">
+                                @error('titulo')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold-custom">Descripción</label>
-                                <textarea name="descripcion" placeholder="Añada los detalles de la Página" class="form-control" rows="3" required></textarea>
+                                <textarea name="descripcion" placeholder="Añada los detalles de la Página" class="form-control @error('descripcion') is-invalid @enderror" rows="3" required>{{ old('descripcion') }}</textarea>
+                                @error('descripcion')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <br>
 
@@ -79,6 +88,19 @@
                     
                     reader.readAsDataURL(file);
                 });
+
+                // Validar si la imagen está seleccionada antes de enviar el formulario
+                document.querySelector('form').addEventListener('submit', function(event) {
+                    var imagenInput = document.getElementById('imagenInput');
+                    var placeholder = document.getElementById('imagePlaceholder');
+                    if (!imagenInput.files.length) {
+                        placeholder.classList.add('is-invalid');
+                        event.preventDefault(); // Detener el envío del formulario
+                        alert('Por favor, seleccione una imagen antes de enviar el formulario.');
+                    } else {
+                        placeholder.classList.remove('is-invalid');
+                    }
+                });
             </script>
         </div>
     </div>
@@ -113,6 +135,15 @@
         .image-placeholder p {
             margin: 0;
             position: absolute;
+        }
+
+        .input-group .is-invalid {
+            border-color: #dc3545; /* Color rojo para el borde */
+            box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .25); /* Sombra de borde */
+        }
+
+        .invalid-feedback {
+            display: block;
         }
 
         input[type="file"].d-none {
