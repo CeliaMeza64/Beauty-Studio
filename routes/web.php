@@ -46,6 +46,8 @@ Auth::routes();
 
 // Ruta para crear una reserva accesible sin autenticación
 Route::post('reservas', [ReservaController::class, 'store'])->name('reservas.store');
+Route::post('reservas/check-availability', [ReservaController::class, 'checkAvailability'])->name('reservas.checkAvailability');
+
 
 // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
