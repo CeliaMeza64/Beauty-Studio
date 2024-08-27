@@ -11,14 +11,23 @@ class Reserva extends Model
 
     protected $fillable = [
         'nombre_cliente', 
-        'servicio', 
+        'servicio_id',
+        'categoria_id',
         'fecha_reservacion', 
         'hora_reservacion', 
         'estado', 
         'telefono_cliente'
     ];
-}
 
+    public function servicio()
+    {
+        return $this->belongsTo(Servicio::class);
+    }
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
+}
 
 
 
