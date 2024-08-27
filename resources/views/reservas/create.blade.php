@@ -12,8 +12,8 @@
         @csrf
         <div class="form-group">
             <label for="nombre_cliente">Nombre del Cliente</label>
-            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" maxlength="25" required>
-            <span id="nombreError" style="color:red; display:none;">completa este campo, formato en letras</span>
+            <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" value="{{ old('nombre_cliente') }}" maxlength="30" required>
+            <span id="nombreError" style="color:red; display:none;">Completa este campo, formato en letras</span>
             @error('nombre_cliente')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
@@ -21,51 +21,61 @@
 
         <br>
         <div class="form-group">
-            <label for="telefono_cliente">Teléfono del Cliente</label>
-            <input type="text" class="form-control" id="telefono_cliente" name="telefono_cliente" value="{{ old('telefono_cliente') }}" required>
-            <span id="telefonoError" style="color:red; display:none;">El teléfono debe estar en el formato xxxx-xxxx y contener solo 8 números.</span>
-            @error('telefono_cliente')
+        <label for="telefono_cliente">Teléfono:</label>
+        <input type="text" id="telefono_cliente" name="telefono_cliente" class="form-control" placeholder="3345-7865" required>
+        <span id="telefonoError" style="display:none; color:red;">El teléfono debe tener el formato 3345-7865.</span>
+    
+    @error('telefono_cliente')
+        <span style="color:red;">{{ $message }}</span>
+    @enderror
+</div>
+
+        <br>
+        <div class="form-group">
+            <label for="categoria">Categoría:</label>
+            <select name="categoria_id" id="categoria_id" class="form-control" required>
+                <option value="">Seleccione una categoría</option>
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                        {{ $categoria->nombre }}
+                    </option>
+                @endforeach
+            </select>
+            <span id="categoriaError" style="color:red; display:none;">Por favor, selecciona una categoría.</span>
+            @error('categoria_id')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
         </div>
+
         <br>
         <div class="form-group">
             <label for="servicio">Servicio:</label>
-            <select name="servicio" id="servicio" class="form-control" required>
-                <optgroup label="Cabello">
-                    <option value="cabello_planchado" {{ old('servicio') == 'cabello_planchado' ? 'selected' : '' }}>Planchado</option>
-                    <option value="cabello_ondas" {{ old('servicio') == 'cabello_ondas' ? 'selected' : '' }}>Ondas</option>
-                    <option value="cabello_peinados" {{ old('servicio') == 'cabello_peinados' ? 'selected' : '' }}>Peinados</option>
-                </optgroup>
-                <optgroup label="Manicura">
-                    <option value="manicura_acrilicas" {{ old('servicio') == 'manicura_acrilicas' ? 'selected' : '' }}>Acrílicas</option>
-                    <option value="manicura_base_rubber" {{ old('servicio') == 'manicura_base_rubber' ? 'selected' : '' }}>Base Rubber</option>
-                    <option value="manicura_bano_acrilico" {{ old('servicio') == 'manicura_bano_acrilico' ? 'selected' : '' }}>Baño Acrílico</option>
-                    <option value="manicura_semipermanente" {{ old('servicio') == 'manicura_semipermanente' ? 'selected' : '' }}>Semipermanente</option>
-                </optgroup>
-                <optgroup label="Pedicura">
-                    <option value="pedicura_acripie" {{ old('servicio') == 'pedicura_acripie' ? 'selected' : '' }}>Acripie</option>
-                    <option value="pedicura_semipermanente" {{ old('servicio') == 'pedicura_semipermanente' ? 'selected' : '' }}>Semipermanente</option>
-                    <option value="pedicura_bano_acrilico" {{ old('servicio') == 'pedicura_bano_acrilico' ? 'selected' : '' }}>Baño de Acrílico</option>
-                    <option value="pedicura_pedicura" {{ old('servicio') == 'pedicura_pedicura' ? 'selected' : '' }}>Pedicura</option>
-                </optgroup>
-                <optgroup label="Maquillaje">
-                    <option value="maquillaje_xv" {{ old('servicio') == 'maquillaje_xv' ? 'selected' : '' }}>Maquillaje XV</option>
-                    <option value="maquillaje_social" {{ old('servicio') == 'maquillaje_social' ? 'selected' : '' }}>Maquillaje Social</option>
-                    <option value="maquillaje_boda" {{ old('servicio') == 'maquillaje_boda' ? 'selected' : '' }}>Maquillaje de Boda</option>
-                    <option value="maquillaje_dia" {{ old('servicio') == 'maquillaje_dia' ? 'selected' : '' }}>Maquillaje de Día</option>
-                </optgroup>
+            <select name="servicio_id" id="servicio_id" class="form-control" required>
+                <option value="">Seleccione un servicio</option>
+                @foreach($categorias as $categoria)
+                    <optgroup label="{{ $categoria->nombre }}">
+                        @foreach($categoria->servicios as $servicio)
+                            <option value="{{ $servicio->id }}" {{ old('servicio_id') == $servicio->id ? 'selected' : '' }}>
+                                {{ $servicio->nombre }}
+                            </option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
             </select>
+            <span id="servicioError" style="color:red; display:none;">Por favor, selecciona un servicio.</span>
+            @error('servicio_id')
+                <span style="color:red;">{{ $message }}</span>
+            @enderror
         </div>
+
         <br>
         <div class="form-group">
-        <label for="fecha_reservacion">Fecha de la Reserva</label>
+            <label for="fecha_reservacion">Fecha de la Reserva</label>
             <input type="date" class="form-control" id="fecha_reservacion" name="fecha_reservacion" value="{{ old('fecha_reservacion') }}" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
             <span id="fechaError" style="color:red; display:none;">Por favor, selecciona una fecha válida.</span>
             @error('fecha_reservacion')
                 <span style="color:red;">{{ $message }}</span>
             @enderror
-
         </div>
 
         <br>
@@ -90,13 +100,24 @@
             Guardar Reserva
         </button>
     </form>
-
+<!-- Contenedor para el mensaje de error de disponibilidad -->
+<div id="availabilityError" style="display: none; margin-top: 1em;" class="alert alert-danger">
+    <span id="availabilityErrorText">Ya existe una reserva para esta fecha y hora. Por favor, elija otro horario.</span>
+</div>
     <!-- Contenedor para el mensaje de confirmación -->
     <div id="confirmationMessage" style="display: none; margin-top: 1em;" class="alert alert-success">
-        <span id="confirmationText">Su reserva ha sido enviada. En un momento se le confirmará su reserva.</span>
-        <button type="button" class="btn-close" id="closeConfirmationMessage" aria-label="Close"></button>
+        <strong>Confirmación:</strong>
+        <ul id="reservationDetails"></ul>
+        <button type="button" class="btn btn-secondary" id="editButton">Editar</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">Confirmar Reserva</button>
     </div>
 
+    <!-- Contenedor para la pregunta de impresión -->
+    <div id="printConfirmation" style="display: none; margin-top: 1em;" class="alert alert-info">
+        <p>¿Desea imprimir la reserva?</p>
+        <button type="button" class="btn btn-secondary" id="cancelPrintButton">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="printButton">Imprimir</button>
+    </div>
     <br>
     <br>
     <br>
@@ -163,11 +184,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirmación de Reserva</h5>
+                    <h5 class="modal-title" id="confirmModalLabel">Esta es tu reserva</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Está a punto de confirmar la siguiente reserva:</p>
+                    <p>Estás seguro de confirmar la reserva:</p>
                     <ul id="reservationDetails"></ul>
                     <p>¿Desea continuar?</p>
                 </div>
@@ -177,124 +198,126 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
     <!-- Script de Validación y Confirmación -->
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function hideErrorMessages() {
+    document.getElementById('reservaForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var nombre = document.getElementById('nombre_cliente').value.trim();
+        var telefono = document.getElementById('telefono_cliente').value.trim();
+        var categoria = document.getElementById('categoria_id').value;
+        var servicio = document.getElementById('servicio_id').value;
+        var fecha = document.getElementById('fecha_reservacion').value;
+        var hora = document.getElementById('hora_reservacion').value;
+
+        // Validación del nombre
+        if (nombre.length === 0 || !/^[A-Za-z\s]+$/.test(nombre)) {
+            document.getElementById('nombreError').style.display = 'inline';
+            return;
+        } else {
             document.getElementById('nombreError').style.display = 'none';
-            document.getElementById('telefonoError').style.display = 'none';
+        }
+
+        // Validación del teléfono
+if (telefono.length === 0 || !/^\d{4}-\d{4}$/.test(telefono)) {
+    document.getElementById('telefonoError').style.display = 'inline';
+    return;
+} else {
+    document.getElementById('telefonoError').style.display = 'none';
+}
+
+
+        // Validación de categoría
+        if (!categoria) {
+            document.getElementById('categoriaError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('categoriaError').style.display = 'none';
+        }
+
+        // Validación de servicio
+        if (!servicio) {
+            document.getElementById('servicioError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('servicioError').style.display = 'none';
+        }
+
+        // Validación de fecha
+        if (!fecha) {
+            document.getElementById('fechaError').style.display = 'inline';
+            return;
+        } else {
             document.getElementById('fechaError').style.display = 'none';
+        }
+
+        // Validación de hora
+        if (!hora) {
+            document.getElementById('horaError').style.display = 'inline';
+            return;
+        } else {
             document.getElementById('horaError').style.display = 'none';
         }
 
-        function validateForm() {
-            var nombre = document.getElementById('nombre_cliente').value.trim();
-            var telefono = document.getElementById('telefono_cliente').value.trim();
-            var fecha = document.getElementById('fecha_reservacion').value;
-            var hora = document.getElementById('hora_reservacion').value;
-            var valid = true;
-
-            // Validar nombre
-            var namePattern = /^[a-zA-Z\s]+$/;
-            if (!namePattern.test(nombre)) {
-                document.getElementById('nombreError').style.display = 'block';
-                valid = false;
-            } else {
-                document.getElementById('nombreError').style.display = 'none';
+        // Verificar disponibilidad de la fecha y hora
+        fetch('{{ route("reservas.checkAvailability") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ fecha: fecha, hora: hora })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.disponible) {
+                document.getElementById('availabilityError').style.display = 'block';
+                document.getElementById('confirmationMessage').style.display = 'none';
+                return;
             }
 
-            // Validar teléfono
-            var phonePattern = /^\d{4}-\d{4}$/;
-            if (!phonePattern.test(telefono) || telefono.length !== 9) {
-                document.getElementById('telefonoError').style.display = 'block';
-                valid = false;
-            } else {
-                document.getElementById('telefonoError').style.display = 'none';
-            }
+            // Mostrar detalles de la reserva y opciones de confirmación
+            var reservationDetails = document.getElementById('reservationDetails');
+            reservationDetails.innerHTML = '';
+            reservationDetails.innerHTML += '<li><strong>Nombre:</strong> ' + nombre + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Teléfono:</strong> ' + telefono + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Categoría:</strong> ' + document.getElementById('categoria_id').options[document.getElementById('categoria_id').selectedIndex].text + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Servicio:</strong> ' + document.getElementById('servicio_id').options[document.getElementById('servicio_id').selectedIndex].text + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Fecha:</strong> ' + fecha + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Hora:</strong> ' + hora + '</li>';
 
-            // Validar fecha
-            if (fecha === "") {
-                document.getElementById('fechaError').style.display = 'block';
-                valid = false;
-            } else {
-                document.getElementById('fechaError').style.display = 'none';
-            }
+            document.getElementById('availabilityError').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+        })
+        .catch(error => console.error('Error:', error));
+    });
 
-            // Validar hora
-            if (hora === "") {
-                document.getElementById('horaError').style.display = 'block';
-                valid = false;
-            } else {
-                document.getElementById('horaError').style.display = 'none';
-            }
+    // Manejo del botón de editar
+    document.getElementById('editButton').addEventListener('click', function() {
+        document.getElementById('confirmationMessage').style.display = 'none';
+        document.getElementById('reservaForm').scrollIntoView({ behavior: 'smooth' });
+    });
 
-            return valid;
-        }
+    // Manejo del botón de confirmar
+    document.getElementById('confirmButton').addEventListener('click', function() {
+        document.getElementById('confirmationMessage').style.display = 'none';
+        document.getElementById('printConfirmation').style.display = 'block';
+    });
 
-        function formatPhoneNumber() {
-            var input = document.getElementById('telefono_cliente');
-            var value = input.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
-            if (value.length > 4) {
-                value = value.slice(0, 4) + '-' + value.slice(4, 8);
-            }
-            input.value = value;
-        }
+    // Manejo del botón de imprimir
+    document.getElementById('printButton').addEventListener('click', function() {
+        window.print();
+        document.getElementById('printConfirmation').style.display = 'none';
+        document.getElementById('reservaForm').submit();
+    });
 
-        document.getElementById('nombre_cliente').addEventListener('input', function () {
-            // Solo permitir letras y espacios en el campo nombre
-            this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
-            hideErrorMessages();
-        });
-
-        document.getElementById('telefono_cliente').addEventListener('input', function () {
-            formatPhoneNumber();
-            hideErrorMessages();
-        });
-
-        document.getElementById('fecha_reservacion').addEventListener('input', hideErrorMessages);
-        document.getElementById('hora_reservacion').addEventListener('input', hideErrorMessages);
-
-        document.getElementById('guardarReservaButton').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            if (validateForm()) {
-                var nombre = document.getElementById('nombre_cliente').value.trim();
-                var telefono = document.getElementById('telefono_cliente').value.trim();
-                var fecha = document.getElementById('fecha_reservacion').value;
-                var hora = document.getElementById('hora_reservacion').value;
-
-                document.getElementById('reservationDetails').innerHTML =
-                    '<li><strong>Nombre:</strong> ' + nombre + '</li>' +
-                    '<li><strong>Teléfono:</strong> ' + telefono + '</li>' +
-                    '<li><strong>Fecha:</strong> ' + fecha + '</li>' +
-                    '<li><strong>Hora:</strong> ' + hora + '</li>';
-
-                var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
-                    keyboard: false
-                });
-
-                confirmModal.show();
-
-                document.getElementById('confirmButton').addEventListener('click', function () {
-                    document.getElementById('reservaForm').submit();
-                    confirmModal.hide();
-                    document.getElementById('confirmationMessage').style.display = 'block'; 
-                    setTimeout(function() {
-                        document.getElementById('reservaForm').submit();
-                    }, 6000000); // Mostrar mensaje de confirmación
-                    window.print();
-                });
-            }
-        });
-
-        document.getElementById('closeConfirmationMessage').addEventListener('click', function() {
-            document.getElementById('confirmationMessage').style.display = 'none';
-        });
+    // Manejo del botón de cancelar impresión
+    document.getElementById('cancelPrintButton').addEventListener('click', function() {
+        document.getElementById('printConfirmation').style.display = 'none';
+        document.getElementById('reservaForm').submit();
     });
     </script>
-
 </div>
 @endsection
