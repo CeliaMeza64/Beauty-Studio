@@ -18,7 +18,7 @@ class PaginaInicioController extends Controller
         return view('paginaInicio.create');
     }
 
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $request->validate([
             'titulo' => 'required|string|max:25',
@@ -26,19 +26,43 @@ class PaginaInicioController extends Controller
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
-        if ($request->hasFile('imagen')) {
-            $data['imagen'] = $request->file('imagen')->store('images', 'public');
+        // Verificar si se ha subido una imagen
+        if (!$request->hasFile('imagen')) {
+            return redirect()->back()->withErrors(['imagen' => 'La imagen es requerida.'])->withInput();
         }
+
+        $data = $request->only(['titulo', 'descripcion']);
+        $data['imagen'] = $request->file('imagen')->store('images', 'public');
 
         PaginaInicio::create($data);
 
         return redirect()->route('paginaInicio.index')->with('success', 'Página de inicio creada exitosamente.');
+    }*/
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'titulo' => 'required|string|max:25',
+        'descripcion' => 'required|string',
+        'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ], [
+        'imagen.required' => 'Por favor, seleccione una imagen.',
+    ]);
+
+    $data = $request->all();
+    if ($request->hasFile('imagen')) {
+        $data['imagen'] = $request->file('imagen')->store('images', 'public');
     }
 
-    public function show()
+    PaginaInicio::create($data);
+
+    return redirect()->route('paginaInicio.index')->with('success', 'Página de inicio creada exitosamente.');
+}
+
+
+
+    public function show(PaginaInicio $paginaInicio)
     {
-        $paginaInicio=paginaInicio::all();
         return view('paginaInicio.show', compact('paginaInicio'));
     }
 
@@ -55,7 +79,8 @@ class PaginaInicioController extends Controller
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['titulo', 'descripcion']);
+
         if ($request->hasFile('imagen')) {
             $data['imagen'] = $request->file('imagen')->store('images', 'public');
         }
