@@ -23,4 +23,9 @@ class Servicio extends Model
     {
         return $this->hasMany(ServicioImage::class);
     }
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 }
