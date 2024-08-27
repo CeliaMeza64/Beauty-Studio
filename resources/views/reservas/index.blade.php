@@ -49,7 +49,10 @@
                                                 <button type="submit" class="btn btn-danger btn-sm mr-2">Cancelar</button>
                                             </form>
                                         @endif
-                                        <a href="{{ route('reservas.edit', $reserva) }}" class="btn btn-warning btn-sm mr-2">Editar</a>
+                                        <!-- Botón para el icono de editar -->
+                                        <a href="{{ route('reservas.edit', $reserva) }}" class="btn btn-success btn-sm mr-2">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
                                         <!-- Botón para abrir el modal -->
                                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal_{{ $reserva->id }}">
                                             Eliminar
@@ -102,4 +105,5 @@
 @stop
 
 @section('js')
+   
 @stop
