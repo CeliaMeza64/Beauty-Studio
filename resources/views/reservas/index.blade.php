@@ -34,7 +34,7 @@
                                     <td>{{ ($reservas->currentPage() - 1) * $reservas->perPage() + $loop->iteration }}</td>
                                     <td>{{ $reserva->nombre_cliente }}</td>
                                     <td>{{ $reserva->telefono_cliente }}</td>
-                                    <td>{{ $reserva->servicio }}</td>
+                                    <td>{{ $reserva->servicio->nombre }}</td>
                                     <td>{{ \Carbon\Carbon::parse($reserva->fecha_reservacion)->format('d/m/Y') }}</td>
                                     <td>{{ $reserva->hora_reservacion }}</td>
                                     <td>{{ ucfirst($reserva->estado) }}</td>
