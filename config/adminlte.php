@@ -338,14 +338,23 @@ return [
            
         ],
 
-        
-
-       
-
+        [
+            'text' => 'Categorias',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'categorias.index',
+           
+        ],
         [
             'text' => 'Calendario',
             'icon'    => 'fa fa-id-card', 
             'route'=>'calendar.index',
+           
+        ],
+
+        [
+            'text' => 'Sitio Web',
+            'icon'    => 'fa fa-id-card', 
+            'route'=>'paginaInicio.show',
            
         ],
 

@@ -7,7 +7,11 @@
 @section('content')
 <div class="container">
     @if(Auth::check() && Auth::user()->role == 'admin')
-        <a href="{{ route('servicios.index') }}" class="btn btn-primary mb-3">Volver a la lista</a>
+        <div class="mb-3 d-flex justify-content-start">
+            <a href="{{ route('servicios.showServicios', ['categoriaN' => $categoriaN]) }}" class="btn btn-secondary ">Regresar</a>
+            <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-primary ml-5">Administrar</a>
+
+        </div>
     @endif
 
     <div class="card mb-4">

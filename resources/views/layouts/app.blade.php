@@ -199,18 +199,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+                        @foreach($categorias as $categoria)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'cabello') }}">Cabello</a>
+                            <a class="nav-link" href="{{ route('servicios.showServicios', $categoria->nombre) }}">{{ $categoria->nombre }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'maquillaje') }}">Maquillaje</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'pedicura') }}">Pedicura</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('servicios.showServicios', 'manicura') }}">Manicura</a>
-                        </li>
+                        @endforeach
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reservas.create') }}">Reserva</a>
                         </li>
