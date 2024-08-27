@@ -11,12 +11,17 @@ class CreateReservasTable extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_cliente');
-            $table->string('servicio');
+            $table->unsignedBigInteger('servicio_id');  
+            $table->unsignedBigInteger('categoria_id');           
             $table->date('fecha_reservacion');
             $table->time('hora_reservacion');
             $table->string('estado')->default('pendiente');
             $table->string('telefono_cliente')->nullable(); 
             $table->timestamps();
+        
+            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+        
         });
     }
 
