@@ -32,41 +32,34 @@
 
         <br>
         <div class="form-group">
-            <label for="categoria">Categoría:</label>
-            <select name="categoria_id" id="categoria_id" class="form-control" required>
-                <option value="">Seleccione una categoría</option>
-                @foreach($categorias as $categoria)
-                    <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
-                        {{ $categoria->nombre }}
-                    </option>
-                @endforeach
-            </select>
-            <span id="categoriaError" style="color:red; display:none;">Por favor, selecciona una categoría.</span>
-            @error('categoria_id')
-                <span style="color:red;">{{ $message }}</span>
-            @enderror
-        </div>
+    <label for="categoria">Categoría:</label>
+    <select name="categoria_id" id="categoria_id" class="form-control" required>
+        <option value="">Seleccione una categoría</option>
+        @foreach($categorias as $categoria)
+            <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                {{ $categoria->nombre }}
+            </option>
+        @endforeach
+    </select>
+    <span id="categoriaError" style="color:red; display:none;">Por favor, selecciona una categoría.</span>
+    @error('categoria_id')
+        <span style="color:red;">{{ $message }}</span>
+    @enderror
+</div>
 
-        <br>
-        <div class="form-group">
-            <label for="servicio">Servicio:</label>
-            <select name="servicio_id" id="servicio_id" class="form-control" required>
-                <option value="">Seleccione un servicio</option>
-                @foreach($categorias as $categoria)
-                    <optgroup label="{{ $categoria->nombre }}">
-                        @foreach($categoria->servicios as $servicio)
-                            <option value="{{ $servicio->id }}" {{ old('servicio_id') == $servicio->id ? 'selected' : '' }}>
-                                {{ $servicio->nombre }}
-                            </option>
-                        @endforeach
-                    </optgroup>
-                @endforeach
-            </select>
-            <span id="servicioError" style="color:red; display:none;">Por favor, selecciona un servicio.</span>
-            @error('servicio_id')
-                <span style="color:red;">{{ $message }}</span>
-            @enderror
-        </div>
+<br>
+<div class="form-group">
+    <label for="servicio">Servicio:</label>
+    <select name="servicio_id" id="servicio_id" class="form-control" required>
+        <option value="">Seleccione un servicio</option>
+        {{-- Los servicios se llenarán dinámicamente --}}
+    </select>
+    <span id="servicioError" style="color:red; display:none;">Por favor, selecciona un servicio.</span>
+    @error('servicio_id')
+        <span style="color:red;">{{ $message }}</span>
+    @enderror
+</div>
+
 
         <br>
         <div class="form-group">
@@ -211,143 +204,174 @@
     <!-- Script de Validación y Confirmación -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Formatear el campo de teléfono mientras el usuario escribe
-        document.getElementById('telefono_cliente').addEventListener('input', function(event) {
-            var value = event.target.value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
-            if (value.length > 9) {
-                value = value.slice(0, 9); // Limitar a 9 caracteres
-            }
-            if (value.length > 4) {
-                value = value.slice(0, 4) + '-' + value.slice(4); // Añadir guion
-            }
-            event.target.value = value;
-        });
+    // Formatear el campo de teléfono mientras el usuario escribe
+    document.getElementById('telefono_cliente').addEventListener('input', function(event) {
+        var value = event.target.value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
+        if (value.length > 9) {
+            value = value.slice(0, 9); // Limitar a 9 caracteres
+        }
+        if (value.length > 4) {
+            value = value.slice(0, 4) + '-' + value.slice(4); // Añadir guion
+        }
+        event.target.value = value;
+    });
 
-        // Evitar la entrada de números en el campo de nombre
-        document.getElementById('nombre_cliente').addEventListener('input', function(event) {
-            var value = event.target.value.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
-            event.target.value = value;
-        });
+    // Evitar la entrada de números en el campo de nombre
+    document.getElementById('nombre_cliente').addEventListener('input', function(event) {
+        var value = event.target.value.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
+        event.target.value = value;
+    });
 
-        // Manejo del envío del formulario
-        document.getElementById('reservaForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+    // Manejo del cambio de categoría
+    document.getElementById('categoria_id').addEventListener('change', function(event) {
+        var categoriaId = event.target.value;
 
-            var nombre = document.getElementById('nombre_cliente').value.trim();
-            var telefono = document.getElementById('telefono_cliente').value.trim();
-            var categoria = document.getElementById('categoria_id').value;
-            var servicio = document.getElementById('servicio_id').value;
-            var fecha = document.getElementById('fecha_reservacion').value;
-            var hora = document.getElementById('hora_reservacion').value;
+        // Limpia las opciones de servicios
+        var servicioSelect = document.getElementById('servicio_id');
+        servicioSelect.innerHTML = '<option value="">Seleccione un servicio</option>';
 
-            // Validación del nombre
-            if (nombre.length === 0 || !/^[A-Za-z\s]+$/.test(nombre)) {
-                document.getElementById('nombreError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('nombreError').style.display = 'none';
-            }
-
-            // Validación del teléfono
-            if (telefono.length === 0 || !/^\d{4}-\d{4}$/.test(telefono)) {
-                document.getElementById('telefonoError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('telefonoError').style.display = 'none';
-            }
-
-            // Validación de categoría
-            if (!categoria) {
-                document.getElementById('categoriaError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('categoriaError').style.display = 'none';
-            }
-
-            // Validación de servicio
-            if (!servicio) {
-                document.getElementById('servicioError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('servicioError').style.display = 'none';
-            }
-
-            // Validación de fecha
-            if (!fecha) {
-                document.getElementById('fechaError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('fechaError').style.display = 'none';
-            }
-
-            // Validación de hora
-            if (!hora) {
-                document.getElementById('horaError').style.display = 'inline';
-                return;
-            } else {
-                document.getElementById('horaError').style.display = 'none';
-            }
-
-            // Verificar disponibilidad de la fecha y hora
-            fetch('{{ route("reservas.checkAvailability") }}', {
+        if (categoriaId) {
+            fetch('{{ route("reservas.filtrarServicios") }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                body: JSON.stringify({ fecha: fecha, hora: hora })
+                body: JSON.stringify({ categoria_id: categoriaId })
             })
             .then(response => response.json())
             .then(data => {
-                if (!data.disponible) {
-                    document.getElementById('availabilityError').style.display = 'block';
-                    document.getElementById('confirmationMessage').style.display = 'none';
-                    return;
-                }
-
-                // Mostrar detalles de la reserva y opciones de confirmación
-                var reservationDetails = document.getElementById('reservationDetails');
-                reservationDetails.innerHTML = '';
-                reservationDetails.innerHTML += '<li><strong>Nombre:</strong> ' + nombre + '</li>';
-                reservationDetails.innerHTML += '<li><strong>Teléfono:</strong> ' + telefono + '</li>';
-                reservationDetails.innerHTML += '<li><strong>Categoría:</strong> ' + document.getElementById('categoria_id').options[document.getElementById('categoria_id').selectedIndex].text + '</li>';
-                reservationDetails.innerHTML += '<li><strong>Servicio:</strong> ' + document.getElementById('servicio_id').options[document.getElementById('servicio_id').selectedIndex].text + '</li>';
-                reservationDetails.innerHTML += '<li><strong>Fecha:</strong> ' + fecha + '</li>';
-                reservationDetails.innerHTML += '<li><strong>Hora:</strong> ' + hora + '</li>';
-
-                document.getElementById('availabilityError').style.display = 'none';
-                document.getElementById('confirmationMessage').style.display = 'block';
+                data.forEach(servicio => {
+                    var option = document.createElement('option');
+                    option.value = servicio.id;
+                    option.textContent = servicio.nombre;
+                    servicioSelect.appendChild(option);
+                });
             })
             .catch(error => console.error('Error:', error));
-        });
-
-        // Manejo del botón de editar
-        document.getElementById('editButton').addEventListener('click', function() {
-            document.getElementById('confirmationMessage').style.display = 'none';
-            document.getElementById('reservaForm').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Manejo del botón de confirmar
-        document.getElementById('confirmButton').addEventListener('click', function() {
-            document.getElementById('confirmationMessage').style.display = 'none';
-            document.getElementById('printConfirmation').style.display = 'block';
-        });
-
-        // Manejo del botón de imprimir
-        document.getElementById('printButton').addEventListener('click', function() {
-            window.print();
-            document.getElementById('printConfirmation').style.display = 'none';
-            document.getElementById('reservaForm').submit();
-            document.getElementById('finalMessage').style.display = 'block'; // Mostrar mensaje final
-        });
-
-        // Manejo del botón de cancelar impresión
-        document.getElementById('cancelPrintButton').addEventListener('click', function() {
-            document.getElementById('printConfirmation').style.display = 'none';
-            document.getElementById('reservaForm').submit();
-            document.getElementById('finalMessage').style.display = 'block'; // Mostrar mensaje final
-        });
+        }
     });
+
+    // Manejo del envío del formulario
+    document.getElementById('reservaForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var nombre = document.getElementById('nombre_cliente').value.trim();
+        var telefono = document.getElementById('telefono_cliente').value.trim();
+        var categoria = document.getElementById('categoria_id').value;
+        var servicio = document.getElementById('servicio_id').value;
+        var fecha = document.getElementById('fecha_reservacion').value;
+        var hora = document.getElementById('hora_reservacion').value;
+
+        // Validación del nombre
+        if (nombre.length === 0 || !/^[A-Za-z\s]+$/.test(nombre)) {
+            document.getElementById('nombreError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('nombreError').style.display = 'none';
+        }
+
+        // Validación del teléfono
+        if (telefono.length === 0 || !/^\d{4}-\d{4}$/.test(telefono)) {
+            document.getElementById('telefonoError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('telefonoError').style.display = 'none';
+        }
+
+        // Validación de categoría
+        if (!categoria) {
+            document.getElementById('categoriaError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('categoriaError').style.display = 'none';
+        }
+
+        // Validación de servicio
+        if (!servicio) {
+            document.getElementById('servicioError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('servicioError').style.display = 'none';
+        }
+
+        // Validación de fecha
+        if (!fecha) {
+            document.getElementById('fechaError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('fechaError').style.display = 'none';
+        }
+
+        // Validación de hora
+        if (!hora) {
+            document.getElementById('horaError').style.display = 'inline';
+            return;
+        } else {
+            document.getElementById('horaError').style.display = 'none';
+        }
+
+        // Verificar disponibilidad de la fecha y hora
+        fetch('{{ route("reservas.checkAvailability") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ fecha: fecha, hora: hora })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.disponible) {
+                document.getElementById('availabilityError').style.display = 'block';
+                document.getElementById('confirmationMessage').style.display = 'none';
+                return;
+            }
+
+            // Mostrar detalles de la reserva y opciones de confirmación
+            var reservationDetails = document.getElementById('reservationDetails');
+            reservationDetails.innerHTML = '';
+            reservationDetails.innerHTML += '<li><strong>Nombre:</strong> ' + nombre + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Teléfono:</strong> ' + telefono + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Categoría:</strong> ' + document.getElementById('categoria_id').options[document.getElementById('categoria_id').selectedIndex].text + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Servicio:</strong> ' + document.getElementById('servicio_id').options[document.getElementById('servicio_id').selectedIndex].text + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Fecha:</strong> ' + fecha + '</li>';
+            reservationDetails.innerHTML += '<li><strong>Hora:</strong> ' + hora + '</li>';
+
+            document.getElementById('availabilityError').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    // Manejo del botón de editar
+    document.getElementById('editButton').addEventListener('click', function() {
+        document.getElementById('confirmationMessage').style.display = 'none';
+        document.getElementById('reservaForm').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Manejo del botón de confirmar
+    document.getElementById('confirmButton').addEventListener('click', function() {
+        document.getElementById('confirmationMessage').style.display = 'none';
+        document.getElementById('printConfirmation').style.display = 'block';
+    });
+
+    // Manejo del botón de imprimir
+    document.getElementById('printButton').addEventListener('click', function() {
+        window.print();
+        document.getElementById('printConfirmation').style.display = 'none';
+        document.getElementById('reservaForm').submit();
+        document.getElementById('finalMessage').style.display = 'block'; // Mostrar mensaje final
+    });
+
+    // Manejo del botón de cancelar impresión
+    document.getElementById('cancelPrintButton').addEventListener('click', function() {
+        document.getElementById('printConfirmation').style.display = 'none';
+        document.getElementById('reservaForm').submit();
+        document.getElementById('finalMessage').style.display = 'block'; // Mostrar mensaje final
+    });
+});
+
     </script>
 </div>
 @endsection
