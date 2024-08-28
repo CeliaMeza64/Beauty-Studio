@@ -344,6 +344,8 @@ return [
             'route'=>'categorias.index',
            
         ],
+
+       
         [
             'text' => 'Calendario',
             'icon'    => 'fa fa-id-card', 

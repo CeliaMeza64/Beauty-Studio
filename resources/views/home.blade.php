@@ -19,6 +19,7 @@
                         <i class="fas fa-plus"></i> Crear
                     </a>
                 </div>
+
                 @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -55,9 +56,13 @@
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                 
+
+                                    <a href="{{ route('serviciosImagen.index', ['servicio' => $servicio->id]) }}" class="btn btn-primary mr-2" title="Agregar imágenes">
+                                        <i class="fas fa-plus"></i> Imágenes
+                                    </a>
+
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}">
-                                        Eliminar
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
 
                                     <!-- Modal -->
@@ -94,4 +99,3 @@
     </div>
     {{ $servicios->links() }}
 @endsection
-

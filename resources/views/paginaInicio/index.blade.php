@@ -50,8 +50,8 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <!-- Botón para abrir el modal -->
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $paginaInicio->id }}">
-                                        Eliminar
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $paginaInicio->id }}" title="Eliminar">
+                                    <i class="fas fa-trash-alt"></i>
                                     </button>
 
                                     <!-- Modal para confirmar la eliminación -->

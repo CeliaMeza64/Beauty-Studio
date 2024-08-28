@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Servicios</li> 
+            <li class="breadcrumb-item active" aria-current="page">Servicios</li> 
         </ol>
     </nav>
 @endsection
@@ -53,10 +53,13 @@
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                 
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}">
-                                        Eliminar
+                                    
+                                    <!-- Botón de icono de eliminar -->
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
+
+                                    <!-- Modal de confirmación -->
                                     <div class="modal fade" id="eliminarModal_{{ $servicio->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $servicio->id }}" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -79,7 +82,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>   
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -88,6 +91,5 @@
             </div>
         </div>
     </div>
-    {{$servicios->links()}}
-@stop
-
+    {{ $servicios->links() }}
+@endsection

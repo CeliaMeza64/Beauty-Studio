@@ -35,14 +35,12 @@
                             <td>{{ $categoria->nombre }}</td>
                             <td>{{ $categoria->estado ? 'Activo' : 'Inactivo' }}</td>
                             <td class="d-flex align-items-center">
-                                <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-info mr-2" title="Ver">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-warning mr-2" title="Editar">
+                               
+                                <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-success mr-2" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $categoria->id }}">
-                                    Eliminar
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $categoria->id }}" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
                                 </button>
                                 <div class="modal fade" id="eliminarModal_{{ $categoria->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $categoria->id }}" aria-hidden="true">
                                     <div class="modal-dialog" role="document">

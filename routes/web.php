@@ -116,6 +116,22 @@ Route::middleware(['auth.admin'])->group(function () {
 
 Route::get('imagenes/show', [ImageController::class, 'show'])->name('galeria.show');
 
+Route::middleware(['auth.admin'])->prefix('servicios/{servicio}/imagenes')->group(function () {
+    Route::get('/', [ServicioImageController::class, 'index'])->name('serviciosImagen.index');
+    Route::get('/create', [ServicioImageController::class, 'create'])->name('serviciosImagen.create');
+    Route::post('/', [ServicioImageController::class, 'store'])->name('serviciosImagen.store');
+    Route::get('/{image}/edit', [ServicioImageController::class, 'edit'])->name('serviciosImagen.edit');
+    Route::put('/{image}', [ServicioImageController::class, 'update'])->name('serviciosImagen.update');
+    Route::delete('/{image}', [ServicioImageController::class, 'destroy'])->name('serviciosImagen.destroy');
+});
+
+
+Route::get('imagenes/{servicio}/imagenes/show', [ServicioImageController::class, 'show'])->name('serviciosImagen.show');
+
+
+
+
+
 
 
 
