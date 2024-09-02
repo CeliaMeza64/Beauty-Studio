@@ -9,7 +9,7 @@
     @if(Auth::check() && Auth::user()->role == 'admin')
         <div class="mb-3 d-flex justify-content-start">
             <a href="{{ route('servicios.showServicios', ['categoriaN' => $categoriaN]) }}" class="btn btn-secondary">Regresar</a>
-            <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-primary ml-5">Administrar</a>
+         
         </div>
     @endif
 

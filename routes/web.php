@@ -9,7 +9,6 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TrendController;
 use App\Http\Controllers\ServicioImageController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PaginaInicioController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CategoriaController;
 
@@ -27,16 +26,9 @@ use App\Http\Controllers\CategoriaController;
 |
 */
 
-Route::middleware(['auth.admin'])->group(function () {
-    Route::get('/paginaInicio', [PaginaInicioController::class, 'index'])->name('paginaInicio.index');
-    Route::get('/paginaInicio/create', [PaginaInicioController::class, 'create'])->name('paginaInicio.create');
-    Route::post('/paginaInicio', [PaginaInicioController::class, 'store'])->name('paginaInicio.store');
-    Route::get('/paginaInicio/{paginaInicio}/edit', [PaginaInicioController::class, 'edit'])->name('paginaInicio.edit');
-    Route::put('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'update'])->name('paginaInicio.update');
-    Route::delete('/paginaInicio/{paginaInicio}', [PaginaInicioController::class, 'destroy'])->name('paginaInicio.destroy');
-});
 
-Route::get('/', [PaginaInicioController::class, 'show'])->name('paginaInicio.show');
+
+
 
 Route::get('/login', [SessionsController::class, 'create'])->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
@@ -86,6 +78,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
        
         
     });
+    Route::get('/', [CategoriaController::class, 'show'])->name('categorias.show');
     Route::get('servicios/{id}', [ServicioController::class, 'show'])->name('servicios.show');
     Route::get('/servicios/categoria/{categoriaN}', [ServicioController::class, 'showServicios'])->name('servicios.showServicios');
 

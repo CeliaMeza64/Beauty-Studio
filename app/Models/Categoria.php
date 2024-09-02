@@ -9,7 +9,7 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre','estado'];
+    protected $fillable = ['nombre','descripcion','estado','imagen'];
 
     public function servicios()
     {
@@ -20,3 +20,5 @@ class Categoria extends Model
         return $this->hasMany(Reserva::class);
     }
 }
+
+

@@ -34,7 +34,7 @@
                         <div class="col-md-6 order-md-1">
                             <div class="form-group">
                                 <label for="nombre" class="font-weight-bold-custom">Nombre</label>
-                                <input type="text" name="nombre" value="{{ $servicio->nombre }}" placeholder="Nombre del servicio" class="form-control" required>
+                                <input type="text" name="nombre" value="{{ $servicio->nombre }}" placeholder="Nombre del servicio" class="form-control" required maxlength="50">
                                 <div class="invalid-feedback">Por favor, ingrese el nombre del servicio.</div>
                             </div>
                             <br>
@@ -113,6 +113,14 @@
                             field.classList.remove('is-invalid');
                         }
                     });
+
+                    const imagenInput = document.getElementById('imagenInput');
+                    if (imagenInput.files.length && !imagenInput.files[0].type.startsWith('image/')) {
+                        document.querySelector('.invalid-feedback').style.display = 'block';
+                        isValid = false;
+                    } else {
+                        document.querySelector('.invalid-feedback').style.display = 'none';
+                    }
 
                     if (!isValid) {
                         event.preventDefault();

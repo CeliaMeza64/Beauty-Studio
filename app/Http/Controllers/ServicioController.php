@@ -33,6 +33,12 @@ class ServicioController extends Controller
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.max' => 'El nombre no puede tener más de 50 caracteres.',
+            'descripcion.string' => 'La descripción debe ser una cadena de texto.',
+            'categoria_id.required' => 'La categoría es obligatoria.',
+            'categoria_id.exists' => 'La categoría seleccionada no existe.',
+            'disponibilidad.required' => 'La disponibilidad es obligatoria.',
+            'imagen.image' => 'El archivo subido debe ser una imagen.',
+            'imagen.mimes' => 'La imagen debe ser de tipo jpeg, png, jpg, gif o svg.',
     
         ]);
 
@@ -59,7 +65,7 @@ class ServicioController extends Controller
     }
     
     public function showServicios($categoriaN){
-        $categoria = Categoria::where('nombre',$categoriaN)->first();
+        $categoria = Categoria::where('nombre',$categoriaN)->where('estado', true)->first();
         if($categoria){
             $servicios = Servicio::where('categoria_id',$categoria->id)
             ->where('disponibilidad', true)
@@ -88,6 +94,16 @@ class ServicioController extends Controller
             'categoria_id' => 'required|exists:categorias,id',
             'disponibilidad' => 'required|boolean',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre no puede tener más de 50 caracteres.',
+            'descripcion.string' => 'La descripción debe ser una cadena de texto.',
+            'categoria_id.required' => 'La categoría es obligatoria.',
+            'categoria_id.exists' => 'La categoría seleccionada no existe.',
+            'disponibilidad.required' => 'La disponibilidad es obligatoria.',
+            'imagen.image' => 'El archivo subido debe ser una imagen.',
+            'imagen.mimes' => 'La imagen debe ser de tipo jpeg, png, jpg, gif o svg.',
+            'imagen.max' => 'La imagen no puede exceder los 2 MB.',
      
         ]);
 

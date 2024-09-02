@@ -311,13 +311,6 @@ return [
         ],
 
         [
-            'text' => 'Página de inicio',
-            'icon'    => 'fa fa-id-card', 
-            'route'=>'paginaInicio.index',
-           
-        ],
-   
-        [
             'text' => 'Reserva',
             'icon'    => 'fa fa-id-card', 
             'route'=>'reservas.index',
@@ -356,7 +349,7 @@ return [
         [
             'text' => 'Sitio Web',
             'icon'    => 'fa fa-id-card', 
-            'route'=>'paginaInicio.show',
+            'route'=>'categorias.show',
            
         ],
 

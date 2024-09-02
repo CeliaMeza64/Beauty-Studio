@@ -25,7 +25,9 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
+                        <th>Descripción</th>
                         <th>Estado</th>
+                        <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -33,14 +35,21 @@
                     @foreach($categorias as $categoria)
                         <tr>
                             <td>{{ $categoria->nombre }}</td>
+                            <td>{{ Str::limit($categoria->descripcion, 50) }}</td>
                             <td>{{ $categoria->estado ? 'Activo' : 'Inactivo' }}</td>
+                            <td>
+                                @if ($categoria->imagen)
+                                    <img src="{{ asset('storage/' . $categoria->imagen) }}" alt="Imagen" style="width: 50px; height: auto; max-height: 50px; object-fit: cover;">
+                                @else
+                                    No hay imagen
+                                @endif
+                            </td>
                             <td class="d-flex align-items-center">
-                               
                                 <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-success mr-2" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $categoria->id }}" title="Eliminar">
-                                <i class="fas fa-trash-alt"></i>
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                                 <div class="modal fade" id="eliminarModal_{{ $categoria->id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel_{{ $categoria->id }}" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
