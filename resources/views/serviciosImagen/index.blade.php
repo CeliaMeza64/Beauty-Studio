@@ -28,7 +28,6 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Categoría</th>
@@ -38,9 +37,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($servicios as $servicio)
+                        @foreach($servicio as $servi)
                             <tr>
-                                <td>{{ ($servicios->currentPage() - 1) * $servicios->perPage() + $loop->iteration }}</td>
+                                
                                 <td>{{ $servicio->nombre }}</td>
                                 <td><div class="truncate">{{ $servicio->descripcion }}</div></td>
                                 <td>{{ $servicio->categoria->nombre ?? 'No Asignada' }}</td>
@@ -57,7 +56,11 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <a href="{{ route('serviciosImagen.index', ['servicio' => $servicio->id]) }}" class="btn btn-primary mr-2" title="Agregar imágenes">
+                                    <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="{{ route('serviciosImagen.create', ['servicio' => $servicio->id]) }}" class="btn btn-primary mr-2" title="Agregar imágenes"> 
                                         <i class="fas fa-plus"></i> Imágenes
                                     </a>
 
@@ -97,5 +100,5 @@
             </div>
         </div>
     </div>
-    {{ $servicios->links() }}
+   
 @endsection

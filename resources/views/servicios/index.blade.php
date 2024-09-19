@@ -53,8 +53,10 @@
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-success mr-2" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    
-                                    <!-- Botón de icono de eliminar -->
+
+                                    <a href="{{ route('serviciosImagen.create', ['servicio' => $servicio->id]) }}" class="btn btn-primary mr-2" title="Agregar imágenes"> 
+                                        <i class="fas fa-plus"></i> Imágenes
+                                    </a>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal_{{ $servicio->id }}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>

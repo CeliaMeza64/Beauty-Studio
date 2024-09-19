@@ -13,7 +13,7 @@
     <div class="card">
         <div class="card-body">
             <div class="container">
-                <!-- Mostrar errores de validación -->
+          
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -24,7 +24,7 @@
                     </div>
                 @endif
 
-                <!-- Corregir la sintaxis de la ruta -->
+              
                 <form action="{{ route('serviciosImagen.store', ['servicio' => $servicioId]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="servicio_id" value="{{ $servicioId }}">
@@ -49,7 +49,7 @@
                                 <button type="submit" class="btn btn-outline-success mr-2" style="flex: 1;">
                                     <span class="fas fa-upload"></span> Subir Imagen
                                 </button>
-                                <!-- Botón de cancelar modificado -->
+                            
                                 <a href="#" onclick="cancelarCreacion()" class="btn btn-outline-danger" style="flex: 1;">
                                     <i class="fa fa-times" aria-hidden="true"></i> Cancelar
                                 </a>
